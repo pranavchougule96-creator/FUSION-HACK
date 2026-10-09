@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  space04-dashboard:
+    build: .
+    container_name: space04-scheduler-dashboard
+    ports:
+      - "8080:8080"
+    environment:
+      - PORT=8080
+      - NODE_ENV=production
+    restart: unless-stopped

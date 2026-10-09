@@ -1,0 +1,680 @@
+request_id,satellite_name,satellite_type,station_id,station_name,aos_utc_sec,los_utc_sec,duration_sec,peak_elevation_deg,priority,priority_weight,data_rate_mbps,potential_data_gb
+REQ-143,"PELICAN-14","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",0,251,251,46.9,HIGH,5,2037,63.91
+REQ-274,"PELICAN-02","Pelican Agile Earth Imager",GS-INU,"Inuvik Satellite Station",0,23,30,12,HIGH,5,1462,5.48
+REQ-110,"DOVE-FL-11","PlanetScope 3U CubeSat",GS-SVB,"Svalbard Ground Station",144,569,425,44.9,MEDIUM,2.5,884,46.96
+REQ-411,"DOVE-FL-17","PlanetScope 3U CubeSat",GS-INU,"Inuvik Satellite Station",233,670,437,57.9,MEDIUM,2.5,1320,72.11
+REQ-468,"DOVE-FL-23","PlanetScope 3U CubeSat",GS-INU,"Inuvik Satellite Station",352,547,195,12.4,LOW,1,975,23.77
+REQ-440,"PELICAN-20","Pelican Agile Earth Imager",GS-INU,"Inuvik Satellite Station",462,928,466,56.2,CRITICAL,10,2106,122.67
+REQ-065,"PELICAN-07","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",818,1265,447,81.3,CRITICAL,10,1968,109.96
+REQ-001,"PELICAN-01","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",1102,1363,261,15.1,CRITICAL,10,1325,43.23
+REQ-210,"PELICAN-20","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",1162,1210,48,10.1,CRITICAL,10,1406,8.44
+REQ-033,"PELICAN-04","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",1340,1630,290,15.8,HIGH,5,1635,59.27
+REQ-320,"PELICAN-07","Pelican Agile Earth Imager",GS-INU,"Inuvik Satellite Station",1363,1696,333,19.9,CRITICAL,10,1456,60.61
+REQ-264,"PELICAN-01","Pelican Agile Earth Imager",GS-INU,"Inuvik Satellite Station",1460,1768,308,18.4,CRITICAL,10,1372,52.82
+REQ-132,"PELICAN-13","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",1602,2060,458,58.6,HIGH,5,1865,106.77
+REQ-292,"PELICAN-04","Pelican Agile Earth Imager",GS-INU,"Inuvik Satellite Station",1697,2031,334,19.4,HIGH,5,1696,70.81
+REQ-167,"DOVE-FL-16","PlanetScope 3U CubeSat",GS-SVB,"Svalbard Ground Station",1836,2269,433,57.8,LOW,1,1442,78.05
+REQ-099,"DOVE-FL-10","PlanetScope 3U CubeSat",GS-SVB,"Svalbard Ground Station",1936,2397,461,45.7,MEDIUM,2.5,768,44.26
+REQ-459,"PELICAN-22","Pelican Agile Earth Imager",GS-INU,"Inuvik Satellite Station",2101,2336,235,13.9,HIGH,5,1428,41.95
+REQ-430,"PELICAN-19","Pelican Agile Earth Imager",GS-INU,"Inuvik Satellite Station",2292,2723,431,36.2,HIGH,5,1887,101.66
+REQ-055,"DOVE-FL-06","PlanetScope 3U CubeSat",GS-SVB,"Svalbard Ground Station",2613,3046,433,74.2,LOW,1,1235,66.84
+REQ-637,"PELICAN-09","Pelican Agile Earth Imager",GS-IXZ,"Port Blair Ground Gateway",2689,2854,165,11.6,CRITICAL,10,1230,25.37
+REQ-645,"PELICAN-12","Pelican Agile Earth Imager",GS-IXZ,"Port Blair Ground Gateway",2899,3069,170,11.9,CRITICAL,10,1961,41.67
+REQ-199,"PELICAN-19","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",2924,3115,191,12.1,HIGH,5,1497,35.74
+REQ-312,"DOVE-FL-06","PlanetScope 3U CubeSat",GS-INU,"Inuvik Satellite Station",3141,3517,376,28,LOW,1,987,46.39
+REQ-022,"DOVE-FL-03","PlanetScope 3U CubeSat",GS-SVB,"Svalbard Ground Station",3207,3406,199,12.5,MEDIUM,2.5,608,15.12
+REQ-283,"DOVE-FL-03","PlanetScope 3U CubeSat",GS-INU,"Inuvik Satellite Station",3504,3770,266,15.2,MEDIUM,2.5,626,20.81
+REQ-672,"PELICAN-22","Pelican Agile Earth Imager",GS-IXZ,"Port Blair Ground Gateway",3577,3690,113,10.8,HIGH,5,1381,19.51
+REQ-155,"PELICAN-15","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",3655,4136,481,76.1,HIGH,5,2112,126.98
+REQ-088,"PELICAN-09","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",3735,4185,450,44.7,CRITICAL,10,1674,94.16
+REQ-451,"DOVE-FL-21","PlanetScope 3U CubeSat",GS-INU,"Inuvik Satellite Station",3845,4115,270,15.9,LOW,1,722,24.37
+REQ-121,"PELICAN-12","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",3948,4382,434,43.8,CRITICAL,10,2643,143.38
+REQ-478,"PELICAN-24","Pelican Agile Earth Imager",GS-INU,"Inuvik Satellite Station",4084,4418,334,18.8,HIGH,5,1488,62.12
+REQ-421,"PELICAN-18","Pelican Agile Earth Imager",GS-INU,"Inuvik Satellite Station",4129,4497,368,23.5,CRITICAL,10,2296,105.62
+REQ-044,"DOVE-FL-05","PlanetScope 3U CubeSat",GS-SVB,"Svalbard Ground Station",4448,4916,468,63.3,LOW,1,1059,61.95
+REQ-642,"DOVE-FL-11","PlanetScope 3U CubeSat",GS-IXZ,"Port Blair Ground Gateway",4559,4949,390,32.8,MEDIUM,2.5,799,38.95
+REQ-077,"DOVE-FL-08","PlanetScope 3U CubeSat",GS-SVB,"Svalbard Ground Station",4661,5116,455,60.9,MEDIUM,2.5,1086,61.77
+REQ-188,"PELICAN-18","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",4712,4962,250,14.2,CRITICAL,10,2089,65.28
+REQ-578,"DOVE-FL-11","PlanetScope 3U CubeSat",GS-LKO,"Lucknow Telemetry Station",4936,5121,185,12.3,MEDIUM,2.5,654,15.12
+REQ-302,"DOVE-FL-05","PlanetScope 3U CubeSat",GS-INU,"Inuvik Satellite Station",4966,5424,458,48.1,LOW,1,1005,57.54
+REQ-328,"DOVE-FL-08","PlanetScope 3U CubeSat",GS-INU,"Inuvik Satellite Station",5178,5621,443,49.5,MEDIUM,2.5,1041,57.65
+REQ-670,"DOVE-FL-21","PlanetScope 3U CubeSat",GS-IXZ,"Port Blair Ground Gateway",5220,5594,374,30.6,LOW,1,833,38.94
+REQ-275,"PELICAN-02","Pelican Agile Earth Imager",GS-INU,"Inuvik Satellite Station",5301,5495,194,12.5,HIGH,5,1470,35.65
+REQ-144,"PELICAN-14","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",5456,5930,474,84,HIGH,5,2166,128.34
+REQ-678,"PELICAN-24","Pelican Agile Earth Imager",GS-IXZ,"Port Blair Ground Gateway",5485,5909,424,39.7,HIGH,5,1804,95.61
+REQ-111,"DOVE-FL-11","PlanetScope 3U CubeSat",GS-SVB,"Svalbard Ground Station",5722,6146,424,43.9,MEDIUM,2.5,877,46.48
+REQ-469,"DOVE-FL-23","PlanetScope 3U CubeSat",GS-INU,"Inuvik Satellite Station",5839,6202,363,22.5,LOW,1,1081,49.05
+REQ-412,"DOVE-FL-17","PlanetScope 3U CubeSat",GS-INU,"Inuvik Satellite Station",5976,6248,272,15.5,MEDIUM,2.5,933,31.72
+REQ-441,"PELICAN-20","Pelican Agile Earth Imager",GS-INU,"Inuvik Satellite Station",6264,6564,300,16.1,CRITICAL,10,1499,56.21
+REQ-640,"DOVE-FL-10","PlanetScope 3U CubeSat",GS-IXZ,"Port Blair Ground Gateway",6389,6856,467,67.4,MEDIUM,2.5,825,48.16
+REQ-066,"PELICAN-07","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",6458,6891,433,46.5,CRITICAL,10,1844,99.81
+REQ-178,"DOVE-FL-17","PlanetScope 3U CubeSat",GS-SVB,"Svalbard Ground Station",6491,6789,298,16.9,MEDIUM,2.5,947,35.28
+REQ-512,"DOVE-FL-10","PlanetScope 3U CubeSat",GS-BLR,"Bengaluru Ground Station",6562,6825,263,14.6,MEDIUM,2.5,578,19
+REQ-576,"DOVE-FL-10","PlanetScope 3U CubeSat",GS-LKO,"Lucknow Telemetry Station",6675,7111,436,36.2,MEDIUM,2.5,710,38.7
+REQ-211,"PELICAN-20","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",6776,7118,342,18.9,CRITICAL,10,1543,65.96
+REQ-321,"PELICAN-07","Pelican Agile Earth Imager",GS-INU,"Inuvik Satellite Station",6960,7403,443,73.8,CRITICAL,10,1968,108.98
+REQ-265,"PELICAN-01","Pelican Agile Earth Imager",GS-INU,"Inuvik Satellite Station",7096,7196,100,10.7,CRITICAL,10,1264,15.8
+REQ-611,"DOVE-FL-23","PlanetScope 3U CubeSat",GS-LKO,"Lucknow Telemetry Station",7128,7404,276,15.8,LOW,1,1010,34.84
+REQ-133,"PELICAN-13","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",7245,7707,462,73.9,HIGH,5,1865,107.7
+REQ-676,"DOVE-FL-23","PlanetScope 3U CubeSat",GS-IXZ,"Port Blair Ground Gateway",7257,7691,434,60.9,LOW,1,1424,77.25
+REQ-293,"PELICAN-04","Pelican Agile Earth Imager",GS-INU,"Inuvik Satellite Station",7363,7532,169,11.7,HIGH,5,1566,33.08
+REQ-545,"DOVE-FL-23","PlanetScope 3U CubeSat",GS-BLR,"Bengaluru Ground Station",7393,7595,202,12.8,LOW,1,978,24.69
+REQ-168,"DOVE-FL-16","PlanetScope 3U CubeSat",GS-SVB,"Svalbard Ground Station",7442,7878,436,70,LOW,1,1442,78.59
+REQ-100,"DOVE-FL-10","PlanetScope 3U CubeSat",GS-SVB,"Svalbard Ground Station",7585,8051,466,49,MEDIUM,2.5,789,45.96
+REQ-460,"PELICAN-22","Pelican Agile Earth Imager",GS-INU,"Inuvik Satellite Station",7587,7976,389,28.7,HIGH,5,1653,80.38
+REQ-431,"PELICAN-19","Pelican Agile Earth Imager",GS-INU,"Inuvik Satellite Station",8175,8277,102,10.6,HIGH,5,1472,18.77
+REQ-638,"PELICAN-09","Pelican Agile Earth Imager",GS-IXZ,"Port Blair Ground Gateway",8220,8588,368,22.6,CRITICAL,10,1377,63.34
+REQ-056,"DOVE-FL-06","PlanetScope 3U CubeSat",GS-SVB,"Svalbard Ground Station",8251,8653,402,35.3,LOW,1,1054,52.96
+REQ-509,"PELICAN-09","Pelican Agile Earth Imager",GS-BLR,"Bengaluru Ground Station",8252,8686,434,38.7,CRITICAL,10,1593,86.42
+REQ-646,"PELICAN-12","Pelican Agile Earth Imager",GS-IXZ,"Port Blair Ground Gateway",8424,8739,315,18.8,CRITICAL,10,2109,83.04
+REQ-517,"PELICAN-12","Pelican Agile Earth Imager",GS-BLR,"Bengaluru Ground Station",8438,8852,414,41.2,CRITICAL,10,2587,133.88
+REQ-573,"PELICAN-09","Pelican Agile Earth Imager",GS-LKO,"Lucknow Telemetry Station",8438,8905,467,80.8,CRITICAL,10,1812,105.78
+REQ-200,"PELICAN-19","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",8563,8939,376,23,HIGH,5,1674,78.68
+REQ-581,"PELICAN-12","Pelican Agile Earth Imager",GS-LKO,"Lucknow Telemetry Station",8627,9067,440,71.2,CRITICAL,10,2882,158.51
+REQ-313,"DOVE-FL-06","PlanetScope 3U CubeSat",GS-INU,"Inuvik Satellite Station",8733,9160,427,69,LOW,1,1235,65.92
+REQ-609,"PELICAN-22","Pelican Agile Earth Imager",GS-LKO,"Lucknow Telemetry Station",8834,9244,410,40.3,HIGH,5,1828,93.69
+REQ-543,"PELICAN-22","Pelican Agile Earth Imager",GS-BLR,"Bengaluru Ground Station",9063,9460,397,35.4,HIGH,5,1753,86.99
+REQ-673,"PELICAN-22","Pelican Agile Earth Imager",GS-IXZ,"Port Blair Ground Gateway",9077,9394,317,19.5,HIGH,5,1512,59.91
+REQ-284,"DOVE-FL-03","PlanetScope 3U CubeSat",GS-INU,"Inuvik Satellite Station",9155,9240,85,10.4,MEDIUM,2.5,595,6.32
+REQ-156,"PELICAN-15","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",9332,9806,474,63,HIGH,5,2112,125.14
+REQ-452,"DOVE-FL-21","PlanetScope 3U CubeSat",GS-INU,"Inuvik Satellite Station",9333,9738,405,38.3,LOW,1,891,45.11
+REQ-089,"PELICAN-09","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",9364,9824,460,53.3,CRITICAL,10,1789,102.87
+REQ-122,"PELICAN-12","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",9542,9986,444,52.2,CRITICAL,10,2823,156.68
+REQ-479,"PELICAN-24","Pelican Agile Earth Imager",GS-INU,"Inuvik Satellite Station",9636,10088,452,44.4,HIGH,5,1874,105.88
+REQ-045,"DOVE-FL-05","PlanetScope 3U CubeSat",GS-SVB,"Svalbard Ground Station",10177,10600,423,30.8,LOW,1,869,45.95
+REQ-515,"DOVE-FL-11","PlanetScope 3U CubeSat",GS-BLR,"Bengaluru Ground Station",10190,10612,422,56.6,MEDIUM,2.5,956,50.43
+REQ-189,"PELICAN-18","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",10343,10736,393,27.5,CRITICAL,10,2384,117.11
+REQ-078,"DOVE-FL-08","PlanetScope 3U CubeSat",GS-SVB,"Svalbard Ground Station",10356,10762,406,29.3,MEDIUM,2.5,879,44.61
+REQ-579,"DOVE-FL-11","PlanetScope 3U CubeSat",GS-LKO,"Lucknow Telemetry Station",10428,10787,359,24.1,MEDIUM,2.5,737,33.07
+REQ-606,"DOVE-FL-21","PlanetScope 3U CubeSat",GS-LKO,"Lucknow Telemetry Station",10587,11003,416,63.4,LOW,1,1017,52.88
+REQ-303,"DOVE-FL-05","PlanetScope 3U CubeSat",GS-INU,"Inuvik Satellite Station",10644,11095,451,46.1,LOW,1,989,55.75
+REQ-541,"DOVE-FL-21","PlanetScope 3U CubeSat",GS-BLR,"Bengaluru Ground Station",10807,11222,415,65.7,LOW,1,1017,52.76
+REQ-329,"DOVE-FL-08","PlanetScope 3U CubeSat",GS-INU,"Inuvik Satellite Station",10819,11252,433,43.6,MEDIUM,2.5,995,53.85
+REQ-614,"PELICAN-24","Pelican Agile Earth Imager",GS-LKO,"Lucknow Telemetry Station",10915,11359,444,52.9,HIGH,5,2002,111.11
+REQ-145,"PELICAN-14","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",11110,11572,462,55,HIGH,5,2166,125.09
+REQ-549,"PELICAN-24","Pelican Agile Earth Imager",GS-BLR,"Bengaluru Ground Station",11139,11579,440,53,HIGH,5,2004,110.22
+REQ-112,"DOVE-FL-11","PlanetScope 3U CubeSat",GS-SVB,"Svalbard Ground Station",11299,11737,438,59.2,MEDIUM,2.5,956,52.34
+REQ-470,"DOVE-FL-23","PlanetScope 3U CubeSat",GS-INU,"Inuvik Satellite Station",11398,11853,455,61.8,LOW,1,1424,80.99
+REQ-179,"DOVE-FL-17","PlanetScope 3U CubeSat",GS-SVB,"Svalbard Ground Station",12110,12519,409,33.3,MEDIUM,2.5,1108,56.65
+REQ-067,"PELICAN-07","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",12155,12517,362,22.9,CRITICAL,10,1501,67.92
+REQ-513,"DOVE-FL-10","PlanetScope 3U CubeSat",GS-BLR,"Bengaluru Ground Station",12177,12515,338,18.9,MEDIUM,2.5,605,25.56
+REQ-212,"PELICAN-20","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",12455,12896,441,36.8,CRITICAL,10,1822,100.44
+REQ-322,"PELICAN-07","Pelican Agile Earth Imager",GS-INU,"Inuvik Satellite Station",12588,12981,393,30.3,CRITICAL,10,1608,78.99
+REQ-266,"PELICAN-01","Pelican Agile Earth Imager",GS-INU,"Inuvik Satellite Station",12659,12662,30,10,CRITICAL,10,1255,4.71
+REQ-612,"DOVE-FL-23","PlanetScope 3U CubeSat",GS-LKO,"Lucknow Telemetry Station",12727,13054,327,19.7,LOW,1,1051,42.96
+REQ-134,"PELICAN-13","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",12877,13325,448,49.1,HIGH,5,1783,99.85
+REQ-294,"PELICAN-04","Pelican Agile Earth Imager",GS-INU,"Inuvik Satellite Station",12942,13095,153,11.5,HIGH,5,1561,29.85
+REQ-546,"DOVE-FL-23","PlanetScope 3U CubeSat",GS-BLR,"Bengaluru Ground Station",12961,13266,305,17.9,LOW,1,1033,39.38
+REQ-169,"DOVE-FL-16","PlanetScope 3U CubeSat",GS-SVB,"Svalbard Ground Station",13038,13459,421,46.1,LOW,1,1347,70.89
+REQ-461,"PELICAN-22","Pelican Agile Earth Imager",GS-INU,"Inuvik Satellite Station",13157,13606,449,84.6,HIGH,5,2052,115.17
+REQ-101,"DOVE-FL-10","PlanetScope 3U CubeSat",GS-SVB,"Svalbard Ground Station",13237,13718,481,71.3,MEDIUM,2.5,825,49.6
+REQ-347,"DOVE-FL-10","PlanetScope 3U CubeSat",GS-INU,"Inuvik Satellite Station",13811,14083,272,14.6,MEDIUM,2.5,578,19.65
+REQ-057,"DOVE-FL-06","PlanetScope 3U CubeSat",GS-SVB,"Svalbard Ground Station",13955,14254,299,17.5,LOW,1,891,33.3
+REQ-201,"PELICAN-19","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",14227,14675,448,46.4,HIGH,5,2054,115.02
+REQ-314,"DOVE-FL-06","PlanetScope 3U CubeSat",GS-INU,"Inuvik Satellite Station",14349,14689,340,22.5,LOW,1,937,39.82
+REQ-285,"DOVE-FL-03","PlanetScope 3U CubeSat",GS-INU,"Inuvik Satellite Station",14663,14839,176,12,MEDIUM,2.5,605,13.31
+REQ-453,"DOVE-FL-21","PlanetScope 3U CubeSat",GS-INU,"Inuvik Satellite Station",14918,15345,427,53.4,LOW,1,1005,53.64
+REQ-157,"PELICAN-15","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",14995,15455,460,46.3,HIGH,5,1975,113.56
+REQ-090,"PELICAN-09","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",15005,15477,472,84.3,CRITICAL,10,1812,106.91
+REQ-123,"PELICAN-12","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",15146,15603,457,77.8,CRITICAL,10,2882,164.63
+REQ-480,"PELICAN-24","Pelican Agile Earth Imager",GS-INU,"Inuvik Satellite Station",15284,15747,463,51.4,HIGH,5,1979,114.53
+REQ-338,"PELICAN-09","Pelican Agile Earth Imager",GS-INU,"Inuvik Satellite Station",15554,15909,355,20.3,CRITICAL,10,1346,59.73
+REQ-365,"PELICAN-12","Pelican Agile Earth Imager",GS-INU,"Inuvik Satellite Station",15692,16036,344,20.1,CRITICAL,10,2136,91.85
+REQ-253,"PELICAN-24","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",15955,16069,114,10.7,HIGH,5,1367,19.48
+REQ-046,"DOVE-FL-05","PlanetScope 3U CubeSat",GS-SVB,"Svalbard Ground Station",15977,16276,299,16,LOW,1,753,28.14
+REQ-190,"PELICAN-18","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",15989,16435,446,56.7,CRITICAL,10,2994,166.92
+REQ-079,"DOVE-FL-08","PlanetScope 3U CubeSat",GS-SVB,"Svalbard Ground Station",16123,16397,274,15.1,MEDIUM,2.5,765,26.2
+REQ-304,"DOVE-FL-05","PlanetScope 3U CubeSat",GS-INU,"Inuvik Satellite Station",16332,16668,336,19.1,LOW,1,778,32.68
+REQ-276,"PELICAN-02","Pelican Agile Earth Imager",GS-INU,"Inuvik Satellite Station",16364,16586,222,13.5,HIGH,5,1486,41.24
+REQ-330,"DOVE-FL-08","PlanetScope 3U CubeSat",GS-INU,"Inuvik Satellite Station",16473,16785,312,17.9,MEDIUM,2.5,788,30.73
+REQ-146,"PELICAN-14","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",16751,17202,451,44.9,HIGH,5,2004,112.98
+REQ-113,"DOVE-FL-11","PlanetScope 3U CubeSat",GS-SVB,"Svalbard Ground Station",16894,17339,445,73.8,MEDIUM,2.5,956,53.18
+REQ-471,"DOVE-FL-23","PlanetScope 3U CubeSat",GS-INU,"Inuvik Satellite Station",17065,17486,421,33.4,LOW,1,1196,62.94
+REQ-648,"PELICAN-13","Pelican Agile Earth Imager",GS-IXZ,"Port Blair Ground Gateway",17420,17643,223,13.4,HIGH,5,1290,35.96
+REQ-357,"DOVE-FL-11","PlanetScope 3U CubeSat",GS-INU,"Inuvik Satellite Station",17423,17812,389,28.4,MEDIUM,2.5,767,37.3
+REQ-656,"DOVE-FL-16","PlanetScope 3U CubeSat",GS-IXZ,"Port Blair Ground Gateway",17550,17754,204,13.1,LOW,1,994,25.35
+REQ-242,"DOVE-FL-23","PlanetScope 3U CubeSat",GS-SVB,"Svalbard Ground Station",17691,17890,199,12.4,LOW,1,975,24.25
+REQ-180,"DOVE-FL-17","PlanetScope 3U CubeSat",GS-SVB,"Svalbard Ground Station",17737,18181,444,69.4,MEDIUM,2.5,1320,73.26
+REQ-619,"PELICAN-02","Pelican Agile Earth Imager",GS-IXZ,"Port Blair Ground Gateway",17853,17923,70,10.3,HIGH,5,1435,12.56
+REQ-068,"PELICAN-07","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",17940,18116,176,11.9,CRITICAL,10,1340,29.48
+REQ-267,"PELICAN-01","Pelican Agile Earth Imager",GS-INU,"Inuvik Satellite Station",18055,18324,269,15.7,CRITICAL,10,1335,44.89
+REQ-213,"PELICAN-20","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",18137,18609,472,72.3,CRITICAL,10,2106,124.25
+REQ-323,"PELICAN-07","Pelican Agile Earth Imager",GS-INU,"Inuvik Satellite Station",18230,18470,240,14.2,CRITICAL,10,1373,41.19
+REQ-295,"PELICAN-04","Pelican Agile Earth Imager",GS-INU,"Inuvik Satellite Station",18440,18759,319,18.2,HIGH,5,1676,66.83
+REQ-135,"PELICAN-13","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",18495,18936,441,44.3,HIGH,5,1716,94.59
+REQ-170,"DOVE-FL-16","PlanetScope 3U CubeSat",GS-SVB,"Svalbard Ground Station",18620,19034,414,41.4,LOW,1,1297,67.12
+REQ-462,"PELICAN-22","Pelican Agile Earth Imager",GS-INU,"Inuvik Satellite Station",18852,19206,354,21.8,HIGH,5,1547,68.45
+REQ-102,"DOVE-FL-10","PlanetScope 3U CubeSat",GS-SVB,"Svalbard Ground Station",18918,19397,479,61.9,MEDIUM,2.5,825,49.4
+REQ-231,"PELICAN-22","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",19428,19679,251,14.3,HIGH,5,1434,44.99
+REQ-617,"PELICAN-01","Pelican Agile Earth Imager",GS-IXZ,"Port Blair Ground Gateway",19431,19806,375,28.1,CRITICAL,10,1508,70.69
+REQ-348,"DOVE-FL-10","PlanetScope 3U CubeSat",GS-INU,"Inuvik Satellite Station",19439,19905,466,49.6,MEDIUM,2.5,792,46.13
+REQ-653,"PELICAN-15","Pelican Agile Earth Imager",GS-IXZ,"Port Blair Ground Gateway",19461,19906,445,49.7,HIGH,5,2029,112.86
+REQ-589,"PELICAN-15","Pelican Agile Earth Imager",GS-LKO,"Lucknow Telemetry Station",19798,20117,319,18,HIGH,5,1534,61.17
+REQ-625,"PELICAN-04","Pelican Agile Earth Imager",GS-IXZ,"Port Blair Ground Gateway",19830,20258,428,38.8,HIGH,5,2027,108.44
+REQ-202,"PELICAN-19","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",19890,20354,464,83.5,HIGH,5,2193,127.19
+REQ-315,"DOVE-FL-06","PlanetScope 3U CubeSat",GS-INU,"Inuvik Satellite Station",19978,20135,157,11.6,LOW,1,838,16.45
+REQ-286,"DOVE-FL-03","PlanetScope 3U CubeSat",GS-INU,"Inuvik Satellite Station",20147,20497,350,21.7,MEDIUM,2.5,669,29.27
+REQ-158,"PELICAN-15","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",20646,21106,460,47.2,HIGH,5,1990,114.42
+REQ-454,"DOVE-FL-21","PlanetScope 3U CubeSat",GS-INU,"Inuvik Satellite Station",20653,20900,247,14.4,LOW,1,711,21.95
+REQ-091,"PELICAN-09","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",20680,21141,461,50.1,CRITICAL,10,1746,100.61
+REQ-124,"PELICAN-12","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",20786,21229,443,47.7,CRITICAL,10,2727,151.01
+REQ-481,"PELICAN-24","Pelican Agile Earth Imager",GS-INU,"Inuvik Satellite Station",21081,21359,278,14.9,HIGH,5,1430,49.69
+REQ-221,"DOVE-FL-21","PlanetScope 3U CubeSat",GS-SVB,"Svalbard Ground Station",21157,21447,290,16.9,LOW,1,730,26.46
+REQ-339,"PELICAN-09","Pelican Agile Earth Imager",GS-INU,"Inuvik Satellite Station",21187,21655,468,74.8,CRITICAL,10,1812,106
+REQ-651,"PELICAN-14","Pelican Agile Earth Imager",GS-IXZ,"Port Blair Ground Gateway",21200,21640,440,51.1,HIGH,5,2103,115.67
+REQ-366,"PELICAN-12","Pelican Agile Earth Imager",GS-INU,"Inuvik Satellite Station",21288,21743,455,74.7,CRITICAL,10,2882,163.91
+REQ-523,"PELICAN-14","Pelican Agile Earth Imager",GS-BLR,"Bengaluru Ground Station",21339,21640,301,17.1,HIGH,5,1558,58.62
+REQ-556,"DOVE-FL-03","PlanetScope 3U CubeSat",GS-LKO,"Lucknow Telemetry Station",21431,21702,271,15.3,MEDIUM,2.5,627,21.24
+REQ-587,"PELICAN-14","Pelican Agile Earth Imager",GS-LKO,"Lucknow Telemetry Station",21471,21906,435,43.9,HIGH,5,1987,108.04
+REQ-623,"DOVE-FL-03","PlanetScope 3U CubeSat",GS-IXZ,"Port Blair Ground Gateway",21551,21998,447,65.9,MEDIUM,2.5,888,49.62
+REQ-254,"PELICAN-24","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",21575,21929,354,20,HIGH,5,1507,66.68
+REQ-191,"PELICAN-18","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",21632,22082,450,71.1,CRITICAL,10,2994,168.41
+REQ-492,"DOVE-FL-03","PlanetScope 3U CubeSat",GS-BLR,"Bengaluru Ground Station",21697,21892,195,12.4,MEDIUM,2.5,608,14.82
+REQ-277,"PELICAN-02","Pelican Agile Earth Imager",GS-INU,"Inuvik Satellite Station",21846,22227,381,27.5,HIGH,5,1708,81.34
+REQ-305,"DOVE-FL-05","PlanetScope 3U CubeSat",GS-INU,"Inuvik Satellite Station",22013,22188,175,11.8,LOW,1,720,15.75
+REQ-331,"DOVE-FL-08","PlanetScope 3U CubeSat",GS-INU,"Inuvik Satellite Station",22126,22262,136,11.1,MEDIUM,2.5,733,12.46
+REQ-147,"PELICAN-14","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",22382,22838,456,49.2,HIGH,5,2073,118.16
+REQ-114,"DOVE-FL-11","PlanetScope 3U CubeSat",GS-SVB,"Svalbard Ground Station",22531,22947,416,37.4,MEDIUM,2.5,831,43.21
+REQ-649,"PELICAN-13","Pelican Agile Earth Imager",GS-IXZ,"Port Blair Ground Gateway",22997,23300,303,17.5,HIGH,5,1346,50.98
+REQ-520,"PELICAN-13","Pelican Agile Earth Imager",GS-BLR,"Bengaluru Ground Station",22998,23426,428,46.4,HIGH,5,1746,93.41
+REQ-358,"DOVE-FL-11","PlanetScope 3U CubeSat",GS-INU,"Inuvik Satellite Station",23016,23456,440,68.9,MEDIUM,2.5,956,52.58
+REQ-554,"PELICAN-02","Pelican Agile Earth Imager",GS-LKO,"Lucknow Telemetry Station",23087,23502,415,37.5,HIGH,5,1866,96.8
+REQ-528,"DOVE-FL-16","PlanetScope 3U CubeSat",GS-BLR,"Bengaluru Ground Station",23093,23499,406,46.5,LOW,1,1350,68.51
+REQ-657,"DOVE-FL-16","PlanetScope 3U CubeSat",GS-IXZ,"Port Blair Ground Gateway",23106,23362,256,15.3,LOW,1,1018,32.58
+REQ-584,"PELICAN-13","Pelican Agile Earth Imager",GS-LKO,"Lucknow Telemetry Station",23192,23636,444,63.1,HIGH,5,1865,103.51
+REQ-592,"DOVE-FL-16","PlanetScope 3U CubeSat",GS-LKO,"Lucknow Telemetry Station",23288,23706,418,59.6,LOW,1,1442,75.34
+REQ-243,"DOVE-FL-23","PlanetScope 3U CubeSat",GS-SVB,"Svalbard Ground Station",23314,23690,376,23.6,LOW,1,1092,51.32
+REQ-490,"PELICAN-02","Pelican Agile Earth Imager",GS-BLR,"Bengaluru Ground Station",23317,23718,401,33.2,HIGH,5,1799,90.17
+REQ-620,"PELICAN-02","Pelican Agile Earth Imager",GS-IXZ,"Port Blair Ground Gateway",23320,23665,345,21.8,HIGH,5,1618,69.78
+REQ-181,"DOVE-FL-17","PlanetScope 3U CubeSat",GS-SVB,"Svalbard Ground Station",23359,23799,440,63.6,MEDIUM,2.5,1320,72.6
+REQ-268,"PELICAN-01","Pelican Agile Earth Imager",GS-INU,"Inuvik Satellite Station",23541,23946,405,36.8,CRITICAL,10,1628,82.42
+REQ-214,"PELICAN-20","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",23813,24279,466,61.5,CRITICAL,10,2106,122.67
+REQ-296,"PELICAN-04","Pelican Agile Earth Imager",GS-INU,"Inuvik Satellite Station",23991,24430,439,43.5,HIGH,5,2107,115.62
+REQ-136,"PELICAN-13","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",24107,24559,452,54.1,HIGH,5,1852,104.64
+REQ-171,"DOVE-FL-16","PlanetScope 3U CubeSat",GS-SVB,"Svalbard Ground Station",24195,24621,426,51,LOW,1,1399,74.5
+REQ-103,"DOVE-FL-10","PlanetScope 3U CubeSat",GS-SVB,"Svalbard Ground Station",24647,25080,433,31.2,MEDIUM,2.5,679,36.75
+REQ-551,"PELICAN-01","Pelican Agile Earth Imager",GS-LKO,"Lucknow Telemetry Station",24790,25222,432,69.9,CRITICAL,10,1883,101.68
+REQ-488,"PELICAN-01","Pelican Agile Earth Imager",GS-BLR,"Bengaluru Ground Station",25012,25441,429,76.4,CRITICAL,10,1883,100.98
+REQ-232,"PELICAN-22","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",25041,25431,390,28,HIGH,5,1642,80.05
+REQ-349,"DOVE-FL-10","PlanetScope 3U CubeSat",GS-INU,"Inuvik Satellite Station",25116,25575,459,46.4,MEDIUM,2.5,772,44.29
+REQ-526,"PELICAN-15","Pelican Agile Earth Imager",GS-BLR,"Bengaluru Ground Station",25189,25620,431,39.8,HIGH,5,1874,100.96
+REQ-559,"PELICAN-04","Pelican Agile Earth Imager",GS-LKO,"Lucknow Telemetry Station",25260,25707,447,54.2,HIGH,5,2291,128.01
+REQ-590,"PELICAN-15","Pelican Agile Earth Imager",GS-LKO,"Lucknow Telemetry Station",25448,25784,336,19.2,HIGH,5,1552,65.18
+REQ-496,"PELICAN-04","Pelican Agile Earth Imager",GS-BLR,"Bengaluru Ground Station",25482,25930,448,55.9,HIGH,5,2304,129.02
+REQ-203,"PELICAN-19","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",25544,25997,453,54.2,HIGH,5,2181,123.5
+REQ-287,"DOVE-FL-03","PlanetScope 3U CubeSat",GS-INU,"Inuvik Satellite Station",25705,26149,444,61.8,MEDIUM,2.5,888,49.28
+REQ-159,"PELICAN-15","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",26296,26770,474,63.2,HIGH,5,2112,125.14
+REQ-092,"PELICAN-09","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",26410,26805,395,24.9,CRITICAL,10,1408,69.52
+REQ-125,"PELICAN-12","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",26482,26855,373,23.5,CRITICAL,10,2209,102.99
+REQ-222,"DOVE-FL-21","PlanetScope 3U CubeSat",GS-SVB,"Svalbard Ground Station",26757,27156,399,33.9,LOW,1,858,42.79
+REQ-340,"PELICAN-09","Pelican Agile Earth Imager",GS-INU,"Inuvik Satellite Station",26852,27273,421,32.9,CRITICAL,10,1516,79.78
+REQ-393,"PELICAN-15","Pelican Agile Earth Imager",GS-INU,"Inuvik Satellite Station",26913,27046,133,10.9,HIGH,5,1423,23.66
+REQ-367,"PELICAN-12","Pelican Agile Earth Imager",GS-INU,"Inuvik Satellite Station",26916,27323,407,31.9,CRITICAL,10,2388,121.49
+REQ-524,"PELICAN-14","Pelican Agile Earth Imager",GS-BLR,"Bengaluru Ground Station",27001,27253,252,14.4,HIGH,5,1515,47.72
+REQ-557,"DOVE-FL-03","PlanetScope 3U CubeSat",GS-LKO,"Lucknow Telemetry Station",27019,27364,345,21.1,MEDIUM,2.5,665,28.68
+REQ-255,"PELICAN-24","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",27237,27682,445,39.1,HIGH,5,1794,99.79
+REQ-493,"DOVE-FL-03","PlanetScope 3U CubeSat",GS-BLR,"Bengaluru Ground Station",27250,27580,330,19.6,MEDIUM,2.5,655,27.02
+REQ-192,"PELICAN-18","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",27264,27700,436,48.7,CRITICAL,10,2854,155.54
+REQ-278,"PELICAN-02","Pelican Agile Earth Imager",GS-INU,"Inuvik Satellite Station",27414,27858,444,85.8,HIGH,5,2145,119.05
+REQ-306,"DOVE-FL-05","PlanetScope 3U CubeSat",GS-INU,"Inuvik Satellite Station",27601,27778,177,11.9,LOW,1,721,15.95
+REQ-332,"DOVE-FL-08","PlanetScope 3U CubeSat",GS-INU,"Inuvik Satellite Station",27675,27818,143,11.3,MEDIUM,2.5,734,13.12
+REQ-148,"PELICAN-14","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",28018,28488,470,72.8,HIGH,5,2166,127.25
+REQ-115,"DOVE-FL-11","PlanetScope 3U CubeSat",GS-SVB,"Svalbard Ground Station",28230,28551,321,18.6,MEDIUM,2.5,698,28.01
+REQ-383,"PELICAN-14","Pelican Agile Earth Imager",GS-INU,"Inuvik Satellite Station",28582,28870,288,15.4,HIGH,5,1531,55.12
+REQ-359,"DOVE-FL-11","PlanetScope 3U CubeSat",GS-INU,"Inuvik Satellite Station",28630,28987,357,23.4,MEDIUM,2.5,731,32.62
+REQ-244,"DOVE-FL-23","PlanetScope 3U CubeSat",GS-SVB,"Svalbard Ground Station",28958,29404,446,48.1,LOW,1,1351,75.32
+REQ-182,"DOVE-FL-17","PlanetScope 3U CubeSat",GS-SVB,"Svalbard Ground Station",28969,29394,425,45.1,MEDIUM,2.5,1223,64.97
+REQ-269,"PELICAN-01","Pelican Agile Earth Imager",GS-INU,"Inuvik Satellite Station",29124,29553,429,56.9,CRITICAL,10,1883,100.98
+REQ-324,"PELICAN-07","Pelican Agile Earth Imager",GS-INU,"Inuvik Satellite Station",29342,29512,170,11.9,CRITICAL,10,1340,28.48
+REQ-215,"PELICAN-20","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",29476,29929,453,47,CRITICAL,10,1981,112.17
+REQ-297,"PELICAN-04","Pelican Agile Earth Imager",GS-INU,"Inuvik Satellite Station",29638,30089,451,50.3,HIGH,5,2224,125.38
+REQ-137,"PELICAN-13","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",29731,30194,463,82.6,HIGH,5,1865,107.94
+REQ-172,"DOVE-FL-16","PlanetScope 3U CubeSat",GS-SVB,"Svalbard Ground Station",29783,30220,437,86.7,LOW,1,1442,78.77
+REQ-374,"PELICAN-13","Pelican Agile Earth Imager",GS-INU,"Inuvik Satellite Station",30274,30635,361,21.4,HIGH,5,1401,63.22
+REQ-403,"DOVE-FL-16","PlanetScope 3U CubeSat",GS-INU,"Inuvik Satellite Station",30324,30657,333,20.1,LOW,1,1069,44.5
+REQ-034,"PELICAN-04","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",30325,30393,68,10.3,HIGH,5,1541,13.1
+REQ-104,"DOVE-FL-10","PlanetScope 3U CubeSat",GS-SVB,"Svalbard Ground Station",30446,30758,312,16.4,MEDIUM,2.5,589,22.97
+REQ-233,"PELICAN-22","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",30667,31108,441,58.2,HIGH,5,2052,113.12
+REQ-350,"DOVE-FL-10","PlanetScope 3U CubeSat",GS-INU,"Inuvik Satellite Station",30803,31148,345,19.4,MEDIUM,2.5,607,26.18
+REQ-316,"DOVE-FL-06","PlanetScope 3U CubeSat",GS-INU,"Inuvik Satellite Station",30992,31206,214,13.3,LOW,1,853,22.82
+REQ-204,"PELICAN-19","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",31185,31626,441,44.1,HIGH,5,2017,111.19
+REQ-288,"DOVE-FL-03","PlanetScope 3U CubeSat",GS-INU,"Inuvik Satellite Station",31370,31782,412,32.8,MEDIUM,2.5,742,38.21
+REQ-662,"PELICAN-18","Pelican Agile Earth Imager",GS-IXZ,"Port Blair Ground Gateway",31810,32022,212,13.1,CRITICAL,10,2065,54.72
+REQ-160,"PELICAN-15","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",31968,32446,478,70.7,HIGH,5,2112,126.19
+REQ-023,"DOVE-FL-03","PlanetScope 3U CubeSat",GS-SVB,"Svalbard Ground Station",31998,32179,181,12,MEDIUM,2.5,605,13.69
+REQ-093,"PELICAN-09","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",32221,32453,232,13.2,CRITICAL,10,1251,36.28
+REQ-126,"PELICAN-12","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",32264,32458,194,12.3,CRITICAL,10,1970,47.77
+REQ-223,"DOVE-FL-21","PlanetScope 3U CubeSat",GS-SVB,"Svalbard Ground Station",32366,32798,432,74,LOW,1,1017,54.92
+REQ-629,"DOVE-FL-06","PlanetScope 3U CubeSat",GS-IXZ,"Port Blair Ground Gateway",32454,32563,109,10.8,LOW,1,830,11.31
+REQ-394,"PELICAN-15","Pelican Agile Earth Imager",GS-INU,"Inuvik Satellite Station",32494,32942,448,36.2,HIGH,5,1819,101.86
+REQ-341,"PELICAN-09","Pelican Agile Earth Imager",GS-INU,"Inuvik Satellite Station",32522,32805,283,15.7,CRITICAL,10,1284,45.42
+REQ-368,"PELICAN-12","Pelican Agile Earth Imager",GS-INU,"Inuvik Satellite Station",32553,32817,264,14.9,CRITICAL,10,2026,66.86
+REQ-193,"PELICAN-18","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",32883,33312,429,43.3,CRITICAL,10,2735,146.66
+REQ-256,"PELICAN-24","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",32901,33373,472,76.4,HIGH,5,2034,120.01
+REQ-279,"PELICAN-02","Pelican Agile Earth Imager",GS-INU,"Inuvik Satellite Station",33105,33459,354,22.2,HIGH,5,1624,71.86
+REQ-307,"DOVE-FL-05","PlanetScope 3U CubeSat",GS-INU,"Inuvik Satellite Station",33121,33458,337,19.1,LOW,1,777,32.73
+REQ-333,"DOVE-FL-08","PlanetScope 3U CubeSat",GS-INU,"Inuvik Satellite Station",33151,33471,320,18.4,MEDIUM,2.5,792,31.68
+REQ-659,"DOVE-FL-17","PlanetScope 3U CubeSat",GS-IXZ,"Port Blair Ground Gateway",33401,33795,394,34.2,MEDIUM,2.5,1117,55.01
+REQ-012,"PELICAN-02","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",33681,33930,249,14.2,HIGH,5,1497,46.59
+REQ-149,"PELICAN-14","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",33682,34148,466,58.4,HIGH,5,2166,126.17
+REQ-595,"DOVE-FL-17","PlanetScope 3U CubeSat",GS-LKO,"Lucknow Telemetry Station",33775,33969,194,12.7,MEDIUM,2.5,906,21.97
+REQ-667,"PELICAN-20","Pelican Agile Earth Imager",GS-IXZ,"Port Blair Ground Gateway",33932,34388,456,52.7,CRITICAL,10,2070,117.99
+REQ-384,"PELICAN-14","Pelican Agile Earth Imager",GS-INU,"Inuvik Satellite Station",34197,34661,464,53.1,HIGH,5,2136,123.89
+REQ-360,"DOVE-FL-11","PlanetScope 3U CubeSat",GS-INU,"Inuvik Satellite Station",34255,34439,184,12.3,MEDIUM,2.5,653,15.02
+REQ-603,"PELICAN-20","Pelican Agile Earth Imager",GS-LKO,"Lucknow Telemetry Station",34267,34604,337,19.2,CRITICAL,10,1547,65.17
+REQ-627,"DOVE-FL-05","PlanetScope 3U CubeSat",GS-IXZ,"Port Blair Ground Gateway",34516,34964,448,47.7,LOW,1,1002,56.11
+REQ-635,"DOVE-FL-08","PlanetScope 3U CubeSat",GS-IXZ,"Port Blair Ground Gateway",34541,34965,424,45.4,MEDIUM,2.5,1009,53.48
+REQ-183,"DOVE-FL-17","PlanetScope 3U CubeSat",GS-SVB,"Svalbard Ground Station",34566,34990,424,44.3,MEDIUM,2.5,1215,64.39
+REQ-245,"DOVE-FL-23","PlanetScope 3U CubeSat",GS-SVB,"Svalbard Ground Station",34603,35062,459,84.4,LOW,1,1424,81.7
+REQ-325,"PELICAN-07","Pelican Agile Earth Imager",GS-INU,"Inuvik Satellite Station",34807,35156,349,22.1,CRITICAL,10,1489,64.96
+REQ-270,"PELICAN-01","Pelican Agile Earth Imager",GS-INU,"Inuvik Satellite Station",34851,35112,261,15.1,CRITICAL,10,1326,43.26
+REQ-216,"PELICAN-20","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",35126,35580,454,46.9,CRITICAL,10,1980,112.36
+REQ-002,"PELICAN-01","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",35360,35655,295,16.8,CRITICAL,10,1350,49.78
+REQ-138,"PELICAN-13","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",35390,35839,449,47.2,HIGH,5,1756,98.56
+REQ-173,"DOVE-FL-16","PlanetScope 3U CubeSat",GS-SVB,"Svalbard Ground Station",35407,35828,421,45.3,LOW,1,1338,70.41
+REQ-298,"PELICAN-04","Pelican Agile Earth Imager",GS-INU,"Inuvik Satellite Station",35437,35698,261,14.4,HIGH,5,1612,52.59
+REQ-665,"PELICAN-19","Pelican Agile Earth Imager",GS-IXZ,"Port Blair Ground Gateway",35630,36072,442,50.2,HIGH,5,2115,116.85
+REQ-536,"PELICAN-19","Pelican Agile Earth Imager",GS-BLR,"Bengaluru Ground Station",35766,36074,308,17.6,HIGH,5,1585,61.02
+REQ-375,"PELICAN-13","Pelican Agile Earth Imager",GS-INU,"Inuvik Satellite Station",35891,36355,464,79.4,HIGH,5,1865,108.17
+REQ-601,"PELICAN-19","Pelican Agile Earth Imager",GS-LKO,"Lucknow Telemetry Station",35901,36337,436,44.8,HIGH,5,2027,110.47
+REQ-404,"DOVE-FL-16","PlanetScope 3U CubeSat",GS-INU,"Inuvik Satellite Station",35903,36341,438,79.6,LOW,1,1442,78.95
+REQ-035,"PELICAN-04","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",35927,36269,342,19.4,HIGH,5,1696,72.5
+REQ-567,"PELICAN-07","Pelican Agile Earth Imager",GS-LKO,"Lucknow Telemetry Station",36082,36366,284,16.5,CRITICAL,10,1407,49.95
+REQ-633,"PELICAN-07","Pelican Agile Earth Imager",GS-IXZ,"Port Blair Ground Gateway",36219,36641,422,53.1,CRITICAL,10,1941,102.39
+REQ-234,"PELICAN-22","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",36291,36736,445,72.3,HIGH,5,2052,114.14
+REQ-503,"PELICAN-07","Pelican Agile Earth Imager",GS-BLR,"Bengaluru Ground Station",36339,36561,222,13.6,CRITICAL,10,1364,37.85
+REQ-317,"DOVE-FL-06","PlanetScope 3U CubeSat",GS-INU,"Inuvik Satellite Station",36457,36832,375,28,LOW,1,988,46.31
+REQ-351,"DOVE-FL-10","PlanetScope 3U CubeSat",GS-INU,"Inuvik Satellite Station",36477,36673,196,12.3,MEDIUM,2.5,564,13.82
+REQ-205,"PELICAN-19","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",36815,37263,448,48.6,HIGH,5,2089,116.98
+REQ-663,"PELICAN-18","Pelican Agile Earth Imager",GS-IXZ,"Port Blair Ground Gateway",37383,37684,301,17.5,CRITICAL,10,2163,81.38
+REQ-533,"PELICAN-18","Pelican Agile Earth Imager",GS-BLR,"Bengaluru Ground Station",37385,37808,423,45.9,CRITICAL,10,2792,147.63
+REQ-598,"PELICAN-18","Pelican Agile Earth Imager",GS-LKO,"Lucknow Telemetry Station",37579,38018,439,64.9,CRITICAL,10,2994,164.3
+REQ-024,"DOVE-FL-03","PlanetScope 3U CubeSat",GS-SVB,"Svalbard Ground Station",37617,37984,367,23,MEDIUM,2.5,678,31.1
+REQ-161,"PELICAN-15","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",37685,38129,444,36,HIGH,5,1815,100.73
+REQ-565,"DOVE-FL-06","PlanetScope 3U CubeSat",GS-LKO,"Lucknow Telemetry Station",37697,38097,400,40.6,LOW,1,1103,55.15
+REQ-501,"DOVE-FL-06","PlanetScope 3U CubeSat",GS-BLR,"Bengaluru Ground Station",37924,38313,389,35.5,LOW,1,1056,51.35
+REQ-630,"DOVE-FL-06","PlanetScope 3U CubeSat",GS-IXZ,"Port Blair Ground Gateway",37944,38240,296,18.2,LOW,1,898,33.23
+REQ-224,"DOVE-FL-21","PlanetScope 3U CubeSat",GS-SVB,"Svalbard Ground Station",37969,38396,427,60.1,LOW,1,1017,54.28
+REQ-395,"PELICAN-15","Pelican Agile Earth Imager",GS-INU,"Inuvik Satellite Station",38166,38640,474,61.8,HIGH,5,2112,125.14
+REQ-342,"PELICAN-09","Pelican Agile Earth Imager",GS-INU,"Inuvik Satellite Station",38170,38310,140,11.1,CRITICAL,10,1223,21.4
+REQ-369,"PELICAN-12","Pelican Agile Earth Imager",GS-INU,"Inuvik Satellite Station",38178,38273,95,10.6,CRITICAL,10,1933,22.95
+REQ-194,"PELICAN-18","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",38495,38934,439,52.1,CRITICAL,10,2931,160.84
+REQ-257,"PELICAN-24","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",38558,39023,465,60.7,HIGH,5,2034,118.23
+REQ-334,"DOVE-FL-08","PlanetScope 3U CubeSat",GS-INU,"Inuvik Satellite Station",38686,39125,439,45.4,MEDIUM,2.5,1008,55.31
+REQ-308,"DOVE-FL-05","PlanetScope 3U CubeSat",GS-INU,"Inuvik Satellite Station",38694,39146,452,46.2,LOW,1,990,55.94
+REQ-531,"DOVE-FL-17","PlanetScope 3U CubeSat",GS-BLR,"Bengaluru Ground Station",39053,39474,421,54.5,MEDIUM,2.5,1315,69.2
+REQ-013,"PELICAN-02","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",39294,39684,390,27.7,HIGH,5,1711,83.41
+REQ-596,"DOVE-FL-17","PlanetScope 3U CubeSat",GS-LKO,"Lucknow Telemetry Station",39294,39646,352,23.2,MEDIUM,2.5,1009,44.4
+REQ-150,"PELICAN-14","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",39397,39813,416,29.2,HIGH,5,1752,91.1
+REQ-539,"PELICAN-20","Pelican Agile Earth Imager",GS-BLR,"Bengaluru Ground Station",39663,40101,438,38.2,CRITICAL,10,1845,101.01
+REQ-385,"PELICAN-14","Pelican Agile Earth Imager",GS-INU,"Inuvik Satellite Station",39857,40305,448,42.9,HIGH,5,1972,110.43
+REQ-604,"PELICAN-20","Pelican Agile Earth Imager",GS-LKO,"Lucknow Telemetry Station",39926,40261,335,18.7,CRITICAL,10,1539,64.45
+REQ-570,"DOVE-FL-08","PlanetScope 3U CubeSat",GS-LKO,"Lucknow Telemetry Station",39963,40387,424,44.8,MEDIUM,2.5,1004,53.21
+REQ-562,"DOVE-FL-05","PlanetScope 3U CubeSat",GS-LKO,"Lucknow Telemetry Station",39974,40420,446,46.1,LOW,1,989,55.14
+REQ-184,"DOVE-FL-17","PlanetScope 3U CubeSat",GS-SVB,"Svalbard Ground Station",40161,40598,437,60.1,MEDIUM,2.5,1320,72.11
+REQ-507,"DOVE-FL-08","PlanetScope 3U CubeSat",GS-BLR,"Bengaluru Ground Station",40186,40607,421,44,MEDIUM,2.5,998,52.52
+REQ-498,"DOVE-FL-05","PlanetScope 3U CubeSat",GS-BLR,"Bengaluru Ground Station",40198,40642,444,45.5,LOW,1,984,54.61
+REQ-246,"DOVE-FL-23","PlanetScope 3U CubeSat",GS-SVB,"Svalbard Ground Station",40238,40685,447,52.6,LOW,1,1398,78.11
+REQ-326,"PELICAN-07","Pelican Agile Earth Imager",GS-INU,"Inuvik Satellite Station",40349,40791,442,64,CRITICAL,10,1968,108.73
+REQ-217,"PELICAN-20","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",40776,41245,469,65.4,CRITICAL,10,2106,123.46
+REQ-003,"PELICAN-01","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",40961,41365,404,33.8,CRITICAL,10,1587,80.14
+REQ-174,"DOVE-FL-16","PlanetScope 3U CubeSat",GS-SVB,"Svalbard Ground Station",41087,41434,347,21.8,LOW,1,1087,47.15
+REQ-139,"PELICAN-13","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",41107,41483,376,23.2,HIGH,5,1425,66.97
+REQ-442,"PELICAN-20","Pelican Agile Earth Imager",GS-INU,"Inuvik Satellite Station",41409,41507,98,10.5,CRITICAL,10,1412,17.3
+REQ-537,"PELICAN-19","Pelican Agile Earth Imager",GS-BLR,"Bengaluru Ground Station",41432,41683,251,14.3,HIGH,5,1532,48.07
+REQ-405,"DOVE-FL-16","PlanetScope 3U CubeSat",GS-INU,"Inuvik Satellite Station",41515,41898,383,29.3,LOW,1,1167,55.87
+REQ-376,"PELICAN-13","Pelican Agile Earth Imager",GS-INU,"Inuvik Satellite Station",41538,41949,411,30.9,HIGH,5,1531,78.66
+REQ-036,"PELICAN-04","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",41588,42024,436,37.9,HIGH,5,2013,109.71
+REQ-568,"PELICAN-07","Pelican Agile Earth Imager",GS-LKO,"Lucknow Telemetry Station",41681,41978,297,17.7,CRITICAL,10,1424,52.87
+REQ-235,"PELICAN-22","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",41905,42335,430,48,HIGH,5,1945,104.54
+REQ-504,"PELICAN-07","Pelican Agile Earth Imager",GS-BLR,"Bengaluru Ground Station",41916,42188,272,16,CRITICAL,10,1400,47.6
+REQ-318,"DOVE-FL-06","PlanetScope 3U CubeSat",GS-INU,"Inuvik Satellite Station",42010,42444,434,76.2,LOW,1,1235,67
+REQ-352,"DOVE-FL-10","PlanetScope 3U CubeSat",GS-INU,"Inuvik Satellite Station",42063,42264,201,12.3,MEDIUM,2.5,564,14.17
+REQ-206,"PELICAN-19","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",42452,42913,461,72.8,HIGH,5,2193,126.37
+REQ-432,"PELICAN-19","Pelican Agile Earth Imager",GS-INU,"Inuvik Satellite Station",43018,43292,274,15,HIGH,5,1543,52.85
+REQ-025,"DOVE-FL-03","PlanetScope 3U CubeSat",GS-SVB,"Svalbard Ground Station",43261,43700,439,46.6,MEDIUM,2.5,833,45.71
+REQ-162,"PELICAN-15","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",43466,43809,343,18.7,HIGH,5,1544,66.2
+REQ-225,"DOVE-FL-21","PlanetScope 3U CubeSat",GS-SVB,"Svalbard Ground Station",43561,43973,412,43.3,LOW,1,929,47.84
+REQ-370,"PELICAN-12","Pelican Agile Earth Imager",GS-INU,"Inuvik Satellite Station",43665,43858,193,12.4,CRITICAL,10,1972,47.57
+REQ-343,"PELICAN-09","Pelican Agile Earth Imager",GS-INU,"Inuvik Satellite Station",43700,43923,223,13.1,CRITICAL,10,1250,34.84
+REQ-396,"PELICAN-15","Pelican Agile Earth Imager",GS-INU,"Inuvik Satellite Station",43852,44233,381,23,HIGH,5,1612,76.77
+REQ-195,"PELICAN-18","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",44118,44570,452,85.8,CRITICAL,10,2994,169.16
+REQ-258,"PELICAN-24","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",44201,44654,453,46.1,HIGH,5,1901,107.64
+REQ-335,"DOVE-FL-08","PlanetScope 3U CubeSat",GS-INU,"Inuvik Satellite Station",44320,44766,446,47.7,MEDIUM,2.5,1027,57.26
+REQ-309,"DOVE-FL-05","PlanetScope 3U CubeSat",GS-INU,"Inuvik Satellite Station",44366,44824,458,47.5,LOW,1,1000,57.25
+REQ-422,"PELICAN-18","Pelican Agile Earth Imager",GS-INU,"Inuvik Satellite Station",44661,45008,347,20.6,CRITICAL,10,2230,96.73
+REQ-014,"PELICAN-02","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",44921,45362,441,57.9,HIGH,5,2145,118.24
+REQ-080,"DOVE-FL-08","PlanetScope 3U CubeSat",GS-SVB,"Svalbard Ground Station",44999,45081,82,10.4,MEDIUM,2.5,727,7.45
+REQ-047,"DOVE-FL-05","PlanetScope 3U CubeSat",GS-SVB,"Svalbard Ground Station",45023,45167,144,11.1,LOW,1,715,12.87
+REQ-151,"PELICAN-14","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",45185,45469,284,15.3,HIGH,5,1529,54.28
+REQ-361,"DOVE-FL-11","PlanetScope 3U CubeSat",GS-INU,"Inuvik Satellite Station",45274,45501,227,13.7,MEDIUM,2.5,663,18.81
+REQ-386,"PELICAN-14","Pelican Agile Earth Imager",GS-INU,"Inuvik Satellite Station",45527,45854,327,18.4,HIGH,5,1578,64.5
+REQ-185,"DOVE-FL-17","PlanetScope 3U CubeSat",GS-SVB,"Svalbard Ground Station",45775,46219,444,76.3,MEDIUM,2.5,1320,73.26
+REQ-247,"DOVE-FL-23","PlanetScope 3U CubeSat",GS-SVB,"Svalbard Ground Station",45859,46297,438,43.8,LOW,1,1305,71.45
+REQ-327,"PELICAN-07","Pelican Agile Earth Imager",GS-INU,"Inuvik Satellite Station",46001,46405,404,31.5,CRITICAL,10,1626,82.11
+REQ-413,"DOVE-FL-17","PlanetScope 3U CubeSat",GS-INU,"Inuvik Satellite Station",46302,46696,394,29,MEDIUM,2.5,1066,52.5
+REQ-674,"PELICAN-22","Pelican Agile Earth Imager",GS-IXZ,"Port Blair Ground Gateway",46408,46664,256,14.9,HIGH,5,1442,46.14
+REQ-218,"PELICAN-20","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",46449,46921,472,71.6,CRITICAL,10,2106,124.25
+REQ-004,"PELICAN-01","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",46570,47008,438,70.3,CRITICAL,10,1883,103.09
+REQ-069,"PELICAN-07","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",46627,46806,179,12,CRITICAL,10,1341,30
+REQ-643,"DOVE-FL-11","PlanetScope 3U CubeSat",GS-IXZ,"Port Blair Ground Gateway",46767,46834,67,10.3,MEDIUM,2.5,639,5.35
+REQ-175,"DOVE-FL-16","PlanetScope 3U CubeSat",GS-SVB,"Svalbard Ground Station",46865,47005,140,11.2,LOW,1,973,17.03
+REQ-140,"PELICAN-13","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",46909,47105,196,12.3,HIGH,5,1275,31.24
+REQ-443,"PELICAN-20","Pelican Agile Earth Imager",GS-INU,"Inuvik Satellite Station",46977,47414,437,35.8,CRITICAL,10,1807,98.71
+REQ-406,"DOVE-FL-16","PlanetScope 3U CubeSat",GS-INU,"Inuvik Satellite Station",47140,47365,225,13.7,LOW,1,1000,28.13
+REQ-377,"PELICAN-13","Pelican Agile Earth Imager",GS-INU,"Inuvik Satellite Station",47192,47458,266,14.9,HIGH,5,1311,43.59
+REQ-037,"PELICAN-04","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",47252,47716,464,77.9,HIGH,5,2304,133.63
+REQ-236,"PELICAN-22","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",47504,47930,426,42.9,HIGH,5,1868,99.47
+REQ-353,"DOVE-FL-10","PlanetScope 3U CubeSat",GS-INU,"Inuvik Satellite Station",47588,47940,352,19.9,MEDIUM,2.5,611,26.88
+REQ-319,"DOVE-FL-06","PlanetScope 3U CubeSat",GS-INU,"Inuvik Satellite Station",47689,48023,334,20.6,LOW,1,920,38.41
+REQ-671,"DOVE-FL-21","PlanetScope 3U CubeSat",GS-IXZ,"Port Blair Ground Gateway",47965,48368,403,37.7,LOW,1,886,44.63
+REQ-207,"PELICAN-19","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",48116,48574,458,57.6,HIGH,5,2193,125.55
+REQ-058,"DOVE-FL-06","PlanetScope 3U CubeSat",GS-SVB,"Svalbard Ground Station",48267,48490,223,13.5,LOW,1,855,23.83
+REQ-607,"DOVE-FL-21","PlanetScope 3U CubeSat",GS-LKO,"Lucknow Telemetry Station",48328,48552,224,13.7,LOW,1,706,19.77
+REQ-433,"PELICAN-19","Pelican Agile Earth Imager",GS-INU,"Inuvik Satellite Station",48631,49084,453,52.7,HIGH,5,2155,122.03
+REQ-679,"PELICAN-24","Pelican Agile Earth Imager",GS-IXZ,"Port Blair Ground Gateway",48638,49097,459,64.7,HIGH,5,2034,116.7
+REQ-026,"DOVE-FL-03","PlanetScope 3U CubeSat",GS-SVB,"Svalbard Ground Station",48905,49359,454,82.5,MEDIUM,2.5,888,50.39
+REQ-615,"PELICAN-24","Pelican Agile Earth Imager",GS-LKO,"Lucknow Telemetry Station",48959,49323,364,22.1,HIGH,5,1538,69.98
+REQ-641,"DOVE-FL-10","PlanetScope 3U CubeSat",GS-IXZ,"Port Blair Ground Gateway",48993,49442,449,49.7,MEDIUM,2.5,792,44.45
+REQ-371,"PELICAN-12","Pelican Agile Earth Imager",GS-INU,"Inuvik Satellite Station",49135,49495,360,22.7,CRITICAL,10,2192,98.64
+REQ-226,"DOVE-FL-21","PlanetScope 3U CubeSat",GS-SVB,"Svalbard Ground Station",49139,49551,412,43,LOW,1,926,47.69
+REQ-344,"PELICAN-09","Pelican Agile Earth Imager",GS-INU,"Inuvik Satellite Station",49211,49592,381,23.9,CRITICAL,10,1394,66.39
+REQ-163,"PELICAN-15","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",49374,49425,51,10.1,HIGH,5,1410,8.99
+REQ-397,"PELICAN-15","Pelican Agile Earth Imager",GS-INU,"Inuvik Satellite Station",49534,49761,227,13.2,HIGH,5,1457,41.34
+REQ-196,"PELICAN-18","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",49778,50214,436,45.6,CRITICAL,10,2786,151.84
+REQ-259,"PELICAN-24","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",49833,50288,455,47.2,HIGH,5,1917,109.03
+REQ-336,"DOVE-FL-08","PlanetScope 3U CubeSat",GS-INU,"Inuvik Satellite Station",50111,50350,239,13.6,MEDIUM,2.5,753,22.5
+REQ-310,"DOVE-FL-05","PlanetScope 3U CubeSat",GS-INU,"Inuvik Satellite Station",50193,50447,254,14,LOW,1,737,23.4
+REQ-423,"PELICAN-18","Pelican Agile Earth Imager",GS-INU,"Inuvik Satellite Station",50278,50729,451,74.4,CRITICAL,10,2994,168.79
+REQ-677,"DOVE-FL-23","PlanetScope 3U CubeSat",GS-IXZ,"Port Blair Ground Gateway",50291,50722,431,41.6,LOW,1,1282,69.07
+REQ-547,"DOVE-FL-23","PlanetScope 3U CubeSat",GS-BLR,"Bengaluru Ground Station",50406,50743,337,20.1,LOW,1,1056,44.48
+REQ-582,"PELICAN-12","Pelican Agile Earth Imager",GS-LKO,"Lucknow Telemetry Station",50417,50705,288,16.5,CRITICAL,10,2059,74.12
+REQ-574,"PELICAN-09","Pelican Agile Earth Imager",GS-LKO,"Lucknow Telemetry Station",50496,50812,316,17.9,CRITICAL,10,1314,51.9
+REQ-015,"PELICAN-02","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",50545,50991,446,72.1,HIGH,5,2145,119.58
+REQ-613,"DOVE-FL-23","PlanetScope 3U CubeSat",GS-LKO,"Lucknow Telemetry Station",50553,50995,442,51.2,LOW,1,1383,76.41
+REQ-647,"PELICAN-12","Pelican Agile Earth Imager",GS-IXZ,"Port Blair Ground Gateway",50553,50983,430,56.4,CRITICAL,10,2882,154.91
+REQ-081,"DOVE-FL-08","PlanetScope 3U CubeSat",GS-SVB,"Svalbard Ground Station",50590,50931,341,19.7,MEDIUM,2.5,802,34.19
+REQ-639,"PELICAN-09","Pelican Agile Earth Imager",GS-IXZ,"Port Blair Ground Gateway",50641,51080,439,53.2,CRITICAL,10,1788,98.12
+REQ-048,"DOVE-FL-05","PlanetScope 3U CubeSat",GS-SVB,"Svalbard Ground Station",50671,51033,362,20.9,LOW,1,791,35.79
+REQ-518,"PELICAN-12","Pelican Agile Earth Imager",GS-BLR,"Bengaluru Ground Station",50678,50898,220,13.4,CRITICAL,10,1994,54.84
+REQ-362,"DOVE-FL-11","PlanetScope 3U CubeSat",GS-INU,"Inuvik Satellite Station",50740,51124,384,28.1,MEDIUM,2.5,765,36.72
+REQ-510,"PELICAN-09","Pelican Agile Earth Imager",GS-BLR,"Bengaluru Ground Station",50752,51011,259,14.8,CRITICAL,10,1273,41.21
+REQ-387,"PELICAN-14","Pelican Agile Earth Imager",GS-INU,"Inuvik Satellite Station",51187,51356,169,11.7,HIGH,5,1471,31.07
+REQ-186,"DOVE-FL-17","PlanetScope 3U CubeSat",GS-SVB,"Svalbard Ground Station",51431,51845,414,36.3,MEDIUM,2.5,1138,58.89
+REQ-248,"DOVE-FL-23","PlanetScope 3U CubeSat",GS-SVB,"Svalbard Ground Station",51471,51916,445,49.4,LOW,1,1364,75.87
+REQ-414,"DOVE-FL-17","PlanetScope 3U CubeSat",GS-INU,"Inuvik Satellite Station",51913,52356,443,70.4,MEDIUM,2.5,1320,73.09
+REQ-544,"PELICAN-22","Pelican Agile Earth Imager",GS-BLR,"Bengaluru Ground Station",51984,52413,429,52.9,HIGH,5,2020,108.32
+REQ-580,"DOVE-FL-11","PlanetScope 3U CubeSat",GS-LKO,"Lucknow Telemetry Station",51986,52390,404,38.8,MEDIUM,2.5,841,42.47
+REQ-675,"PELICAN-22","Pelican Agile Earth Imager",GS-IXZ,"Port Blair Ground Gateway",52001,52270,269,15.5,HIGH,5,1452,48.82
+REQ-219,"PELICAN-20","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",52167,52604,437,35.2,CRITICAL,10,1796,98.11
+REQ-005,"PELICAN-01","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",52174,52608,434,61.2,CRITICAL,10,1883,102.15
+REQ-610,"PELICAN-22","Pelican Agile Earth Imager",GS-LKO,"Lucknow Telemetry Station",52183,52618,435,56.1,HIGH,5,2052,111.58
+REQ-516,"DOVE-FL-11","PlanetScope 3U CubeSat",GS-BLR,"Bengaluru Ground Station",52216,52605,389,33.9,MEDIUM,2.5,806,39.19
+REQ-070,"PELICAN-07","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",52227,52589,362,23.2,CRITICAL,10,1505,68.1
+REQ-644,"DOVE-FL-11","PlanetScope 3U CubeSat",GS-IXZ,"Port Blair Ground Gateway",52227,52542,315,19.7,MEDIUM,2.5,705,27.76
+REQ-444,"PELICAN-20","Pelican Agile Earth Imager",GS-INU,"Inuvik Satellite Station",52648,53112,464,60.3,CRITICAL,10,2106,122.15
+REQ-378,"PELICAN-13","Pelican Agile Earth Imager",GS-INU,"Inuvik Satellite Station",52825,52940,115,10.8,HIGH,5,1254,18.03
+REQ-038,"PELICAN-04","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",52909,53366,457,60.3,HIGH,5,2304,131.62
+REQ-237,"PELICAN-22","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",53098,53535,437,53.7,HIGH,5,2032,111
+REQ-354,"DOVE-FL-10","PlanetScope 3U CubeSat",GS-INU,"Inuvik Satellite Station",53163,53627,464,47.9,MEDIUM,2.5,782,45.36
+REQ-542,"DOVE-FL-21","PlanetScope 3U CubeSat",GS-BLR,"Bengaluru Ground Station",53605,54023,418,49.2,LOW,1,973,50.84
+REQ-208,"PELICAN-19","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",53832,54239,407,28.6,HIGH,5,1764,89.74
+REQ-608,"DOVE-FL-21","PlanetScope 3U CubeSat",GS-LKO,"Lucknow Telemetry Station",53852,54191,339,21.5,LOW,1,765,32.42
+REQ-059,"DOVE-FL-06","PlanetScope 3U CubeSat",GS-SVB,"Svalbard Ground Station",53856,54229,373,26.6,LOW,1,975,45.46
+REQ-434,"PELICAN-19","Pelican Agile Earth Imager",GS-INU,"Inuvik Satellite Station",54291,54728,437,41.9,HIGH,5,1980,108.16
+REQ-550,"PELICAN-24","Pelican Agile Earth Imager",GS-BLR,"Bengaluru Ground Station",54363,54780,417,32.2,HIGH,5,1690,88.09
+REQ-577,"DOVE-FL-10","PlanetScope 3U CubeSat",GS-LKO,"Lucknow Telemetry Station",54451,54897,446,43.6,MEDIUM,2.5,755,42.09
+REQ-027,"DOVE-FL-03","PlanetScope 3U CubeSat",GS-SVB,"Svalbard Ground Station",54541,54983,442,52.4,MEDIUM,2.5,871,48.12
+REQ-616,"PELICAN-24","Pelican Agile Earth Imager",GS-LKO,"Lucknow Telemetry Station",54637,54931,294,16.1,HIGH,5,1448,53.21
+REQ-514,"DOVE-FL-10","PlanetScope 3U CubeSat",GS-BLR,"Bengaluru Ground Station",54676,55118,442,43.5,MEDIUM,2.5,755,41.71
+REQ-372,"PELICAN-12","Pelican Agile Earth Imager",GS-INU,"Inuvik Satellite Station",54677,55128,451,65.1,CRITICAL,10,2882,162.47
+REQ-227,"DOVE-FL-21","PlanetScope 3U CubeSat",GS-SVB,"Svalbard Ground Station",54715,55142,427,59.1,LOW,1,1017,54.28
+REQ-345,"PELICAN-09","Pelican Agile Earth Imager",GS-INU,"Inuvik Satellite Station",54791,55260,469,67.3,CRITICAL,10,1812,106.23
+REQ-398,"PELICAN-15","Pelican Agile Earth Imager",GS-INU,"Inuvik Satellite Station",55152,55322,170,11.7,HIGH,5,1434,30.47
+REQ-260,"PELICAN-24","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",55465,55935,470,65.2,HIGH,5,2034,119.5
+REQ-197,"PELICAN-18","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",55496,55858,362,22.6,CRITICAL,10,2276,102.99
+REQ-424,"PELICAN-18","Pelican Agile Earth Imager",GS-INU,"Inuvik Satellite Station",55925,56324,399,30.4,CRITICAL,10,2449,122.14
+REQ-583,"PELICAN-12","Pelican Agile Earth Imager",GS-LKO,"Lucknow Telemetry Station",56007,56326,319,19,CRITICAL,10,2113,84.26
+REQ-482,"PELICAN-24","Pelican Agile Earth Imager",GS-INU,"Inuvik Satellite Station",56075,56228,153,11.3,HIGH,5,1376,26.32
+REQ-548,"DOVE-FL-23","PlanetScope 3U CubeSat",GS-BLR,"Bengaluru Ground Station",56099,56291,192,12.3,LOW,1,974,23.38
+REQ-575,"PELICAN-09","Pelican Agile Earth Imager",GS-LKO,"Lucknow Telemetry Station",56136,56453,317,18.2,CRITICAL,10,1318,52.23
+REQ-016,"PELICAN-02","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",56160,56590,430,47.9,HIGH,5,2032,109.22
+REQ-082,"DOVE-FL-08","PlanetScope 3U CubeSat",GS-SVB,"Svalbard Ground Station",56232,56664,432,39.1,MEDIUM,2.5,958,51.73
+REQ-519,"PELICAN-12","Pelican Agile Earth Imager",GS-BLR,"Bengaluru Ground Station",56243,56536,293,17.1,CRITICAL,10,2073,75.92
+REQ-363,"DOVE-FL-11","PlanetScope 3U CubeSat",GS-INU,"Inuvik Satellite Station",56291,56736,445,82.6,MEDIUM,2.5,956,53.18
+REQ-049,"DOVE-FL-05","PlanetScope 3U CubeSat",GS-SVB,"Svalbard Ground Station",56352,56801,449,41.3,LOW,1,951,53.37
+REQ-511,"PELICAN-09","Pelican Agile Earth Imager",GS-BLR,"Bengaluru Ground Station",56374,56663,289,16.5,CRITICAL,10,1295,46.78
+REQ-388,"PELICAN-14","Pelican Agile Earth Imager",GS-INU,"Inuvik Satellite Station",56750,56934,184,12.1,HIGH,5,1477,33.97
+REQ-249,"DOVE-FL-23","PlanetScope 3U CubeSat",GS-SVB,"Svalbard Ground Station",57090,57549,459,73.2,LOW,1,1424,81.7
+REQ-187,"DOVE-FL-17","PlanetScope 3U CubeSat",GS-SVB,"Svalbard Ground Station",57152,57466,314,18.1,MEDIUM,2.5,959,37.64
+REQ-415,"DOVE-FL-17","PlanetScope 3U CubeSat",GS-INU,"Inuvik Satellite Station",57547,57904,357,23.3,MEDIUM,2.5,1010,45.07
+REQ-472,"DOVE-FL-23","PlanetScope 3U CubeSat",GS-INU,"Inuvik Satellite Station",57654,57934,280,15.4,LOW,1,1006,35.21
+REQ-006,"PELICAN-01","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",57766,58185,419,43.5,CRITICAL,10,1722,90.19
+REQ-071,"PELICAN-07","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",57852,58285,433,47.7,CRITICAL,10,1861,100.73
+REQ-220,"PELICAN-20","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",57950,58282,332,18.1,CRITICAL,10,1531,63.54
+REQ-407,"DOVE-FL-16","PlanetScope 3U CubeSat",GS-INU,"Inuvik Satellite Station",58220,58368,148,11.5,LOW,1,977,18.07
+REQ-379,"PELICAN-13","Pelican Agile Earth Imager",GS-INU,"Inuvik Satellite Station",58331,58544,213,13,HIGH,5,1284,34.19
+REQ-445,"PELICAN-20","Pelican Agile Earth Imager",GS-INU,"Inuvik Satellite Station",58334,58704,370,22.4,CRITICAL,10,1598,73.91
+REQ-039,"PELICAN-04","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",58553,58997,444,45.6,HIGH,5,2144,118.99
+REQ-238,"PELICAN-22","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",58704,59153,449,82.9,HIGH,5,2052,115.17
+REQ-355,"DOVE-FL-10","PlanetScope 3U CubeSat",GS-INU,"Inuvik Satellite Station",58836,59303,467,48.1,MEDIUM,2.5,783,45.71
+REQ-463,"PELICAN-22","Pelican Agile Earth Imager",GS-INU,"Inuvik Satellite Station",59248,59592,344,20.9,HIGH,5,1534,65.96
+REQ-060,"DOVE-FL-06","PlanetScope 3U CubeSat",GS-SVB,"Svalbard Ground Station",59463,59889,426,57.1,LOW,1,1235,65.76
+REQ-105,"DOVE-FL-10","PlanetScope 3U CubeSat",GS-SVB,"Svalbard Ground Station",59485,59659,174,11.6,MEDIUM,2.5,560,12.18
+REQ-209,"PELICAN-19","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",59622,59893,271,14.9,HIGH,5,1541,52.2
+REQ-435,"PELICAN-19","Pelican Agile Earth Imager",GS-INU,"Inuvik Satellite Station",59963,60276,313,17.7,HIGH,5,1588,62.13
+REQ-028,"DOVE-FL-03","PlanetScope 3U CubeSat",GS-SVB,"Svalbard Ground Station",60163,60594,431,43.1,MEDIUM,2.5,810,43.64
+REQ-228,"DOVE-FL-21","PlanetScope 3U CubeSat",GS-SVB,"Svalbard Ground Station",60311,60746,435,73.9,LOW,1,1017,55.3
+REQ-373,"PELICAN-12","Pelican Agile Earth Imager",GS-INU,"Inuvik Satellite Station",60329,60742,413,32.3,CRITICAL,10,2396,123.69
+REQ-346,"PELICAN-09","Pelican Agile Earth Imager",GS-INU,"Inuvik Satellite Station",60482,60911,429,32.6,CRITICAL,10,1511,81.03
+REQ-399,"PELICAN-15","Pelican Agile Earth Imager",GS-INU,"Inuvik Satellite Station",60677,60988,311,17,HIGH,5,1517,58.97
+REQ-621,"PELICAN-02","Pelican Agile Earth Imager",GS-IXZ,"Port Blair Ground Gateway",60689,60898,209,13.1,HIGH,5,1479,38.64
+REQ-455,"DOVE-FL-21","PlanetScope 3U CubeSat",GS-INU,"Inuvik Satellite Station",60839,61220,381,29,LOW,1,821,39.1
+REQ-127,"PELICAN-12","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",60952,61147,195,12.3,CRITICAL,10,1970,48.02
+REQ-094,"PELICAN-09","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",61099,61331,232,13.2,CRITICAL,10,1251,36.28
+REQ-261,"PELICAN-24","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",61120,61593,473,69.9,HIGH,5,2034,120.26
+REQ-198,"PELICAN-18","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",61304,61474,170,11.7,CRITICAL,10,2035,43.24
+REQ-425,"PELICAN-18","Pelican Agile Earth Imager",GS-INU,"Inuvik Satellite Station",61582,61831,249,14.4,CRITICAL,10,2095,65.21
+REQ-483,"PELICAN-24","Pelican Agile Earth Imager",GS-INU,"Inuvik Satellite Station",61647,62088,441,38.2,HIGH,5,1781,98.18
+REQ-017,"PELICAN-02","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",61760,62183,423,42.7,HIGH,5,1949,103.05
+REQ-083,"DOVE-FL-08","PlanetScope 3U CubeSat",GS-SVB,"Svalbard Ground Station",61878,62335,457,79.3,MEDIUM,2.5,1086,62.04
+REQ-364,"DOVE-FL-11","PlanetScope 3U CubeSat",GS-INU,"Inuvik Satellite Station",61965,62319,354,22,MEDIUM,2.5,722,31.95
+REQ-050,"DOVE-FL-05","PlanetScope 3U CubeSat",GS-SVB,"Svalbard Ground Station",62035,62508,473,80.6,LOW,1,1059,62.61
+REQ-654,"PELICAN-15","Pelican Agile Earth Imager",GS-IXZ,"Port Blair Ground Gateway",62086,62466,380,23.1,HIGH,5,1613,76.62
+REQ-618,"PELICAN-01","Pelican Agile Earth Imager",GS-IXZ,"Port Blair Ground Gateway",62185,62567,382,32.8,CRITICAL,10,1573,75.11
+REQ-389,"PELICAN-14","Pelican Agile Earth Imager",GS-INU,"Inuvik Satellite Station",62254,62598,344,19.9,HIGH,5,1602,68.89
+REQ-116,"DOVE-FL-11","PlanetScope 3U CubeSat",GS-SVB,"Svalbard Ground Station",62543,62788,245,14.2,MEDIUM,2.5,666,20.4
+REQ-552,"PELICAN-01","Pelican Agile Earth Imager",GS-LKO,"Lucknow Telemetry Station",62566,62734,168,12,CRITICAL,10,1283,26.94
+REQ-250,"DOVE-FL-23","PlanetScope 3U CubeSat",GS-SVB,"Svalbard Ground Station",62737,63192,455,57.1,LOW,1,1424,80.99
+REQ-626,"PELICAN-04","Pelican Agile Earth Imager",GS-IXZ,"Port Blair Ground Gateway",62995,63443,448,61.5,HIGH,5,2304,129.02
+REQ-416,"DOVE-FL-17","PlanetScope 3U CubeSat",GS-INU,"Inuvik Satellite Station",63188,63373,185,12.3,MEDIUM,2.5,902,20.86
+REQ-473,"DOVE-FL-23","PlanetScope 3U CubeSat",GS-INU,"Inuvik Satellite Station",63251,63700,449,55.9,LOW,1,1424,79.92
+REQ-560,"PELICAN-04","Pelican Agile Earth Imager",GS-LKO,"Lucknow Telemetry Station",63319,63665,346,20.8,HIGH,5,1721,74.43
+REQ-007,"PELICAN-01","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",63345,63762,417,42.8,CRITICAL,10,1712,89.24
+REQ-072,"PELICAN-07","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",63479,63924,445,78,CRITICAL,10,1968,109.47
+REQ-652,"PELICAN-14","Pelican Agile Earth Imager",GS-IXZ,"Port Blair Ground Gateway",63651,64107,456,59,HIGH,5,2166,123.46
+REQ-408,"DOVE-FL-16","PlanetScope 3U CubeSat",GS-INU,"Inuvik Satellite Station",63663,64000,337,21.5,LOW,1,1084,45.66
+REQ-380,"PELICAN-13","Pelican Agile Earth Imager",GS-INU,"Inuvik Satellite Station",63823,64197,374,24,HIGH,5,1436,67.13
+REQ-446,"PELICAN-20","Pelican Agile Earth Imager",GS-INU,"Inuvik Satellite Station",64017,64232,215,12.8,CRITICAL,10,1448,38.91
+REQ-040,"PELICAN-04","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",64185,64631,446,47,HIGH,5,2167,120.81
+REQ-239,"PELICAN-22","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",64347,64779,432,45,HIGH,5,1899,102.55
+REQ-624,"DOVE-FL-03","PlanetScope 3U CubeSat",GS-IXZ,"Port Blair Ground Gateway",64601,65022,421,43.4,MEDIUM,2.5,812,42.73
+REQ-356,"DOVE-FL-10","PlanetScope 3U CubeSat",GS-INU,"Inuvik Satellite Station",64663,64929,266,14.3,MEDIUM,2.5,576,19.15
+REQ-494,"DOVE-FL-03","PlanetScope 3U CubeSat",GS-BLR,"Bengaluru Ground Station",64725,65034,309,18.3,MEDIUM,2.5,647,24.99
+REQ-464,"PELICAN-22","Pelican Agile Earth Imager",GS-INU,"Inuvik Satellite Station",64845,65291,446,81.9,HIGH,5,2052,114.4
+REQ-558,"DOVE-FL-03","PlanetScope 3U CubeSat",GS-LKO,"Lucknow Telemetry Station",64865,65291,426,47.9,MEDIUM,2.5,841,44.78
+REQ-593,"DOVE-FL-16","PlanetScope 3U CubeSat",GS-LKO,"Lucknow Telemetry Station",64928,65217,289,17,LOW,1,1036,37.43
+REQ-658,"DOVE-FL-16","PlanetScope 3U CubeSat",GS-IXZ,"Port Blair Ground Gateway",65068,65487,419,52,LOW,1,1410,73.85
+REQ-061,"DOVE-FL-06","PlanetScope 3U CubeSat",GS-SVB,"Svalbard Ground Station",65069,65498,429,72.4,LOW,1,1235,66.23
+REQ-585,"PELICAN-13","Pelican Agile Earth Imager",GS-LKO,"Lucknow Telemetry Station",65094,65432,338,19.9,HIGH,5,1380,58.3
+REQ-106,"DOVE-FL-10","PlanetScope 3U CubeSat",GS-SVB,"Svalbard Ground Station",65141,65517,376,21.5,MEDIUM,2.5,620,29.14
+REQ-529,"DOVE-FL-16","PlanetScope 3U CubeSat",GS-BLR,"Bengaluru Ground Station",65183,65413,230,13.9,LOW,1,1002,28.81
+REQ-650,"PELICAN-13","Pelican Agile Earth Imager",GS-IXZ,"Port Blair Ground Gateway",65252,65685,433,46.6,HIGH,5,1749,94.66
+REQ-521,"PELICAN-13","Pelican Agile Earth Imager",GS-BLR,"Bengaluru Ground Station",65343,65637,294,16.7,HIGH,5,1335,49.06
+REQ-436,"PELICAN-19","Pelican Agile Earth Imager",GS-INU,"Inuvik Satellite Station",65629,65772,143,11.3,HIGH,5,1482,26.49
+REQ-029,"DOVE-FL-03","PlanetScope 3U CubeSat",GS-SVB,"Svalbard Ground Station",65776,66212,436,48.7,MEDIUM,2.5,847,46.16
+REQ-229,"DOVE-FL-21","PlanetScope 3U CubeSat",GS-SVB,"Svalbard Ground Station",65950,66354,404,35.8,LOW,1,872,44.04
+REQ-400,"PELICAN-15","Pelican Agile Earth Imager",GS-INU,"Inuvik Satellite Station",66235,66675,440,36.9,HIGH,5,1829,100.59
+REQ-491,"PELICAN-02","Pelican Agile Earth Imager",GS-BLR,"Bengaluru Ground Station",66249,66662,413,46.8,HIGH,5,2015,104.02
+REQ-622,"PELICAN-02","Pelican Agile Earth Imager",GS-IXZ,"Port Blair Ground Gateway",66255,66531,276,16.3,HIGH,5,1530,52.78
+REQ-456,"DOVE-FL-21","PlanetScope 3U CubeSat",GS-INU,"Inuvik Satellite Station",66432,66860,428,64.7,LOW,1,1017,54.41
+REQ-555,"PELICAN-02","Pelican Agile Earth Imager",GS-LKO,"Lucknow Telemetry Station",66444,66870,426,61.8,HIGH,5,2145,114.22
+REQ-128,"PELICAN-12","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",66555,66928,373,23.5,CRITICAL,10,2209,102.99
+REQ-095,"PELICAN-09","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",66747,67140,393,25,CRITICAL,10,1409,69.22
+REQ-262,"PELICAN-24","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",66821,67258,437,34.3,HIGH,5,1723,94.12
+REQ-426,"PELICAN-18","Pelican Agile Earth Imager",GS-INU,"Inuvik Satellite Station",67230,67297,67,10.3,CRITICAL,10,2002,16.77
+REQ-484,"PELICAN-24","Pelican Agile Earth Imager",GS-INU,"Inuvik Satellite Station",67301,67762,461,56.9,HIGH,5,2034,117.21
+REQ-018,"PELICAN-02","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",67354,67788,434,52.3,HIGH,5,2103,114.09
+REQ-591,"PELICAN-15","Pelican Agile Earth Imager",GS-LKO,"Lucknow Telemetry Station",67495,67971,476,82.3,HIGH,5,2112,125.66
+REQ-084,"DOVE-FL-08","PlanetScope 3U CubeSat",GS-SVB,"Svalbard Ground Station",67516,67966,450,58.6,MEDIUM,2.5,1086,61.09
+REQ-051,"DOVE-FL-05","PlanetScope 3U CubeSat",GS-SVB,"Svalbard Ground Station",67710,68173,463,58.3,LOW,1,1059,61.29
+REQ-527,"PELICAN-15","Pelican Agile Earth Imager",GS-BLR,"Bengaluru Ground Station",67720,68194,474,77.2,HIGH,5,2112,125.14
+REQ-390,"PELICAN-14","Pelican Agile Earth Imager",GS-INU,"Inuvik Satellite Station",67813,68268,455,49.6,HIGH,5,2080,118.3
+REQ-489,"PELICAN-01","Pelican Agile Earth Imager",GS-BLR,"Bengaluru Ground Station",67817,68230,413,54.7,CRITICAL,10,1878,96.95
+REQ-655,"PELICAN-15","Pelican Agile Earth Imager",GS-IXZ,"Port Blair Ground Gateway",67833,68019,186,12,HIGH,5,1440,33.48
+REQ-553,"PELICAN-01","Pelican Agile Earth Imager",GS-LKO,"Lucknow Telemetry Station",68057,68402,345,23.3,CRITICAL,10,1441,62.14
+REQ-117,"DOVE-FL-11","PlanetScope 3U CubeSat",GS-SVB,"Svalbard Ground Station",68137,68523,386,27.6,MEDIUM,2.5,761,36.72
+REQ-251,"DOVE-FL-23","PlanetScope 3U CubeSat",GS-SVB,"Svalbard Ground Station",68437,68838,401,27.7,LOW,1,1136,56.94
+REQ-497,"PELICAN-04","Pelican Agile Earth Imager",GS-BLR,"Bengaluru Ground Station",68718,69128,410,32.1,HIGH,5,1914,98.09
+REQ-417,"DOVE-FL-17","PlanetScope 3U CubeSat",GS-INU,"Inuvik Satellite Station",68814,68824,30,10,MEDIUM,2.5,880,3.3
+REQ-474,"DOVE-FL-23","PlanetScope 3U CubeSat",GS-INU,"Inuvik Satellite Station",68894,69322,428,39.5,LOW,1,1260,67.41
+REQ-008,"PELICAN-01","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",68921,69352,431,57.1,CRITICAL,10,1883,101.45
+REQ-561,"PELICAN-04","Pelican Agile Earth Imager",GS-LKO,"Lucknow Telemetry Station",68993,69277,284,15.8,HIGH,5,1636,58.08
+REQ-073,"PELICAN-07","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",69096,69529,433,50.6,CRITICAL,10,1904,103.05
+REQ-588,"PELICAN-14","Pelican Agile Earth Imager",GS-LKO,"Lucknow Telemetry Station",69100,69533,433,38.1,HIGH,5,1895,102.57
+REQ-409,"DOVE-FL-16","PlanetScope 3U CubeSat",GS-INU,"Inuvik Satellite Station",69187,69617,430,63.5,LOW,1,1442,77.51
+REQ-525,"PELICAN-14","Pelican Agile Earth Imager",GS-BLR,"Bengaluru Ground Station",69325,69754,429,37.4,HIGH,5,1883,100.98
+REQ-381,"PELICAN-13","Pelican Agile Earth Imager",GS-INU,"Inuvik Satellite Station",69390,69848,458,68,HIGH,5,1865,106.77
+REQ-447,"PELICAN-20","Pelican Agile Earth Imager",GS-INU,"Inuvik Satellite Station",69632,69794,162,11.6,CRITICAL,10,1428,28.92
+REQ-041,"PELICAN-04","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",69818,70277,459,65.7,HIGH,5,2304,132.19
+REQ-240,"PELICAN-22","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",70048,70404,356,22,HIGH,5,1550,68.97
+REQ-495,"DOVE-FL-03","PlanetScope 3U CubeSat",GS-BLR,"Bengaluru Ground Station",70404,70595,191,12.4,MEDIUM,2.5,608,14.52
+REQ-299,"PELICAN-04","Pelican Agile Earth Imager",GS-INU,"Inuvik Satellite Station",70436,70560,124,10.9,HIGH,5,1551,24.04
+REQ-465,"PELICAN-22","Pelican Agile Earth Imager",GS-INU,"Inuvik Satellite Station",70475,70864,389,29.2,HIGH,5,1660,80.72
+REQ-594,"DOVE-FL-16","PlanetScope 3U CubeSat",GS-LKO,"Lucknow Telemetry Station",70512,70805,293,17.4,LOW,1,1040,38.09
+REQ-062,"DOVE-FL-06","PlanetScope 3U CubeSat",GS-SVB,"Svalbard Ground Station",70664,71080,416,46.6,LOW,1,1157,60.16
+REQ-586,"PELICAN-13","Pelican Agile Earth Imager",GS-LKO,"Lucknow Telemetry Station",70736,71030,294,16.7,HIGH,5,1335,49.06
+REQ-530,"DOVE-FL-16","PlanetScope 3U CubeSat",GS-BLR,"Bengaluru Ground Station",70748,71015,267,15.7,LOW,1,1022,34.11
+REQ-107,"DOVE-FL-10","PlanetScope 3U CubeSat",GS-SVB,"Svalbard Ground Station",70823,71282,459,41.8,MEDIUM,2.5,744,42.69
+REQ-522,"PELICAN-13","Pelican Agile Earth Imager",GS-BLR,"Bengaluru Ground Station",70978,71237,259,14.8,HIGH,5,1310,42.41
+REQ-437,"PELICAN-19","Pelican Agile Earth Imager",GS-INU,"Inuvik Satellite Station",71188,71354,166,11.7,HIGH,5,1489,30.9
+REQ-030,"DOVE-FL-03","PlanetScope 3U CubeSat",GS-SVB,"Svalbard Ground Station",71394,71845,451,73.4,MEDIUM,2.5,888,50.06
+REQ-230,"DOVE-FL-21","PlanetScope 3U CubeSat",GS-SVB,"Svalbard Ground Station",71654,71957,303,17.6,LOW,1,735,27.84
+REQ-401,"PELICAN-15","Pelican Agile Earth Imager",GS-INU,"Inuvik Satellite Station",71882,72355,473,65.8,HIGH,5,2112,124.87
+REQ-289,"DOVE-FL-03","PlanetScope 3U CubeSat",GS-INU,"Inuvik Satellite Station",71959,72226,267,15,MEDIUM,2.5,625,20.86
+REQ-457,"DOVE-FL-21","PlanetScope 3U CubeSat",GS-INU,"Inuvik Satellite Station",72050,72386,336,21.7,LOW,1,766,32.17
+REQ-129,"PELICAN-12","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",72181,72624,443,47.2,CRITICAL,10,2716,150.4
+REQ-096,"PELICAN-09","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",72411,72869,458,50.3,CRITICAL,10,1749,100.13
+REQ-263,"PELICAN-24","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",72589,72918,329,17.9,HIGH,5,1474,60.62
+REQ-164,"PELICAN-15","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",72591,72611,30,10.1,HIGH,5,1409,5.28
+REQ-427,"PELICAN-18","Pelican Agile Earth Imager",GS-INU,"Inuvik Satellite Station",72724,72915,191,12.4,CRITICAL,10,2049,48.92
+REQ-019,"PELICAN-02","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",72960,73405,445,80,HIGH,5,2145,119.32
+REQ-485,"PELICAN-24","Pelican Agile Earth Imager",GS-INU,"Inuvik Satellite Station",72970,73331,361,21.5,HIGH,5,1530,69.04
+REQ-085,"DOVE-FL-08","PlanetScope 3U CubeSat",GS-SVB,"Svalbard Ground Station",73142,73579,437,44.2,MEDIUM,2.5,999,54.57
+REQ-052,"DOVE-FL-05","PlanetScope 3U CubeSat",GS-SVB,"Svalbard Ground Station",73371,73822,451,45.3,LOW,1,983,55.42
+REQ-391,"PELICAN-14","Pelican Agile Earth Imager",GS-INU,"Inuvik Satellite Station",73474,73924,450,44.1,HIGH,5,1991,111.99
+REQ-280,"PELICAN-02","Pelican Agile Earth Imager",GS-INU,"Inuvik Satellite Station",73501,73844,343,20.5,HIGH,5,1597,68.47
+REQ-118,"DOVE-FL-11","PlanetScope 3U CubeSat",GS-SVB,"Svalbard Ground Station",73745,74184,439,56.7,MEDIUM,2.5,956,52.46
+REQ-152,"PELICAN-14","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",74120,74286,166,11.5,HIGH,5,1468,30.46
+REQ-252,"DOVE-FL-23","PlanetScope 3U CubeSat",GS-SVB,"Svalbard Ground Station",74212,74471,259,14.4,LOW,1,996,32.25
+REQ-418,"DOVE-FL-17","PlanetScope 3U CubeSat",GS-INU,"Inuvik Satellite Station",74241,74475,234,13.9,MEDIUM,2.5,918,26.85
+REQ-009,"PELICAN-01","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",74517,74955,438,77.9,CRITICAL,10,1883,103.09
+REQ-475,"DOVE-FL-23","PlanetScope 3U CubeSat",GS-INU,"Inuvik Satellite Station",74548,74849,301,17.1,LOW,1,1024,38.53
+REQ-074,"PELICAN-07","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",74700,75122,422,42.5,CRITICAL,10,1786,94.21
+REQ-410,"DOVE-FL-16","PlanetScope 3U CubeSat",GS-INU,"Inuvik Satellite Station",74822,75211,389,30.2,LOW,1,1176,57.18
+REQ-271,"PELICAN-01","Pelican Agile Earth Imager",GS-INU,"Inuvik Satellite Station",75043,75430,387,28.4,CRITICAL,10,1512,73.14
+REQ-382,"PELICAN-13","Pelican Agile Earth Imager",GS-INU,"Inuvik Satellite Station",75066,75478,412,30.4,HIGH,5,1525,78.54
+REQ-448,"PELICAN-20","Pelican Agile Earth Imager",GS-INU,"Inuvik Satellite Station",75155,75464,309,17,CRITICAL,10,1514,58.48
+REQ-631,"DOVE-FL-06","PlanetScope 3U CubeSat",GS-IXZ,"Port Blair Ground Gateway",75163,75388,225,13.8,LOW,1,857,24.1
+REQ-176,"DOVE-FL-16","PlanetScope 3U CubeSat",GS-SVB,"Svalbard Ground Station",75448,75609,161,11.6,LOW,1,978,19.68
+REQ-042,"PELICAN-04","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",75474,75936,462,67.5,HIGH,5,2304,133.06
+REQ-141,"PELICAN-13","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",75677,75904,227,13.1,HIGH,5,1286,36.49
+REQ-660,"DOVE-FL-17","PlanetScope 3U CubeSat",GS-IXZ,"Port Blair Ground Gateway",75682,75869,187,12.3,MEDIUM,2.5,902,21.08
+REQ-241,"PELICAN-22","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",75843,75996,153,11.4,HIGH,5,1389,26.56
+REQ-300,"PELICAN-04","Pelican Agile Earth Imager",GS-INU,"Inuvik Satellite Station",75997,76431,434,36.9,HIGH,5,1995,108.23
+REQ-466,"PELICAN-22","Pelican Agile Earth Imager",GS-INU,"Inuvik Satellite Station",76115,76352,237,14,HIGH,5,1429,42.33
+REQ-063,"DOVE-FL-06","PlanetScope 3U CubeSat",GS-SVB,"Svalbard Ground Station",76246,76656,410,42,LOW,1,1116,57.2
+REQ-108,"DOVE-FL-10","PlanetScope 3U CubeSat",GS-SVB,"Svalbard Ground Station",76506,76988,482,81.3,MEDIUM,2.5,825,49.71
+REQ-668,"PELICAN-20","Pelican Agile Earth Imager",GS-IXZ,"Port Blair Ground Gateway",76563,76935,372,23.2,CRITICAL,10,1610,74.86
+REQ-438,"PELICAN-19","Pelican Agile Earth Imager",GS-INU,"Inuvik Satellite Station",76688,77023,335,19.5,HIGH,5,1616,67.67
+REQ-031,"DOVE-FL-03","PlanetScope 3U CubeSat",GS-SVB,"Svalbard Ground Station",77042,77487,445,55.8,MEDIUM,2.5,888,49.4
+REQ-290,"DOVE-FL-03","PlanetScope 3U CubeSat",GS-INU,"Inuvik Satellite Station",77553,77998,445,52.8,MEDIUM,2.5,874,48.62
+REQ-636,"DOVE-FL-08","PlanetScope 3U CubeSat",GS-IXZ,"Port Blair Ground Gateway",77562,78012,450,69.5,MEDIUM,2.5,1086,61.09
+REQ-402,"PELICAN-15","Pelican Agile Earth Imager",GS-INU,"Inuvik Satellite Station",77663,78001,338,18.5,HIGH,5,1540,65.06
+REQ-458,"DOVE-FL-21","PlanetScope 3U CubeSat",GS-INU,"Inuvik Satellite Station",77683,77827,144,11.4,LOW,1,689,12.4
+REQ-130,"PELICAN-12","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",77807,78264,457,83.5,CRITICAL,10,2882,164.63
+REQ-628,"DOVE-FL-05","PlanetScope 3U CubeSat",GS-IXZ,"Port Blair Ground Gateway",77822,78288,466,82.5,LOW,1,1059,61.69
+REQ-571,"DOVE-FL-08","PlanetScope 3U CubeSat",GS-LKO,"Lucknow Telemetry Station",77879,78238,359,22.6,MEDIUM,2.5,825,37.02
+REQ-097,"PELICAN-09","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",78073,78543,470,79.6,CRITICAL,10,1812,106.45
+REQ-666,"PELICAN-19","Pelican Agile Earth Imager",GS-IXZ,"Port Blair Ground Gateway",78080,78530,450,60.2,HIGH,5,2193,123.36
+REQ-499,"DOVE-FL-05","PlanetScope 3U CubeSat",GS-BLR,"Bengaluru Ground Station",78094,78161,67,10.3,LOW,1,708,5.93
+REQ-563,"DOVE-FL-05","PlanetScope 3U CubeSat",GS-LKO,"Lucknow Telemetry Station",78129,78525,396,26.7,LOW,1,837,41.43
+REQ-165,"PELICAN-15","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",78194,78537,343,18.5,HIGH,5,1542,66.11
+REQ-428,"PELICAN-18","Pelican Agile Earth Imager",GS-INU,"Inuvik Satellite Station",78213,78573,360,23.3,CRITICAL,10,2290,103.05
+REQ-020,"PELICAN-02","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",78602,79031,429,45.8,HIGH,5,1999,107.2
+REQ-486,"PELICAN-24","Pelican Agile Earth Imager",GS-INU,"Inuvik Satellite Station",78634,78839,205,12.5,HIGH,5,1394,35.72
+REQ-086,"DOVE-FL-08","PlanetScope 3U CubeSat",GS-SVB,"Svalbard Ground Station",78755,79194,439,45.5,MEDIUM,2.5,1009,55.37
+REQ-053,"DOVE-FL-05","PlanetScope 3U CubeSat",GS-SVB,"Svalbard Ground Station",79021,79474,453,47.2,LOW,1,998,56.51
+REQ-281,"PELICAN-02","Pelican Agile Earth Imager",GS-INU,"Inuvik Satellite Station",79098,79546,448,79.4,HIGH,5,2145,120.12
+REQ-634,"PELICAN-07","Pelican Agile Earth Imager",GS-IXZ,"Port Blair Ground Gateway",79118,79534,416,40.6,CRITICAL,10,1758,91.42
+REQ-505,"PELICAN-07","Pelican Agile Earth Imager",GS-BLR,"Bengaluru Ground Station",79232,79555,323,19.4,CRITICAL,10,1449,58.5
+REQ-392,"PELICAN-14","Pelican Agile Earth Imager",GS-INU,"Inuvik Satellite Station",79297,79521,224,13,HIGH,5,1493,41.8
+REQ-119,"DOVE-FL-11","PlanetScope 3U CubeSat",GS-SVB,"Svalbard Ground Station",79351,79793,442,70.2,MEDIUM,2.5,956,52.82
+REQ-569,"PELICAN-07","Pelican Agile Earth Imager",GS-LKO,"Lucknow Telemetry Station",79378,79807,429,51.5,CRITICAL,10,1917,102.8
+REQ-599,"PELICAN-18","Pelican Agile Earth Imager",GS-LKO,"Lucknow Telemetry Station",79476,79807,331,19.5,CRITICAL,10,2206,91.27
+REQ-664,"PELICAN-18","Pelican Agile Earth Imager",GS-IXZ,"Port Blair Ground Gateway",79631,80063,432,46.9,CRITICAL,10,2814,151.96
+REQ-534,"PELICAN-18","Pelican Agile Earth Imager",GS-BLR,"Bengaluru Ground Station",79725,80012,287,16.3,CRITICAL,10,2137,76.66
+REQ-419,"DOVE-FL-17","PlanetScope 3U CubeSat",GS-INU,"Inuvik Satellite Station",79728,80115,387,29.3,MEDIUM,2.5,1068,51.66
+REQ-153,"PELICAN-14","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",79754,80125,371,21.5,HIGH,5,1629,75.54
+REQ-010,"PELICAN-01","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",80154,80563,409,36.5,CRITICAL,10,1624,83.03
+REQ-476,"DOVE-FL-23","PlanetScope 3U CubeSat",GS-INU,"Inuvik Satellite Station",80197,80324,127,11,LOW,1,959,15.22
+REQ-075,"PELICAN-07","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",80293,80723,430,47.6,CRITICAL,10,1860,99.97
+REQ-272,"PELICAN-01","Pelican Agile Earth Imager",GS-INU,"Inuvik Satellite Station",80636,81073,437,70.5,CRITICAL,10,1883,102.86
+REQ-502,"DOVE-FL-06","PlanetScope 3U CubeSat",GS-BLR,"Bengaluru Ground Station",80711,81127,416,48.6,LOW,1,1176,61.15
+REQ-449,"PELICAN-20","Pelican Agile Earth Imager",GS-INU,"Inuvik Satellite Station",80714,81151,437,37.5,CRITICAL,10,1833,100.13
+REQ-632,"DOVE-FL-06","PlanetScope 3U CubeSat",GS-IXZ,"Port Blair Ground Gateway",80724,80989,265,15.6,LOW,1,874,28.95
+REQ-566,"DOVE-FL-06","PlanetScope 3U CubeSat",GS-LKO,"Lucknow Telemetry Station",80909,81332,423,58.9,LOW,1,1235,65.3
+REQ-597,"DOVE-FL-17","PlanetScope 3U CubeSat",GS-LKO,"Lucknow Telemetry Station",80969,81392,423,44.8,MEDIUM,2.5,1220,64.51
+REQ-177,"DOVE-FL-16","PlanetScope 3U CubeSat",GS-SVB,"Svalbard Ground Station",81025,81379,354,22.7,LOW,1,1096,48.5
+REQ-043,"PELICAN-04","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",81175,81600,425,33.8,HIGH,5,1942,103.17
+REQ-532,"DOVE-FL-17","PlanetScope 3U CubeSat",GS-BLR,"Bengaluru Ground Station",81196,81611,415,39.1,MEDIUM,2.5,1165,60.43
+REQ-661,"DOVE-FL-17","PlanetScope 3U CubeSat",GS-IXZ,"Port Blair Ground Gateway",81221,81533,312,18.5,MEDIUM,2.5,963,37.56
+REQ-142,"PELICAN-13","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",81305,81694,389,25,HIGH,5,1450,70.51
+REQ-301,"PELICAN-04","Pelican Agile Earth Imager",GS-INU,"Inuvik Satellite Station",81651,82106,455,57,HIGH,5,2304,131.04
+REQ-467,"PELICAN-22","Pelican Agile Earth Imager",GS-INU,"Inuvik Satellite Station",81752,81790,38,10.1,HIGH,5,1370,6.51
+REQ-064,"DOVE-FL-06","PlanetScope 3U CubeSat",GS-SVB,"Svalbard Ground Station",81821,82243,422,52,LOW,1,1207,63.67
+REQ-605,"PELICAN-20","Pelican Agile Earth Imager",GS-LKO,"Lucknow Telemetry Station",81975,82439,464,82.5,CRITICAL,10,2106,122.15
+REQ-109,"DOVE-FL-10","PlanetScope 3U CubeSat",GS-SVB,"Svalbard Ground Station",82180,82653,473,58.7,MEDIUM,2.5,825,48.78
+REQ-540,"PELICAN-20","Pelican Agile Earth Imager",GS-BLR,"Bengaluru Ground Station",82200,82662,462,78.8,CRITICAL,10,2106,121.62
+REQ-439,"PELICAN-19","Pelican Agile Earth Imager",GS-INU,"Inuvik Satellite Station",82247,82694,447,49.4,HIGH,5,2102,117.45
+REQ-669,"PELICAN-20","Pelican Agile Earth Imager",GS-IXZ,"Port Blair Ground Gateway",82334,82465,131,11,CRITICAL,10,1420,23.25
+REQ-032,"DOVE-FL-03","PlanetScope 3U CubeSat",GS-SVB,"Svalbard Ground Station",82742,83133,391,27.1,MEDIUM,2.5,705,34.46
+REQ-291,"DOVE-FL-03","PlanetScope 3U CubeSat",GS-INU,"Inuvik Satellite Station",83195,83622,427,40.4,MEDIUM,2.5,792,42.27
+REQ-508,"DOVE-FL-08","PlanetScope 3U CubeSat",GS-BLR,"Bengaluru Ground Station",83274,83672,398,29.4,MEDIUM,2.5,880,43.78
+REQ-131,"PELICAN-12","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",83424,83869,445,52.9,CRITICAL,10,2838,157.86
+REQ-602,"PELICAN-19","Pelican Agile Earth Imager",GS-LKO,"Lucknow Telemetry Station",83531,83955,424,36.8,HIGH,5,1897,100.54
+REQ-572,"DOVE-FL-08","PlanetScope 3U CubeSat",GS-LKO,"Lucknow Telemetry Station",83555,83815,260,14.6,MEDIUM,2.5,761,24.73
+REQ-500,"DOVE-FL-05","PlanetScope 3U CubeSat",GS-BLR,"Bengaluru Ground Station",83583,83973,390,25.5,LOW,1,828,40.37
+REQ-098,"PELICAN-09","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",83726,84184,458,51.9,CRITICAL,10,1771,101.39
+REQ-538,"PELICAN-19","Pelican Agile Earth Imager",GS-BLR,"Bengaluru Ground Station",83756,84176,420,36.2,HIGH,5,1887,99.07
+REQ-429,"PELICAN-18","Pelican Agile Earth Imager",GS-INU,"Inuvik Satellite Station",83777,84224,447,69.5,CRITICAL,10,2994,167.29
+REQ-166,"PELICAN-15","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",83874,84320,446,35.7,HIGH,5,1809,100.85
+REQ-564,"DOVE-FL-05","PlanetScope 3U CubeSat",GS-LKO,"Lucknow Telemetry Station",83882,84104,222,13,LOW,1,730,20.26
+REQ-487,"PELICAN-24","Pelican Agile Earth Imager",GS-INU,"Inuvik Satellite Station",84228,84389,161,11.5,HIGH,5,1379,27.75
+REQ-021,"PELICAN-02","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",84301,84656,355,22.3,HIGH,5,1625,72.11
+REQ-087,"DOVE-FL-08","PlanetScope 3U CubeSat",GS-SVB,"Svalbard Ground Station",84369,84824,455,65.5,MEDIUM,2.5,1086,61.77
+REQ-054,"DOVE-FL-05","PlanetScope 3U CubeSat",GS-SVB,"Svalbard Ground Station",84672,85140,468,67.7,LOW,1,1059,61.95
+REQ-282,"PELICAN-02","Pelican Agile Earth Imager",GS-INU,"Inuvik Satellite Station",84728,85121,393,30,HIGH,5,1748,85.87
+REQ-506,"PELICAN-07","Pelican Agile Earth Imager",GS-BLR,"Bengaluru Ground Station",84915,85079,164,11.7,CRITICAL,10,1337,27.41
+REQ-120,"DOVE-FL-11","PlanetScope 3U CubeSat",GS-SVB,"Svalbard Ground Station",84946,85375,429,47.5,MEDIUM,2.5,903,48.42
+REQ-337,"DOVE-FL-08","PlanetScope 3U CubeSat",GS-INU,"Inuvik Satellite Station",84984,85112,128,11,MEDIUM,2.5,732,11.71
+REQ-600,"PELICAN-18","Pelican Agile Earth Imager",GS-LKO,"Lucknow Telemetry Station",85117,85407,290,16.6,CRITICAL,10,2143,77.68
+REQ-311,"DOVE-FL-05","PlanetScope 3U CubeSat",GS-INU,"Inuvik Satellite Station",85260,85471,211,12.5,LOW,1,726,19.15
+REQ-420,"DOVE-FL-17","PlanetScope 3U CubeSat",GS-INU,"Inuvik Satellite Station",85302,85744,442,78.9,MEDIUM,2.5,1320,72.93
+REQ-535,"PELICAN-18","Pelican Agile Earth Imager",GS-BLR,"Bengaluru Ground Station",85357,85616,259,14.8,CRITICAL,10,2103,68.08
+REQ-154,"PELICAN-14","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",85418,85870,452,42.6,HIGH,5,1967,111.14
+REQ-477,"DOVE-FL-23","PlanetScope 3U CubeSat",GS-INU,"Inuvik Satellite Station",85733,85895,162,11.6,LOW,1,966,19.56
+REQ-011,"PELICAN-01","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",85855,86166,311,18.2,CRITICAL,10,1370,53.26
+REQ-076,"PELICAN-07","Pelican Agile Earth Imager",GS-SVB,"Svalbard Ground Station",85893,86338,445,70.7,CRITICAL,10,1968,109.47
+REQ-273,"PELICAN-01","Pelican Agile Earth Imager",GS-INU,"Inuvik Satellite Station",86252,86400,148,22.4,CRITICAL,10,1255,23.22
+REQ-450,"PELICAN-20","Pelican Agile Earth Imager",GS-INU,"Inuvik Satellite Station",86362,86400,38,14.2,CRITICAL,10,1404,6.67

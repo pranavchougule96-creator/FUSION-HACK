@@ -1,0 +1,21 @@
+{
+  "name": "fusion-hack",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build && node scripts/bundle-html.js",
+    "bundle": "node scripts/bundle-html.js",
+    "preview": "vite preview",
+    "serve": "node serve-dist.js"
+  },
+  "devDependencies": {
+    "isomorphic-git": "^1.43.2",
+    "vite": "^8.3.0"
+  },
+  "dependencies": {
+    "canvas-confetti": "^1.9.4",
+    "three": "^0.186.1"
+  }
+}
