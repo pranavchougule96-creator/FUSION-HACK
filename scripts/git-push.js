@@ -8,7 +8,7 @@
 import fs from 'fs';
 import path from 'path';
 import git from 'isomorphic-git';
-import http from 'isomorphic-git/http/node/index.js';
+import http from 'isomorphic-git/http/node';
 import readline from 'readline';
 import { fileURLToPath } from 'url';
 

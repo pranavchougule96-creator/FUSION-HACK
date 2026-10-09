@@ -1,6 +1,6 @@
 /**
  * SPACE-04: Autonomous Ground Station Scheduling for Multi-Satellite Downlink
- * Main Application Orchestrator
+ * Main Application Orchestrator & Mission Director
  */
 
 import './style.css';
@@ -12,7 +12,6 @@ import { runFCFSScheduler } from './scheduler/fcfs.js';
 import { AutonomousGroundStationOptimizer } from './scheduler/optimizer.js';
 
 import { ConstellationGlobe3D } from './ui/globe3d.js';
-import { SatelliteAttitudeMonitor } from './ui/attitudeMonitor.js';
 import { MultiTrackGanttChart } from './ui/ganttChart.js';
 import { AnalyticsHud } from './ui/analyticsHud.js';
 import { ScenarioControlPanel } from './ui/controls.js';
@@ -25,7 +24,7 @@ class MissionControlDashboard {
     this.simEpochSec = 0;
     this.horizonSec = 86400; // 24 hours
     this.isPlaying = true;
-    this.timeSpeed = 60; // 60x speed default
+    this.timeSpeed = 60; // 60x default speed
     this.lastFrameTimestamp = performance.now();
 
     // Data State
@@ -38,7 +37,6 @@ class MissionControlDashboard {
 
     // Component References
     this.globe3D = null;
-    this.attitudeMonitor = null;
     this.ganttChart = null;
     this.analyticsHud = null;
     this.controlPanel = null;
@@ -56,9 +54,10 @@ class MissionControlDashboard {
     this.initComponents();
     this.runFullScenario({
       satelliteCount: 24,
-      selectedStationIds: ['GS-SVB', 'GS-INU', 'GS-PUQ', 'GS-TRL', 'GS-HBK'],
-      slewRateDegPerSec: 3.5,
-      settlingTimeSec: 15.0,
+      // Default: ISRO Indian stations + Polar network
+      selectedStationIds: ['GS-SVB', 'GS-BLR', 'GS-LKO', 'GS-IXZ', 'GS-PUQ', 'GS-TRL'],
+      slewRateDegPerSec: 4.0,
+      settlingTimeSec: 12.0,
       minElevationDeg: 10.0,
       criticalWeight: 10.0,
       highWeight: 5.0
@@ -79,7 +78,7 @@ class MissionControlDashboard {
             <h1 class="brand-title">
               SPACE-04: AUTONOMOUS GROUND STATION SCHEDULER
             </h1>
-            <span class="brand-sub">PLANET LABS MULTI-SATELLITE DOWNLINK OPTIMIZATION DASHBOARD</span>
+            <span class="brand-sub">PLANET LABS & ISRO MULTI-SATELLITE DOWNLINK OPTIMIZATION MISSION CONTROL</span>
           </div>
         </div>
 
@@ -94,48 +93,49 @@ class MissionControlDashboard {
 
       <!-- Main Dashboard Grid -->
       <main class="dashboard-cockpit">
-        <!-- Cockpit Upper Row: 3D Constellation Map + Attitude & Slew Monitor -->
-        <section class="cockpit-upper-row">
-          <!-- Panel 1: 3D Constellation & Ground Network Map -->
-          <div class="panel-section" id="panel-globe">
-            <div class="panel-header">
-              <div class="panel-title-wrapper">
-                <span class="panel-icon">🌐</span>
-                <h2 class="panel-title">3D CONSTELLATION & GROUND NETWORK MAP</h2>
-              </div>
-              <div class="font-mono text-dim text-sm" id="globe-sat-counter">24 SATS | 5 STATIONS</div>
+        <!-- Hero Section: Full-Width 3D Earth Constellation Digital Twin -->
+        <section class="panel-section panel-hero-globe" id="panel-globe">
+          <div class="panel-header">
+            <div class="panel-title-wrapper">
+              <span class="panel-icon">🌐</span>
+              <h2 class="panel-title">3D REALISTIC EARTH DIGITAL TWIN & CONSTELLATION ORBITS</h2>
             </div>
-            <div class="globe-viewport-container" id="globe-container">
-              <div class="globe-hud-overlay">
-                <div>ORBIT: SUN-SYNCHRONOUS LEO (~500 KM)</div>
-                <div>CLICK SATELLITE TO TELEMETER ATTITUDE</div>
-              </div>
-              <div class="globe-camera-controls-floating">
-                <button class="cam-btn" id="btn-cam-global">Global</button>
-                <button class="cam-btn" id="btn-cam-arctic">Arctic (Svalbard)</button>
-                <button class="cam-btn" id="btn-cam-antarctic">Antarctic (Troll)</button>
-              </div>
-            </div>
+            <div class="font-mono text-dim text-sm" id="globe-sat-counter">24 SATS | 6 STATIONS | 0 PASSES</div>
           </div>
 
-          <!-- Panel 2: Satellite Attitude & Antenna Slew Monitor -->
-          <div class="panel-section" id="panel-attitude"></div>
+          <div class="globe-viewport-container" id="globe-container">
+            <div class="globe-hud-overlay">
+              <div class="font-bold text-cyan">ORBIT: SUN-SYNCHRONOUS LEO (~500 KM)</div>
+              <div>EARTH: PHOTOREALISTIC CONTINENTS & DYNAMIC CLOUDS</div>
+              <div>STATIONS: ISRO BENGALURU, LUCKNOW, PORT BLAIR + POLAR</div>
+            </div>
+
+            <div class="globe-camera-controls-floating">
+              <button class="cam-btn" id="btn-cam-global">Global View</button>
+              <button class="cam-btn cam-btn-highlight" id="btn-cam-india">🇮🇳 India (ISRO)</button>
+              <button class="cam-btn" id="btn-cam-arctic">Arctic (Svalbard)</button>
+              <button class="cam-btn" id="btn-cam-antarctic">Antarctic (Troll)</button>
+            </div>
+          </div>
         </section>
 
-        <!-- Panel 3: Multi-Track Timetable / Gantt Chart -->
-        <section class="panel-section" id="panel-gantt"></section>
+        <!-- Middle Section: Multi-Track Timetable / Gantt Scheduler -->
+        <section class="panel-section panel-gantt-section" id="panel-gantt"></section>
 
-        <!-- Panel 4: Analytics HUD & Performance Comparison -->
-        <section class="panel-section" id="panel-analytics"></section>
+        <!-- Lower Section: Analytics & Live Simulation Operations Deck -->
+        <section class="panel-section panel-analytics-section" id="panel-analytics"></section>
 
-        <!-- Panel 5: Scenario Control Panel -->
-        <section class="panel-section" id="panel-controls"></section>
+        <!-- Mission Controls & Scenario Configuration -->
+        <section class="panel-section panel-controls-section" id="panel-controls"></section>
       </main>
     `;
 
-    // Header camera shortcut buttons
+    // Globe camera quick-switch buttons
     document.getElementById('btn-cam-global').addEventListener('click', () => {
       if (this.globe3D) this.globe3D.setCameraPreset('GLOBAL');
+    });
+    document.getElementById('btn-cam-india').addEventListener('click', () => {
+      if (this.globe3D) this.globe3D.setCameraPreset('INDIA');
     });
     document.getElementById('btn-cam-arctic').addEventListener('click', () => {
       if (this.globe3D) this.globe3D.setCameraPreset('NORTH_POLAR');
@@ -152,11 +152,7 @@ class MissionControlDashboard {
       this.onSatelliteSelected(selectedSat);
     });
 
-    // 2. Attitude Monitor
-    const attContainer = document.getElementById('panel-attitude');
-    this.attitudeMonitor = new SatelliteAttitudeMonitor(attContainer);
-
-    // 3. Gantt Chart
+    // 2. Gantt Chart
     const ganttContainer = document.getElementById('panel-gantt');
     this.ganttChart = new MultiTrackGanttChart(
       ganttContainer,
@@ -164,13 +160,13 @@ class MissionControlDashboard {
       (clickedPass) => this.onPassClicked(clickedPass)
     );
 
-    // 4. Analytics HUD
+    // 3. Analytics & Simulation HUD
     const hudContainer = document.getElementById('panel-analytics');
     this.analyticsHud = new AnalyticsHud(hudContainer, (selectedSat) => {
       this.onSatelliteSelected(selectedSat);
     });
 
-    // 5. Control Panel
+    // 4. Control Panel
     const ctrlContainer = document.getElementById('panel-controls');
     this.controlPanel = new ScenarioControlPanel(ctrlContainer, {
       onReoptimize: (cfg) => this.runFullScenario(cfg),
@@ -271,9 +267,6 @@ class MissionControlDashboard {
 
   onSatelliteSelected(satellite) {
     this.selectedSatellite = satellite;
-    if (this.attitudeMonitor) {
-      this.attitudeMonitor.setSatellite(satellite);
-    }
     if (this.globe3D) {
       this.globe3D.selectSatellite(satellite.id);
     }
@@ -329,20 +322,20 @@ class MissionControlDashboard {
       ? (this.fcfsResult ? this.fcfsResult.scheduled : [])
       : (this.optimizedResult ? this.optimizedResult.scheduled : []);
 
-    // 3D Globe update
+    // 1. 3D Globe update
     if (this.globe3D) {
       this.globe3D.setSchedule(currentSchedule);
       this.globe3D.updateAtTime(cur);
     }
 
-    // Attitude Monitor update
-    if (this.attitudeMonitor) {
-      this.attitudeMonitor.updateAtTime(cur, currentSchedule, this.activeGroundStations);
-    }
-
-    // Gantt scrubber line update
+    // 2. Gantt scrubber line update
     if (this.ganttChart) {
       this.ganttChart.updateScrubber(cur);
+    }
+
+    // 3. Analytics Live Simulation update
+    if (this.analyticsHud) {
+      this.analyticsHud.updateSimulation(cur, currentSchedule);
     }
   }
 
@@ -350,7 +343,7 @@ class MissionControlDashboard {
     if (!this.optimizedResult) return;
 
     const exportData = {
-      mission: 'Planet Labs SPACE-04 Multi-Satellite Downlink Schedule',
+      mission: 'Planet Labs & ISRO SPACE-04 Multi-Satellite Downlink Schedule',
       generatedTimestampUTC: new Date().toISOString(),
       planningHorizonHours: 24,
       algorithm: this.optimizedResult.algorithm,

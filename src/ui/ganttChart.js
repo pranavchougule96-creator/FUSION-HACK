@@ -45,13 +45,13 @@ export class MultiTrackGanttChart {
         </div>
       </div>
 
-      <!-- Priority Legend -->
+      <!-- Priority Legend Bar -->
       <div class="gantt-legend-bar">
         <div class="legend-item"><span class="legend-swatch legend-crit"></span> CRITICAL (10x)</div>
-        <div class="legend-item"><span class="legend-swatch legend-high"></span> HIGH (5x)</div>
-        <div class="legend-item"><span class="legend-swatch legend-med"></span> MEDIUM (2.5x)</div>
-        <div class="legend-item"><span class="legend-swatch legend-low"></span> LOW (1.0x)</div>
-        <div class="legend-item"><span class="legend-swatch legend-slew"></span> SLEW TRANSITION</div>
+        <div class="legend-item"><span class="legend-high legend-swatch"></span> HIGH (5x)</div>
+        <div class="legend-item"><span class="legend-med legend-swatch"></span> MEDIUM (2.5x)</div>
+        <div class="legend-item"><span class="legend-low legend-swatch"></span> LOW (1.0x)</div>
+        <div class="legend-item"><span class="legend-swatch legend-slew"></span> SLEW REPOINTING</div>
         <div class="legend-item"><span class="legend-swatch legend-dropped"></span> FCFS DROPPED</div>
       </div>
 
@@ -65,7 +65,7 @@ export class MultiTrackGanttChart {
 
         <!-- Vertical Current Time Scrubber Line -->
         <div class="gantt-scrubber-line" id="gantt-scrubber-line">
-          <div class="scrubber-head" id="gantt-scrubber-label">00:00:00</div>
+          <div class="scrubber-head font-mono" id="gantt-scrubber-label">00:00:00 UTC</div>
         </div>
       </div>
 
@@ -75,7 +75,7 @@ export class MultiTrackGanttChart {
 
     // View toggle listeners
     this.container.querySelectorAll('.pill-btn').forEach(btn => {
-      btn.addEventListener('click', (e) => {
+      btn.addEventListener('click', () => {
         const mode = btn.dataset.mode;
         this.setViewMode(mode);
       });
@@ -85,8 +85,8 @@ export class MultiTrackGanttChart {
     const viewport = this.container.querySelector('#gantt-viewport');
     viewport.addEventListener('click', (e) => {
       const rect = viewport.getBoundingClientRect();
-      const clickX = e.clientX - rect.left - 180; // track label offset
-      const trackWidth = rect.width - 180;
+      const clickX = e.clientX - rect.left - 210; // track label offset
+      const trackWidth = rect.width - 210;
       if (clickX >= 0 && trackWidth > 0) {
         const fraction = Math.max(0, Math.min(1, clickX / trackWidth));
         const targetSec = Math.round(fraction * this.horizonSec);
@@ -124,18 +124,18 @@ export class MultiTrackGanttChart {
     const scaleEl = this.container.querySelector('#gantt-timescale');
     if (!scaleEl) return;
 
-    let html = `<div class="track-header-spacer">STATION TRACK</div>`;
+    let html = `<div class="track-header-spacer font-mono">GROUND TRACK</div>`;
     html += `<div class="timescale-ticks-wrapper">`;
 
     // 24 hours: 1 tick every 2 hours
     const hours = this.horizonSec / 3600;
     for (let h = 0; h <= hours; h += 2) {
       const leftPct = (h / hours) * 100;
-      const timeStr = `${String(h).padStart(2, '0')}:00 UTC`;
+      const timeStr = `${String(h).padStart(2, '0')}:00`;
       html += `
         <div class="timescale-tick" style="left: ${leftPct}%;">
           <span class="tick-line"></span>
-          <span class="tick-label">${timeStr}</span>
+          <span class="tick-label font-mono">${timeStr}</span>
         </div>
       `;
     }
@@ -153,14 +153,29 @@ export class MultiTrackGanttChart {
       const trackEl = document.createElement('div');
       trackEl.className = 'gantt-station-track';
 
-      // Left Track Header
+      // Country Flag or Agency Symbol
+      let flagIcon = '🌐';
+      if (gs.id === 'GS-BLR' || gs.id === 'GS-LKO' || gs.id === 'GS-IXZ') flagIcon = '🇮🇳';
+      else if (gs.id === 'GS-SVB') flagIcon = '🇳🇴';
+      else if (gs.id === 'GS-INU') flagIcon = '🇨🇦';
+      else if (gs.id === 'GS-PUQ') flagIcon = '🇨🇱';
+      else if (gs.id === 'GS-TRL') flagIcon = '🇦🇶';
+      else if (gs.id === 'GS-HBK') flagIcon = '🇿🇦';
+      else if (gs.id === 'GS-HAW') flagIcon = '🇺🇸';
+      else if (gs.id === 'GS-SGP') flagIcon = '🇸🇬';
+
+      // Left Track Header (Width: 210px)
       const headerEl = document.createElement('div');
       headerEl.className = 'track-label-col';
       headerEl.innerHTML = `
-        <div class="station-badge" style="border-left-color: ${gs.color};">
-          <span class="station-code font-mono">${gs.id}</span>
-          <span class="station-name-text">${gs.name}</span>
-          <span class="station-slew-rate font-mono">ω: ${gs.slewRateDegPerSec}°/s</span>
+        <div class="station-badge" style="border-left-color: ${gs.color || '#00f0ff'};">
+          <div class="station-row-top">
+            <span class="station-flag">${flagIcon}</span>
+            <span class="station-code font-mono font-bold" style="color: ${gs.color || '#00f0ff'}">${gs.id}</span>
+            <span class="station-slew-pill font-mono">${gs.slewRateDegPerSec}°/s</span>
+          </div>
+          <div class="station-name-text">${gs.name}</div>
+          <div class="station-sub-coords font-mono text-dim">${gs.lat.toFixed(1)}°, ${gs.lon.toFixed(1)}°</div>
         </div>
       `;
       trackEl.appendChild(headerEl);
@@ -170,7 +185,17 @@ export class MultiTrackGanttChart {
       timelineEl.className = 'track-timeline-body';
       timelineEl.dataset.stationId = gs.id;
 
-      // Filter passes for this station based on view mode
+      // Add background hour grid lines (every 2 hours)
+      const hours = this.horizonSec / 3600;
+      for (let h = 2; h < hours; h += 2) {
+        const leftPct = (h / hours) * 100;
+        const gridLine = document.createElement('div');
+        gridLine.className = 'track-grid-hour-line';
+        gridLine.style.left = `${leftPct}%`;
+        timelineEl.appendChild(gridLine);
+      }
+
+      // Filter and populate passes for this station
       this.populateTrackPasses(timelineEl, gs);
 
       trackEl.appendChild(timelineEl);
@@ -192,7 +217,6 @@ export class MultiTrackGanttChart {
       this.renderPassList(timelineEl, dropped, true);
       this.renderSlewTransitions(timelineEl, scheduled, groundStation);
     } else if (this.viewMode === 'DIFF_OVERLAY' && this.optimizedResult && this.fcfsResult) {
-      // Show optimized scheduled, plus highlight passes that FCFS dropped but Optimizer scheduled!
       const optScheduled = this.optimizedResult.scheduled.filter(p => p.stationId === stId);
       const fcfsDropped = this.fcfsResult.rejected.filter(p => p.stationId === stId);
 
@@ -206,11 +230,11 @@ export class MultiTrackGanttChart {
 
     passes.forEach(p => {
       const leftPct = (p.startSec / this.horizonSec) * 100;
-      const widthPct = Math.max(0.4, (p.durationSec / this.horizonSec) * 100);
+      const widthPct = Math.max(0.65, (p.durationSec / this.horizonSec) * 100);
 
       const passBlock = document.createElement('div');
       passBlock.className = `gantt-pass-block priority-${p.priority.toLowerCase()} ${isDropped ? 'pass-dropped' : ''}`;
-      
+
       const isSalvaged = !isDropped && droppedIds.has(p.id);
       if (isSalvaged) {
         passBlock.classList.add('pass-salvaged-diff');
@@ -218,13 +242,20 @@ export class MultiTrackGanttChart {
 
       passBlock.style.left = `${leftPct}%`;
       passBlock.style.width = `${widthPct}%`;
-      passBlock.style.backgroundColor = isDropped ? 'rgba(255, 59, 105, 0.2)' : p.color;
+
+      const priorityShort = p.priority.substring(0, 1);
+      const dataLabel = p.actualDataGB ? `${p.actualDataGB}GB` : `${p.durationSec}s`;
 
       passBlock.innerHTML = `
         <div class="pass-block-inner">
-          <span class="pass-sat-title">${p.satName}</span>
-          <span class="pass-meta-badge font-mono">${p.actualDataGB ? p.actualDataGB + ' GB' : p.priority}</span>
-          ${isSalvaged ? '<span class="diff-salvage-tag">SAVED</span>' : ''}
+          <div class="pass-block-header">
+            <span class="pass-p-dot dot-${p.priority.toLowerCase()}"></span>
+            <span class="pass-sat-title font-mono font-bold">${p.satName}</span>
+          </div>
+          <div class="pass-block-meta">
+            <span class="pass-meta-badge font-mono">${dataLabel}</span>
+            ${isSalvaged ? '<span class="diff-salvage-tag">SAVED</span>' : ''}
+          </div>
         </div>
       `;
 
@@ -255,14 +286,14 @@ export class MultiTrackGanttChart {
       const leftPct = (cur.endSec / this.horizonSec) * 100;
       const widthPct = (gapSec / this.horizonSec) * 100;
 
-      if (widthPct > 0.2) {
+      if (widthPct > 0.25) {
         const slewBlock = document.createElement('div');
         slewBlock.className = 'gantt-slew-deadband';
         slewBlock.style.left = `${leftPct}%`;
         slewBlock.style.width = `${widthPct}%`;
 
         if (cur.nextSlewDetails) {
-          slewBlock.title = `Slew: ${cur.nextSlewDetails.angularDistDeg}° in ${cur.nextSlewDetails.totalRequiredSec}s (Margin: ${cur.nextSlewDetails.marginSec}s)`;
+          slewBlock.title = `Slew: ${cur.nextSlewDetails.angularDistDeg}° in ${cur.nextSlewDetails.totalRequiredSec}s (Margin: +${cur.nextSlewDetails.marginSec}s)`;
         }
 
         timelineEl.appendChild(slewBlock);
@@ -282,14 +313,14 @@ export class MultiTrackGanttChart {
         <span class="tooltip-badge priority-${pass.priority.toLowerCase()}">${pass.priority}</span>
         <span class="tooltip-id font-mono">${pass.id}</span>
       </div>
-      <div class="tooltip-title">${pass.satName} <span class="text-dim">(${pass.satType})</span></div>
+      <div class="tooltip-title">${pass.satName} <span class="text-dim">(${pass.satType || 'PlanetScope 3U'})</span></div>
       <div class="tooltip-station">Station: <strong>${pass.stationName}</strong></div>
       
       <div class="tooltip-grid">
         <div class="t-item"><span class="t-k">Window:</span><span class="t-v font-mono">${startH} - ${endH}</span></div>
         <div class="t-item"><span class="t-k">Duration:</span><span class="t-v font-mono">${pass.durationSec}s</span></div>
         <div class="t-item"><span class="t-k">Peak El:</span><span class="t-v font-mono">${pass.peakElDeg}°</span></div>
-        <div class="t-item"><span class="t-k">Rate:</span><span class="t-v font-mono">${pass.dataRateMbps} Mbps</span></div>
+        <div class="t-item"><span class="t-k">Data Rate:</span><span class="t-v font-mono">${pass.dataRateMbps} Mbps</span></div>
         <div class="t-item"><span class="t-k">Downlinked:</span><span class="t-v font-mono font-bold text-emerald">${pass.actualDataGB || pass.potentialDataGB} GB</span></div>
         <div class="t-item"><span class="t-k">Priority Weight:</span><span class="t-v font-mono">${pass.priorityWeight}x</span></div>
       </div>
@@ -321,8 +352,8 @@ export class MultiTrackGanttChart {
     `;
 
     tooltip.style.display = 'block';
-    const x = Math.min(window.innerWidth - 320, event.clientX + 15);
-    const y = Math.min(window.innerHeight - 300, event.clientY + 15);
+    const x = Math.min(window.innerWidth - 340, event.clientX + 16);
+    const y = Math.min(window.innerHeight - 300, event.clientY + 16);
     tooltip.style.left = `${x}px`;
     tooltip.style.top = `${y}px`;
   }
@@ -339,11 +370,11 @@ export class MultiTrackGanttChart {
     if (!scrubberLine) return;
 
     const fraction = Math.max(0, Math.min(1, currentSec / this.horizonSec));
-    // Offset by 180px for track headers
+    // Offset by 210px for track headers
     const viewport = this.container.querySelector('#gantt-viewport');
     if (viewport) {
-      const width = viewport.clientWidth - 180;
-      const leftPx = 180 + fraction * width;
+      const width = viewport.clientWidth - 210;
+      const leftPx = 210 + fraction * width;
       scrubberLine.style.left = `${leftPx}px`;
     }
 

@@ -1,6 +1,7 @@
 /**
- * SPACE-04: Analytics & Performance Comparison HUD
- * KPI comparison cards with FCFS deltas and dynamic Onboard Data Buffer Fill/Drain time-series chart.
+ * SPACE-04: Analytics & Real-Time Mission Simulation HUD
+ * Real-time telemetry feed, active downlink bitrate meters, dish pointing angles,
+ * dynamic SSD memory buffer simulation, and comparative optimization KPIs.
  */
 
 export class AnalyticsHud {
@@ -15,6 +16,8 @@ export class AnalyticsHud {
 
     this.bufferCanvas = null;
     this.bufferCtx = null;
+    this.eventLog = [];
+    this.lastLoggedSec = -1;
 
     this.initDOM();
   }
@@ -24,12 +27,103 @@ export class AnalyticsHud {
       <div class="panel-header">
         <div class="panel-title-wrapper">
           <span class="panel-icon">📈</span>
-          <h2 class="panel-title">ANALYTICS & PERFORMANCE COMPARISON HUD</h2>
+          <h2 class="panel-title">MISSION SIMULATION TELEMETRY & ANALYTICS HUD</h2>
         </div>
-        <div class="solver-meta-tag" id="hud-solver-meta">SOLVER: ACTIVE</div>
+        <div class="solver-meta-tag font-mono" id="hud-solver-meta">SIMULATION ENGINE: REAL-TIME READY</div>
       </div>
 
-      <!-- KPI Summary Cards Grid -->
+      <!-- Live Simulation Telemetry Deck (Top Split) -->
+      <div class="sim-telemetry-deck">
+        <!-- Live Link Status & Bitrate Gauge Card -->
+        <div class="sim-card sim-link-card">
+          <div class="sim-card-header">
+            <span class="sim-card-title">📡 ACTIVE DOWNLINK RF TELEMETRY</span>
+            <span class="sim-status-badge badge-idle" id="sim-link-status">STANDBY / SEARCHING</span>
+          </div>
+
+          <div class="sim-link-body">
+            <div class="sim-link-target">
+              <div class="sim-target-sat font-mono font-bold text-cyan" id="sim-active-sat">NO ACTIVE LINK</div>
+              <div class="sim-target-arrow">⇄</div>
+              <div class="sim-target-station font-mono font-bold text-emerald" id="sim-active-station">LISTENING STATIONS</div>
+            </div>
+
+            <div class="sim-meters-row">
+              <div class="sim-meter-box">
+                <span class="sim-meter-label">DOWNLINK BITRATE</span>
+                <span class="sim-meter-value font-mono text-cyan" id="sim-live-bitrate">0.0 Mbps</span>
+                <div class="sim-rate-bar-track">
+                  <div class="sim-rate-bar-fill" id="sim-rate-bar" style="width: 0%;"></div>
+                </div>
+              </div>
+
+              <div class="sim-meter-box">
+                <span class="sim-meter-label">SESSION PAYLOAD</span>
+                <span class="sim-meter-value font-mono text-emerald" id="sim-live-payload">0.0 / 0.0 GB</span>
+                <div class="sim-rate-bar-track">
+                  <div class="sim-payload-bar-fill" id="sim-payload-bar" style="width: 0%;"></div>
+                </div>
+              </div>
+
+              <div class="sim-meter-box">
+                <span class="sim-meter-label">DISH TRACKING AZ / EL</span>
+                <span class="sim-meter-value font-mono text-amber" id="sim-live-angles">AZ: 000° | EL: 00°</span>
+                <span class="sim-meter-sub text-dim" id="sim-link-quality">RF CARRIER: X-BAND 8.2 GHz</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Spacecraft Onboard Memory Real-Time Gauge -->
+        <div class="sim-card sim-buffer-card">
+          <div class="sim-card-header">
+            <span class="sim-card-title">💾 SPACECRAFT SSD BUFFER STATUS</span>
+            <div class="chart-controls">
+              <select id="sat-buffer-select" class="hud-select"></select>
+            </div>
+          </div>
+
+          <div class="sim-buffer-body">
+            <div class="buffer-gauge-row">
+              <div class="buffer-metric-box">
+                <span class="buffer-label">OCCUPANCY:</span>
+                <span class="buffer-val font-mono font-bold text-cyan" id="sim-live-buffer-gb">0.0 GB</span>
+              </div>
+              <div class="buffer-metric-box">
+                <span class="buffer-label">CAPACITY:</span>
+                <span class="buffer-val font-mono text-dim" id="sim-live-buffer-cap">64.0 GB</span>
+              </div>
+              <div class="buffer-metric-box">
+                <span class="buffer-label">IO STATE:</span>
+                <span class="buffer-val font-mono text-emerald" id="sim-live-buffer-state">IDLE</span>
+              </div>
+            </div>
+
+            <div class="buffer-progress-track">
+              <div class="buffer-progress-fill" id="sim-live-buffer-bar" style="width: 0%;"></div>
+            </div>
+
+            <!-- Dynamic 24h Buffer Profile Canvas -->
+            <div class="canvas-mini-container">
+              <canvas id="buffer-dynamics-canvas" width="460" height="90"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <!-- Live Mission Telemetry Event Stream (Ticker) -->
+        <div class="sim-card sim-event-card">
+          <div class="sim-card-header">
+            <span class="sim-card-title">📜 MISSION TELEMETRY EVENT STREAM</span>
+            <span class="sim-card-sub text-dim font-mono" id="sim-events-count">0 EVENTS</span>
+          </div>
+
+          <div class="sim-event-terminal font-mono" id="sim-event-terminal">
+            <div class="terminal-line text-dim">[00:00:00 UTC] SIMULATION INITIALIZED. NETWORK SYNCED.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- KPI Summary Cards Grid (Comparative Performance) -->
       <div class="hud-kpi-grid">
         <!-- Card 1: Priority-Weighted Throughput & Delta -->
         <div class="kpi-card kpi-highlight">
@@ -76,38 +170,11 @@ export class AnalyticsHud {
         </div>
       </div>
 
-      <!-- Lower Split: Buffer Chart & Priority Fulfillment -->
-      <div class="hud-lower-grid">
-        <!-- Dynamic Onboard Memory Buffer Chart -->
-        <div class="hud-chart-card">
-          <div class="chart-header-row">
-            <div class="chart-title-box">
-              <span class="chart-title">ONBOARD SSD MEMORY BUFFER DYNAMICS</span>
-              <span class="chart-desc text-dim">Simulated fill (imaging accumulation) & drain (downlink passes) over 24h</span>
-            </div>
-            <div class="chart-controls">
-              <label for="sat-buffer-select" class="control-label">SPACECRAFT:</label>
-              <select id="sat-buffer-select" class="hud-select"></select>
-            </div>
-          </div>
-
-          <div class="canvas-container">
-            <canvas id="buffer-dynamics-canvas" width="700" height="180"></canvas>
-          </div>
-
-          <div class="chart-legend-row">
-            <div class="c-legend"><span class="c-swatch swatch-buffer"></span> BUFFER OCCUPANCY (GB)</div>
-            <div class="c-legend"><span class="c-swatch swatch-cap"></span> SSD HARDWARE CAPACITY</div>
-            <div class="c-legend"><span class="c-swatch swatch-drain"></span> ACTIVE DOWNLINK DISCHARGE</div>
-          </div>
-        </div>
-
-        <!-- Priority Tier Comparison Card -->
-        <div class="hud-priority-card">
-          <div class="card-subtitle">PRIORITY TIER FULFILLMENT DELTA</div>
-          <div class="priority-bars-container" id="priority-bars-container">
-            <!-- Dynamically populated -->
-          </div>
+      <!-- Priority Tier Comparison Card -->
+      <div class="hud-priority-card">
+        <div class="card-subtitle">PRIORITY TIER FULFILLMENT DELTA (AUTONOMOUS OPTIMIZER VS FCFS BASELINE)</div>
+        <div class="priority-bars-container" id="priority-bars-container">
+          <!-- Dynamically populated -->
         </div>
       </div>
     `;
@@ -144,6 +211,7 @@ export class AnalyticsHud {
     this.populateSatDropdown();
     this.renderPriorityBars();
     this.renderBufferChart();
+    this.buildSimulationEventLog();
   }
 
   updateKPIs() {
@@ -191,7 +259,7 @@ export class AnalyticsHud {
     const deltaUtilEl = this.container.querySelector('#kpi-delta-util');
 
     if (utilEl) utilEl.textContent = `${opt.stationUtilizationPct}%`;
-    if (fcfsUtilEl) fcfsUtilEl.textContent = `FCFS: ${fcfsUtilEl ? fcfs.stationUtilizationPct : 0}%`;
+    if (fcfsUtilEl) fcfsUtilEl.textContent = `FCFS: ${fcfs.stationUtilizationPct}%`;
     const diffUtil = (opt.stationUtilizationPct - fcfs.stationUtilizationPct).toFixed(2);
     if (deltaUtilEl) deltaUtilEl.textContent = `+${diffUtil}%`;
 
@@ -229,10 +297,10 @@ export class AnalyticsHud {
     const fcfsBD = this.fcfsResult.priorityBreakdown;
 
     const tiers = [
-      { key: 'CRITICAL', label: 'CRITICAL (Disaster / Rapid)', color: '#ff3b69' },
-      { key: 'HIGH', label: 'HIGH (Commercial VIP)', color: '#ffb800' },
+      { key: 'CRITICAL', label: 'CRITICAL (Disaster / Rapid Response)', color: '#ff3b69' },
+      { key: 'HIGH', label: 'HIGH (Commercial Priority)', color: '#ffb800' },
       { key: 'MEDIUM', label: 'MEDIUM (Global Survey)', color: '#00f0ff' },
-      { key: 'LOW', label: 'LOW (Background)', color: '#a855f7' }
+      { key: 'LOW', label: 'LOW (Background Archive)', color: '#a855f7' }
     ];
 
     let html = '';
@@ -249,7 +317,7 @@ export class AnalyticsHud {
           <div class="p-header-line">
             <span class="p-label" style="color: ${t.color}">${t.label}</span>
             <span class="p-scores font-mono">
-              <strong class="text-emerald">${optPct}%</strong> vs <span class="text-dim">${fcfsPct}% FCFS</span>
+              <strong class="text-emerald">${optPct}% OPTIMIZED</strong> vs <span class="text-dim">${fcfsPct}% FCFS</span>
             </span>
           </div>
           <div class="p-bar-track">
@@ -275,13 +343,12 @@ export class AnalyticsHud {
     const sat = this.satellites.find(s => s.id === this.selectedSatelliteId);
     if (!sat) return;
 
-    // Simulate satellite buffer time-series over 24h (86400s)
+    // Simulate satellite buffer time-series over 24h
     const points = [];
     const capacity = sat.bufferCapacityGB;
     let currentBuffer = sat.initialBufferGB;
     const stepSec = 900; // 15 minute steps
 
-    // Get scheduled passes for this satellite
     const satPasses = this.optimizedResult
       ? this.optimizedResult.scheduled.filter(p => p.satId === sat.id)
       : [];
@@ -290,91 +357,241 @@ export class AnalyticsHud {
     satPasses.sort((a, b) => a.startSec - b.startSec);
 
     for (let t = 0; t <= 86400; t += stepSec) {
-      // Daylight imaging accumulation
       const generated = (stepSec * sat.imagingRateGbps * 0.3) / 8;
       currentBuffer = Math.min(capacity, currentBuffer + generated);
 
-      // Check if any pass occurred in this interval
       while (passIdx < satPasses.length && satPasses[passIdx].endSec <= t) {
         const pass = satPasses[passIdx];
         currentBuffer = Math.max(0, currentBuffer - pass.actualDataGB);
         passIdx++;
       }
 
-      points.push({ t, bufferGB: currentBuffer });
+      points.push({ t, buffer: currentBuffer });
     }
 
-    // Draw Grid & Axes
-    ctx.strokeStyle = 'rgba(255, 255, 255, 0.08)';
+    // Draw Background Grid
+    ctx.strokeStyle = 'rgba(255, 255, 255, 0.06)';
     ctx.lineWidth = 1;
-
-    // Horizontal grid lines (25%, 50%, 75%, 100% capacity)
-    [0.25, 0.5, 0.75, 1.0].forEach(frac => {
-      const y = height - frac * (height - 30) - 15;
-      ctx.beginPath();
-      ctx.moveTo(40, y);
-      ctx.lineTo(width - 15, y);
-      ctx.stroke();
-
-      ctx.fillStyle = '#64748b';
-      ctx.font = '10px JetBrains Mono, monospace';
-      ctx.fillText(`${Math.round(frac * capacity)}GB`, 5, y + 3);
-    });
-
-    // Vertical grid lines (every 4 hours)
     for (let h = 0; h <= 24; h += 4) {
-      const x = 40 + (h / 24) * (width - 55);
+      const x = (h / 24) * width;
       ctx.beginPath();
-      ctx.moveTo(x, 10);
-      ctx.lineTo(x, height - 15);
+      ctx.moveTo(x, 0);
+      ctx.lineTo(x, height);
       ctx.stroke();
-
-      ctx.fillStyle = '#64748b';
-      ctx.font = '10px JetBrains Mono, monospace';
-      ctx.fillText(`${h}h`, x - 6, height - 3);
     }
 
-    // Draw Buffer Fill Curve
+    // Capacity reference line
+    ctx.strokeStyle = 'rgba(255, 59, 105, 0.35)';
+    ctx.setLineDash([4, 4]);
     ctx.beginPath();
-    ctx.lineWidth = 2.5;
-    ctx.strokeStyle = '#00f0ff';
+    ctx.moveTo(0, 8);
+    ctx.lineTo(width, 8);
+    ctx.stroke();
+    ctx.setLineDash([]);
 
-    const getX = t => 40 + (t / 86400) * (width - 55);
-    const getY = b => height - 15 - (b / capacity) * (height - 35);
+    // Fill area gradient
+    const grad = ctx.createLinearGradient(0, 0, 0, height);
+    grad.addColorStop(0, 'rgba(0, 240, 255, 0.45)');
+    grad.addColorStop(1, 'rgba(0, 240, 255, 0.02)');
 
+    ctx.beginPath();
+    ctx.moveTo(0, height);
     points.forEach((pt, i) => {
-      const x = getX(pt.t);
-      const y = getY(pt.bufferGB);
+      const x = (pt.t / 86400) * width;
+      const y = height - (pt.buffer / capacity) * (height - 14) - 4;
+      if (i === 0) ctx.lineTo(x, y);
+      else ctx.lineTo(x, y);
+    });
+    ctx.lineTo(width, height);
+    ctx.closePath();
+    ctx.fillStyle = grad;
+    ctx.fill();
+
+    // Line stroke
+    ctx.beginPath();
+    points.forEach((pt, i) => {
+      const x = (pt.t / 86400) * width;
+      const y = height - (pt.buffer / capacity) * (height - 14) - 4;
       if (i === 0) ctx.moveTo(x, y);
       else ctx.lineTo(x, y);
     });
+    ctx.strokeStyle = '#00f0ff';
+    ctx.lineWidth = 2;
     ctx.stroke();
-
-    // Area Fill Gradient under buffer line
-    const areaGrad = ctx.createLinearGradient(0, 0, 0, height);
-    areaGrad.addColorStop(0, 'rgba(0, 240, 255, 0.35)');
-    areaGrad.addColorStop(1, 'rgba(0, 240, 255, 0.0)');
-
-    ctx.lineTo(getX(86400), height - 15);
-    ctx.lineTo(getX(0), height - 15);
-    ctx.closePath();
-    ctx.fillStyle = areaGrad;
-    ctx.fill();
-
-    // Annotate Downlink Drainage Discharges (Vertical downward spikes)
-    satPasses.forEach(pass => {
-      const px = getX(pass.startSec);
-      const endX = getX(pass.endSec);
-
-      ctx.fillStyle = 'rgba(0, 255, 157, 0.25)';
-      ctx.fillRect(px, 10, Math.max(3, endX - px), height - 25);
-
-      ctx.strokeStyle = '#00ff9d';
-      ctx.lineWidth = 1.5;
-      ctx.beginPath();
-      ctx.moveTo(px, 10);
-      ctx.lineTo(px, height - 15);
-      ctx.stroke();
-    });
   }
+
+  buildSimulationEventLog() {
+    this.eventLog = [];
+    if (!this.optimizedResult) return;
+
+    for (const pass of this.optimizedResult.scheduled) {
+      // AOS Event
+      this.eventLog.push({
+        sec: pass.startSec,
+        type: 'AOS',
+        text: `AOS: ${pass.satName} acquired by ${pass.stationName} (El: ${pass.peakElDeg.toFixed(1)}°, Rate: ${pass.dataRateMbps} Mbps)`
+      });
+
+      // Mid-pass peak
+      const midSec = Math.round((pass.startSec + pass.endSec) / 2);
+      this.eventLog.push({
+        sec: midSec,
+        type: 'PEAK',
+        text: `PEAK FLUX: ${pass.satName} peak elevation ${pass.peakElDeg}° at ${pass.stationName} (${pass.actualDataGB} GB scheduled)`
+      });
+
+      // LOS Event
+      this.eventLog.push({
+        sec: pass.endSec,
+        type: 'LOS',
+        text: `LOS: ${pass.satName} pass complete at ${pass.stationName}. ${pass.actualDataGB} GB transferred.`
+      });
+
+      // Slew event
+      if (pass.nextSlewDetails) {
+        this.eventLog.push({
+          sec: pass.endSec + 1,
+          type: 'SLEW',
+          text: `DISH SLEW: ${pass.stationName} repointing to ${pass.nextSlewDetails.targetSatName} (Δθ: ${pass.nextSlewDetails.angularDistDeg}°, Time: ${pass.nextSlewDetails.totalRequiredSec}s)`
+        });
+      }
+    }
+
+    this.eventLog.sort((a, b) => a.sec - b.sec);
+  }
+
+  /**
+   * Called on every frame / clock tick to drive real-time simulation UI
+   */
+  updateSimulation(simSec, activeSchedule = []) {
+    // 1. Check for Active Downlink Passes at current simSec
+    const currentPasses = activeSchedule.filter(
+      p => simSec >= p.startSec && simSec <= p.endSec
+    );
+
+    const statusBadge = this.container.querySelector('#sim-link-status');
+    const satEl = this.container.querySelector('#sim-active-sat');
+    const stationEl = this.container.querySelector('#sim-active-station');
+    const rateEl = this.container.querySelector('#sim-live-bitrate');
+    const rateBar = this.container.querySelector('#sim-rate-bar');
+    const payloadEl = this.container.querySelector('#sim-live-payload');
+    const payloadBar = this.container.querySelector('#sim-payload-bar');
+    const anglesEl = this.container.querySelector('#sim-live-angles');
+
+    if (currentPasses.length > 0) {
+      const activePass = currentPasses[0];
+      const elapsed = simSec - activePass.startSec;
+      const progressFraction = Math.max(0, Math.min(1, elapsed / activePass.durationSec));
+
+      if (statusBadge) {
+        statusBadge.textContent = '● ACTIVE DOWNLINK TRANSMISSION';
+        statusBadge.className = 'sim-status-badge badge-transmitting';
+      }
+
+      if (satEl) satEl.textContent = activePass.satName;
+      if (stationEl) stationEl.textContent = `${activePass.stationName} (${activePass.stationId})`;
+
+      // Dynamic Bitrate modulation by sine curve
+      const instantRate = Math.round(activePass.dataRateMbps * (0.65 + 0.35 * Math.sin(progressFraction * Math.PI)));
+      if (rateEl) rateEl.textContent = `${instantRate} Mbps`;
+      if (rateBar) rateBar.style.width = `${Math.min(100, (instantRate / 500) * 100)}%`;
+
+      // Live transferred payload
+      const totalGB = activePass.actualDataGB || 15.0;
+      const currentGB = (totalGB * progressFraction).toFixed(1);
+      if (payloadEl) payloadEl.textContent = `${currentGB} / ${totalGB} GB`;
+      if (payloadBar) payloadBar.style.width = `${(progressFraction * 100).toFixed(0)}%`;
+
+      // Dynamic Azimuth & Elevation
+      const instantEl = Math.round(10 + (activePass.peakElDeg - 10) * Math.sin(progressFraction * Math.PI));
+      const instantAz = Math.round((60 + progressFraction * 180) % 360);
+      if (anglesEl) anglesEl.textContent = `AZ: ${String(instantAz).padStart(3, '0')}° | EL: ${String(instantEl).padStart(2, '0')}°`;
+    } else {
+      if (statusBadge) {
+        statusBadge.textContent = 'STANDBY / DISH SLEWING';
+        statusBadge.className = 'sim-status-badge badge-idle';
+      }
+      if (satEl) satEl.textContent = 'NO ACTIVE CONTACT';
+      if (stationEl) stationEl.textContent = 'MONITORING CONSTELLATION';
+      if (rateEl) rateEl.textContent = '0.0 Mbps';
+      if (rateBar) rateBar.style.width = '0%';
+      if (payloadEl) payloadEl.textContent = '0.0 / 0.0 GB';
+      if (payloadBar) payloadBar.style.width = '0%';
+      if (anglesEl) anglesEl.textContent = 'AZ: STANDBY | EL: PARKED';
+    }
+
+    // 2. Real-Time Spacecraft Buffer Gauge
+    const selectedSat = this.satellites.find(s => s.id === this.selectedSatelliteId);
+    if (selectedSat) {
+      const cap = selectedSat.bufferCapacityGB;
+      // Calculate buffer at simSec
+      let curBuf = selectedSat.initialBufferGB;
+      const gen = (simSec * selectedSat.imagingRateGbps * 0.3) / 8;
+      curBuf = Math.min(cap, curBuf + gen);
+
+      // Drain passes up to simSec
+      const passes = activeSchedule.filter(p => p.satId === selectedSat.id && p.startSec <= simSec);
+      let isCurrentlyDraining = false;
+
+      passes.forEach(p => {
+        if (simSec >= p.endSec) {
+          curBuf = Math.max(0, curBuf - p.actualDataGB);
+        } else if (simSec >= p.startSec) {
+          const frac = (simSec - p.startSec) / p.durationSec;
+          curBuf = Math.max(0, curBuf - p.actualDataGB * frac);
+          isCurrentlyDraining = true;
+        }
+      });
+
+      const bufGBEl = this.container.querySelector('#sim-live-buffer-gb');
+      const bufCapEl = this.container.querySelector('#sim-live-buffer-cap');
+      const bufStateEl = this.container.querySelector('#sim-live-buffer-state');
+      const bufBar = this.container.querySelector('#sim-live-buffer-bar');
+
+      const pct = Math.min(100, Math.max(0, (curBuf / cap) * 100));
+      if (bufGBEl) bufGBEl.textContent = `${curBuf.toFixed(1)} GB (${pct.toFixed(0)}%)`;
+      if (bufCapEl) bufCapEl.textContent = `${cap} GB MAX`;
+      if (bufBar) {
+        bufBar.style.width = `${pct}%`;
+        bufBar.style.backgroundColor = pct > 85 ? '#ff3b69' : pct > 60 ? '#ffb800' : '#00f0ff';
+      }
+      if (bufStateEl) {
+        bufStateEl.textContent = isCurrentlyDraining ? 'DISCHARGING (-450 Mbps)' : 'IMAGING ACCUMULATION';
+        bufStateEl.className = isCurrentlyDraining ? 'buffer-val font-mono text-emerald' : 'buffer-val font-mono text-cyan';
+      }
+    }
+
+    // 3. Real-Time Mission Event Ticker
+    const terminal = this.container.querySelector('#sim-event-terminal');
+    const countEl = this.container.querySelector('#sim-events-count');
+
+    if (terminal && this.eventLog.length > 0) {
+      // Find events that have occurred up to simSec (keep last 6)
+      const pastEvents = this.eventLog.filter(e => e.sec <= simSec);
+      if (countEl) countEl.textContent = `${pastEvents.length} / ${this.eventLog.length} EVENTS`;
+
+      const recent = pastEvents.slice(-6);
+      if (recent.length > 0) {
+        let html = '';
+        recent.forEach(ev => {
+          const utc = formatSecToUTC(ev.sec);
+          let colorClass = 'text-cyan';
+          if (ev.type === 'AOS') colorClass = 'text-emerald';
+          else if (ev.type === 'LOS') colorClass = 'text-amber';
+          else if (ev.type === 'SLEW') colorClass = 'text-coral';
+
+          html += `<div class="terminal-line"><span class="text-dim">[${utc}]</span> <span class="${colorClass}">${ev.text}</span></div>`;
+        });
+        terminal.innerHTML = html;
+        terminal.scrollTop = terminal.scrollHeight;
+      }
+    }
+  }
+}
+
+function formatSecToUTC(sec) {
+  const h = Math.floor(sec / 3600) % 24;
+  const m = Math.floor((sec % 3600) / 60);
+  const s = Math.floor(sec % 60);
+  return `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')} UTC`;
 }

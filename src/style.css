@@ -1,6 +1,6 @@
 /* ==========================================================================
    SPACE-04: Autonomous Ground Station Scheduling Dashboard
-   Planet Labs Multi-Satellite Downlink Challenge - Mission Control Theme
+   Planet Labs & ISRO Multi-Satellite Downlink Optimization - Mission Control Theme
    ========================================================================== */
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap');
@@ -8,9 +8,9 @@
 :root {
   --bg-space: #030712;
   --bg-cockpit: #070d1a;
-  --bg-card: rgba(13, 23, 42, 0.78);
-  --bg-card-hover: rgba(19, 34, 62, 0.88);
-  --bg-inner: rgba(9, 16, 31, 0.65);
+  --bg-card: rgba(13, 23, 42, 0.82);
+  --bg-card-hover: rgba(19, 34, 62, 0.92);
+  --bg-inner: rgba(9, 16, 31, 0.72);
 
   --border-subtle: rgba(255, 255, 255, 0.08);
   --border-neon: rgba(0, 240, 255, 0.25);
@@ -22,6 +22,7 @@
   --color-coral: #ff3b69;
   --color-violet: #a855f7;
   --color-sky: #38bdf8;
+  --color-saffron: #ff9933;
 
   --text-main: #f1f5f9;
   --text-muted: #94a3b8;
@@ -77,7 +78,9 @@ body {
 .text-emerald { color: var(--color-emerald); }
 .text-amber { color: var(--color-amber); }
 .text-coral { color: var(--color-coral); }
+.text-saffron { color: var(--color-saffron); }
 .text-dim { color: var(--text-dim); }
+.text-sm { font-size: 12px; }
 
 /* Master App Container */
 #app {
@@ -89,7 +92,7 @@ body {
 /* Top App Header / Mission Control Bar */
 .mission-header {
   height: 64px;
-  background: rgba(7, 13, 26, 0.92);
+  background: rgba(7, 13, 26, 0.94);
   border-bottom: 1px solid var(--border-neon);
   backdrop-filter: var(--glass-blur);
   display: flex;
@@ -146,7 +149,7 @@ body {
 .header-status-ticker {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 16px;
 }
 
 .status-pill {
@@ -177,6 +180,7 @@ body {
 .header-time-pill {
   font-family: var(--font-mono);
   font-size: 13px;
+  font-weight: 700;
   color: var(--color-cyan);
   background: rgba(0, 240, 255, 0.08);
   border: 1px solid rgba(0, 240, 255, 0.25);
@@ -184,13 +188,13 @@ body {
   padding: 5px 12px;
 }
 
-/* Main Dashboard Cockpit Grid */
+/* Main Dashboard Cockpit Layout */
 .dashboard-cockpit {
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 18px;
-  padding: 18px 24px;
+  gap: 20px;
+  padding: 20px 24px;
 }
 
 /* Panel Sections & Glassmorphism */
@@ -235,37 +239,41 @@ body {
   color: #e2e8f0;
 }
 
-/* Cockpit Upper Row: 3D Globe + Attitude Monitor */
-.cockpit-upper-row {
-  display: grid;
-  grid-template-columns: 1.55fr 1fr;
-  gap: 18px;
-  min-height: 520px;
+/* ==========================================================================
+   Section 1: Hero 3D Earth Digital Twin & Constellation Orbits
+   ========================================================================== */
+.panel-hero-globe {
+  width: 100%;
 }
 
-/* Panel 1: 3D Globe */
 .globe-viewport-container {
   width: 100%;
-  height: calc(100% - 45px);
-  min-height: 460px;
+  height: 480px;
+  min-height: 450px;
   border-radius: var(--radius-md);
   overflow: hidden;
   position: relative;
-  border: 1px solid rgba(0, 240, 255, 0.15);
+  border: 1px solid rgba(0, 240, 255, 0.18);
+  background: radial-gradient(circle at center, #07152e 0%, #030712 100%);
 }
 
 .globe-hud-overlay {
   position: absolute;
   top: 14px;
   left: 14px;
-  background: rgba(3, 7, 18, 0.8);
+  background: rgba(3, 7, 18, 0.85);
   border: 1px solid var(--border-neon);
   backdrop-filter: blur(8px);
-  padding: 8px 12px;
+  padding: 10px 14px;
   border-radius: var(--radius-sm);
   font-size: 11px;
   color: var(--text-muted);
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
   pointer-events: none;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+  z-index: 10;
 }
 
 .globe-camera-controls-floating {
@@ -273,230 +281,63 @@ body {
   bottom: 14px;
   right: 14px;
   display: flex;
-  gap: 6px;
-  background: rgba(3, 7, 18, 0.85);
-  padding: 6px;
+  gap: 8px;
+  background: rgba(3, 7, 18, 0.88);
+  padding: 8px;
   border-radius: var(--radius-sm);
   border: 1px solid var(--border-subtle);
+  backdrop-filter: blur(8px);
+  z-index: 10;
 }
 
-/* Panel 2: Satellite Attitude & Dish Slew Monitor */
-.attitude-content-grid {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-  height: calc(100% - 45px);
-}
-
-.attitude-gimbal-card {
-  background: var(--bg-inner);
+.cam-btn {
+  background: var(--bg-cockpit);
   border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-md);
-  padding: 12px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.card-subtitle {
-  font-family: var(--font-heading);
+  color: var(--text-muted);
+  font-family: var(--font-sans);
   font-size: 11px;
   font-weight: 600;
-  letter-spacing: 0.6px;
-  color: var(--text-muted);
-  width: 100%;
-  margin-bottom: 8px;
-}
-
-.gimbal-viewport {
-  width: 100%;
-  height: 140px;
+  padding: 6px 12px;
   border-radius: var(--radius-sm);
-  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
 
-.attitude-rpy-readouts {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 8px;
-  width: 100%;
-  margin-top: 10px;
-}
-
-.rpy-box {
-  background: rgba(15, 23, 42, 0.8);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-sm);
-  padding: 6px;
-  text-align: center;
-}
-
-.rpy-label {
-  display: block;
-  font-size: 10px;
-  color: var(--text-dim);
-}
-
-.rpy-value {
-  font-family: var(--font-mono);
-  font-size: 13px;
-  font-weight: 600;
+.cam-btn:hover {
+  border-color: var(--color-cyan);
   color: var(--color-cyan);
+  background: rgba(0, 240, 255, 0.1);
 }
 
-/* Slew Dynamics Card */
-.slew-dynamics-card {
-  background: var(--bg-inner);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-md);
-  padding: 12px;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.slew-status-banner {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 8px 12px;
-  border-radius: var(--radius-sm);
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.4px;
-}
-
-.status-tracking {
-  background: rgba(0, 255, 157, 0.12);
-  border: 1px solid var(--color-emerald);
-  color: var(--color-emerald);
-}
-
-.status-slewing {
-  background: rgba(255, 184, 0, 0.12);
-  border: 1px solid var(--color-amber);
-  color: var(--color-amber);
-}
-
-.status-settling {
-  background: rgba(0, 240, 255, 0.12);
-  border: 1px solid var(--color-cyan);
-  color: var(--color-cyan);
-}
-
-.status-ready {
-  background: rgba(56, 189, 248, 0.12);
-  border: 1px solid var(--color-sky);
-  color: var(--color-sky);
-}
-
-.status-standby {
-  background: rgba(148, 163, 184, 0.08);
-  border: 1px solid var(--border-subtle);
-  color: var(--text-muted);
-}
-
-.status-indicator-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-}
-.dot-tracking { background: var(--color-emerald); box-shadow: 0 0 8px var(--color-emerald); }
-.dot-slewing { background: var(--color-amber); box-shadow: 0 0 8px var(--color-amber); }
-.dot-settling { background: var(--color-cyan); box-shadow: 0 0 8px var(--color-cyan); }
-.dot-ready { background: var(--color-sky); }
-.dot-standby { background: var(--text-dim); }
-
-.slew-gauges-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-}
-
-.gauge-card {
-  background: rgba(15, 23, 42, 0.7);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-sm);
-  padding: 8px 10px;
-}
-
-.gauge-title {
-  font-size: 10px;
-  color: var(--text-dim);
-  display: block;
-  margin-bottom: 4px;
-}
-
-.gauge-azel-display {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-family: var(--font-mono);
-  font-size: 15px;
+.cam-btn-highlight {
+  border-color: rgba(255, 153, 51, 0.5);
+  color: #ff9933;
   font-weight: 700;
-  color: var(--text-main);
 }
 
-.azel-lbl { font-size: 10px; color: var(--text-dim); }
-.azel-divider { color: var(--text-dim); }
-.sub-label { font-size: 10px; color: var(--text-dim); margin-top: 4px; }
-
-.gauge-speed-display {
-  display: flex;
-  align-items: baseline;
-  gap: 4px;
+.cam-btn-highlight:hover {
+  border-color: #ff9933;
+  color: #fff;
+  background: rgba(255, 153, 51, 0.2);
+  box-shadow: 0 0 12px rgba(255, 153, 51, 0.35);
 }
-.speed-val { font-family: var(--font-mono); font-size: 18px; font-weight: 700; color: var(--color-cyan); }
-.speed-unit { font-size: 10px; color: var(--text-dim); }
 
-.speed-bar-container {
+/* ==========================================================================
+   Section 2: Multi-Track Timetable / Gantt Scheduler
+   ========================================================================== */
+.panel-gantt-section {
   width: 100%;
-  height: 4px;
-  background: rgba(255, 255, 255, 0.08);
-  border-radius: 2px;
-  margin-top: 6px;
-  overflow: hidden;
-}
-.speed-bar-fill {
-  height: 100%;
-  width: 0%;
-  background: var(--color-cyan);
-  transition: width 0.15s ease;
 }
 
-.slew-transition-table {
-  background: rgba(15, 23, 42, 0.6);
-  border-radius: var(--radius-sm);
-  padding: 8px 10px;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.metric-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 11px;
-}
-.metric-row.highlighted {
-  border-top: 1px solid var(--border-subtle);
-  padding-top: 5px;
-  margin-top: 3px;
-}
-.metric-key { color: var(--text-muted); }
-.metric-val { color: var(--text-main); }
-
-/* Panel 3: Gantt Multi-Track Timetable */
 .gantt-view-toggles {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
 }
 
 .toggle-label {
   font-size: 11px;
+  font-weight: 600;
   color: var(--text-dim);
 }
 
@@ -514,7 +355,7 @@ body {
   color: var(--text-muted);
   font-size: 11px;
   font-weight: 600;
-  padding: 4px 12px;
+  padding: 5px 14px;
   border-radius: 16px;
   cursor: pointer;
   display: flex;
@@ -541,11 +382,11 @@ body {
 .gantt-legend-bar {
   display: flex;
   flex-wrap: wrap;
-  gap: 16px;
+  gap: 18px;
   font-size: 11px;
   color: var(--text-muted);
   margin-bottom: 12px;
-  padding: 6px 12px;
+  padding: 8px 14px;
   background: var(--bg-inner);
   border-radius: var(--radius-sm);
   border: 1px solid var(--border-subtle);
@@ -565,7 +406,7 @@ body {
   border: 1px dashed var(--color-coral);
 }
 
-/* Gantt Viewport */
+/* Gantt Viewport Container */
 .gantt-viewport {
   position: relative;
   background: #050a14;
@@ -578,14 +419,14 @@ body {
 
 .gantt-timescale-track {
   display: flex;
-  height: 30px;
+  height: 32px;
   border-bottom: 1px solid var(--border-subtle);
-  background: rgba(15, 23, 42, 0.6);
+  background: rgba(15, 23, 42, 0.7);
 }
 
 .track-header-spacer {
-  width: 180px;
-  min-width: 180px;
+  width: 210px;
+  min-width: 210px;
   border-right: 1px solid var(--border-subtle);
   font-size: 10px;
   font-weight: 700;
@@ -619,10 +460,9 @@ body {
 }
 
 .tick-label {
-  font-family: var(--font-mono);
-  font-size: 9px;
+  font-size: 10px;
   color: var(--text-dim);
-  margin-top: 2px;
+  margin-top: 3px;
 }
 
 .gantt-tracks-container {
@@ -632,44 +472,70 @@ body {
 
 .gantt-station-track {
   display: flex;
-  height: 48px;
+  height: 52px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   position: relative;
+  transition: background-color 0.15s ease;
+}
+
+.gantt-station-track:hover {
+  background-color: rgba(255, 255, 255, 0.02);
 }
 
 .track-label-col {
-  width: 180px;
-  min-width: 180px;
+  width: 210px;
+  min-width: 210px;
   border-right: 1px solid var(--border-subtle);
-  background: rgba(13, 23, 42, 0.4);
+  background: rgba(13, 23, 42, 0.5);
   display: flex;
   align-items: center;
-  padding: 0 10px;
+  padding: 0 12px;
 }
 
 .station-badge {
   border-left: 3px solid var(--color-cyan);
-  padding-left: 8px;
+  padding-left: 10px;
   display: flex;
   flex-direction: column;
+  gap: 2px;
+  width: 100%;
+}
+
+.station-row-top {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.station-flag {
+  font-size: 13px;
 }
 
 .station-code {
-  font-size: 11px;
-  font-weight: 700;
+  font-size: 12px;
   color: #fff;
+}
+
+.station-slew-pill {
+  font-size: 9px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 3px;
+  padding: 1px 4px;
+  color: var(--text-muted);
+  margin-left: auto;
 }
 
 .station-name-text {
   font-size: 10px;
+  font-weight: 500;
   color: var(--text-muted);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  max-width: 140px;
+  max-width: 180px;
 }
 
-.station-slew-rate {
+.station-sub-coords {
   font-size: 9px;
   color: var(--text-dim);
 }
@@ -681,42 +547,103 @@ body {
   cursor: pointer;
 }
 
+.track-grid-hour-line {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: rgba(255, 255, 255, 0.035);
+  pointer-events: none;
+}
+
 /* Gantt Pass Blocks */
 .gantt-pass-block {
   position: absolute;
-  top: 6px;
-  bottom: 6px;
-  border-radius: 4px;
+  top: 8px;
+  bottom: 8px;
+  border-radius: 6px;
   cursor: pointer;
   overflow: hidden;
   transition: transform 0.15s ease, box-shadow 0.15s ease;
   z-index: 2;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.gantt-pass-block.priority-critical {
+  background: linear-gradient(135deg, rgba(255, 59, 105, 0.95), rgba(225, 29, 72, 0.85));
+  border-color: rgba(255, 59, 105, 0.4);
+}
+
+.gantt-pass-block.priority-high {
+  background: linear-gradient(135deg, rgba(255, 184, 0, 0.95), rgba(217, 119, 6, 0.85));
+  border-color: rgba(255, 184, 0, 0.4);
+}
+
+.gantt-pass-block.priority-medium {
+  background: linear-gradient(135deg, rgba(0, 240, 255, 0.95), rgba(14, 165, 233, 0.85));
+  border-color: rgba(0, 240, 255, 0.4);
+}
+
+.gantt-pass-block.priority-low {
+  background: linear-gradient(135deg, rgba(168, 85, 247, 0.95), rgba(126, 34, 206, 0.85));
+  border-color: rgba(168, 85, 247, 0.4);
 }
 
 .gantt-pass-block:hover {
   transform: translateY(-2px);
   z-index: 10;
-  box-shadow: 0 0 12px currentColor;
+  box-shadow: 0 4px 14px rgba(0, 240, 255, 0.4);
 }
 
 .pass-block-inner {
   height: 100%;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 5px;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 6px;
   color: #030712;
-  font-weight: 700;
+}
+
+.pass-block-header {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.pass-p-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #fff;
+}
+
+.pass-sat-title {
   font-size: 10px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  letter-spacing: 0.3px;
+}
+
+.pass-block-meta {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 1px;
+}
+
+.pass-meta-badge {
+  font-size: 9px;
+  background: rgba(0, 0, 0, 0.25);
+  color: #fff;
+  padding: 0 4px;
+  border-radius: 3px;
+  font-weight: 700;
 }
 
 .pass-dropped {
   background: rgba(255, 59, 105, 0.15) !important;
-  border: 1px dashed var(--color-coral);
-  color: var(--color-coral) !important;
+  border: 1px dashed var(--color-coral) !important;
 }
 
 .pass-dropped .pass-block-inner {
@@ -740,11 +667,12 @@ body {
 /* Slew Deadband Block */
 .gantt-slew-deadband {
   position: absolute;
-  top: 10px;
-  bottom: 10px;
+  top: 12px;
+  bottom: 12px;
   background: repeating-linear-gradient(45deg, rgba(234, 179, 8, 0.25), rgba(234, 179, 8, 0.25) 4px, rgba(113, 63, 18, 0.25) 4px, rgba(113, 63, 18, 0.25) 8px);
   border-top: 1px dashed rgba(234, 179, 8, 0.4);
   border-bottom: 1px dashed rgba(234, 179, 8, 0.4);
+  border-radius: 2px;
   z-index: 1;
 }
 
@@ -755,7 +683,7 @@ body {
   bottom: 0;
   width: 2px;
   background: var(--color-cyan);
-  box-shadow: 0 0 10px var(--color-cyan);
+  box-shadow: 0 0 12px var(--color-cyan);
   pointer-events: none;
   z-index: 20;
 }
@@ -767,7 +695,6 @@ body {
   transform: translateX(-50%);
   background: var(--color-cyan);
   color: #030712;
-  font-family: var(--font-mono);
   font-size: 10px;
   font-weight: 700;
   padding: 1px 6px;
@@ -857,8 +784,225 @@ body {
 }
 .slew-title { font-weight: 600; color: var(--color-amber); }
 .slew-sub { font-size: 9px; color: var(--text-muted); margin: 2px 0; }
+.slew-margin { font-size: 10px; margin-top: 2px; }
 
-/* Panel 4: Analytics HUD */
+/* ==========================================================================
+   Section 3: Live Simulation Telemetry Deck & Analytics HUD
+   ========================================================================== */
+.panel-analytics-section {
+  width: 100%;
+}
+
+.solver-meta-tag {
+  font-size: 11px;
+  color: var(--color-cyan);
+  background: rgba(0, 240, 255, 0.08);
+  border: 1px solid rgba(0, 240, 255, 0.2);
+  padding: 4px 10px;
+  border-radius: 4px;
+}
+
+/* Telemetry Deck Grid */
+.sim-telemetry-deck {
+  display: grid;
+  grid-template-columns: 1.25fr 1fr 1fr;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+
+.sim-card {
+  background: var(--bg-inner);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+}
+
+.sim-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.sim-card-title {
+  font-family: var(--font-heading);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  color: #fff;
+}
+
+.sim-card-sub {
+  font-size: 10px;
+}
+
+.sim-status-badge {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 12px;
+}
+
+.badge-transmitting {
+  background: rgba(0, 255, 157, 0.18);
+  border: 1px solid var(--color-emerald);
+  color: var(--color-emerald);
+  animation: pulse-badge 1.5s infinite ease-in-out;
+}
+
+@keyframes pulse-badge {
+  0%, 100% { box-shadow: 0 0 10px rgba(0, 255, 157, 0.4); }
+  50% { box-shadow: 0 0 2px rgba(0, 255, 157, 0.2); }
+}
+
+.badge-idle {
+  background: rgba(148, 163, 184, 0.1);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-dim);
+}
+
+.sim-link-body {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.sim-link-target {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(15, 23, 42, 0.6);
+  padding: 8px 12px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-subtle);
+  font-size: 12px;
+}
+
+.sim-target-arrow {
+  color: var(--text-dim);
+  font-size: 14px;
+}
+
+.sim-meters-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.sim-meter-box {
+  background: rgba(15, 23, 42, 0.7);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: 8px 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.sim-meter-label {
+  font-size: 9px;
+  color: var(--text-dim);
+  margin-bottom: 2px;
+}
+
+.sim-meter-value {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.sim-meter-sub {
+  font-size: 8px;
+  margin-top: 3px;
+}
+
+.sim-rate-bar-track {
+  width: 100%;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 2px;
+  margin-top: 6px;
+  overflow: hidden;
+}
+
+.sim-rate-bar-fill {
+  height: 100%;
+  background: var(--color-cyan);
+  transition: width 0.2s ease;
+}
+
+.sim-payload-bar-fill {
+  height: 100%;
+  background: var(--color-emerald);
+  transition: width 0.2s ease;
+}
+
+/* Spacecraft Buffer Card */
+.sim-buffer-body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.buffer-gauge-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+}
+
+.buffer-metric-box {
+  display: flex;
+  flex-direction: column;
+}
+
+.buffer-label { font-size: 9px; color: var(--text-dim); }
+.buffer-val { font-size: 12px; font-weight: 700; }
+
+.buffer-progress-track {
+  width: 100%;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.buffer-progress-fill {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 0.3s ease, background-color 0.3s ease;
+}
+
+.canvas-mini-container {
+  width: 100%;
+  height: 80px;
+  margin-top: 4px;
+}
+
+/* Mission Event Stream Terminal */
+.sim-event-terminal {
+  background: #020610;
+  border: 1px solid rgba(0, 240, 255, 0.15);
+  border-radius: var(--radius-sm);
+  padding: 8px 10px;
+  height: 120px;
+  overflow-y: auto;
+  font-size: 10px;
+  line-height: 1.6;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.terminal-line {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* KPI Summary Cards Grid */
 .hud-kpi-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -931,89 +1075,27 @@ body {
   margin-top: auto;
 }
 
-.hud-lower-grid {
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  gap: 14px;
-}
-
-.hud-chart-card, .hud-priority-card {
+/* Priority Tier Fulfillment Delta Card */
+.hud-priority-card {
   background: var(--bg-inner);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-md);
-  padding: 12px;
+  padding: 14px;
 }
 
-.chart-header-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 10px;
-}
-
-.chart-title-box {
-  display: flex;
-  flex-direction: column;
-}
-
-.chart-title {
+.card-subtitle {
   font-family: var(--font-heading);
-  font-size: 12px;
-  font-weight: 700;
-  color: #fff;
-}
-
-.chart-desc {
-  font-size: 10px;
-}
-
-.chart-controls {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.control-label { font-size: 10px; color: var(--text-dim); }
-
-.hud-select {
-  background: var(--bg-cockpit);
-  border: 1px solid var(--border-subtle);
-  color: var(--color-cyan);
-  font-family: var(--font-mono);
   font-size: 11px;
-  border-radius: var(--radius-sm);
-  padding: 3px 8px;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  color: var(--text-muted);
+  margin-bottom: 12px;
 }
-
-.canvas-container {
-  width: 100%;
-  height: 180px;
-}
-
-canvas {
-  width: 100% !important;
-  height: 100% !important;
-}
-
-.chart-legend-row {
-  display: flex;
-  gap: 14px;
-  margin-top: 8px;
-  font-size: 10px;
-  color: var(--text-dim);
-}
-
-.c-legend { display: flex; align-items: center; gap: 4px; }
-.c-swatch { width: 8px; height: 8px; border-radius: 2px; }
-.swatch-buffer { background: var(--color-cyan); }
-.swatch-cap { background: #64748b; }
-.swatch-drain { background: var(--color-emerald); }
 
 .priority-bars-container {
   display: flex;
   flex-direction: column;
   gap: 12px;
-  margin-top: 10px;
 }
 
 .priority-bar-item {
@@ -1052,7 +1134,28 @@ canvas {
   box-shadow: 0 0 6px #fff;
 }
 
-/* Panel 5: Scenario Control Panel */
+.hud-select {
+  background: var(--bg-cockpit);
+  border: 1px solid var(--border-subtle);
+  color: var(--color-cyan);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  border-radius: var(--radius-sm);
+  padding: 3px 8px;
+}
+
+canvas {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* ==========================================================================
+   Section 4: Mission Controls & Scenario Configuration
+   ========================================================================== */
+.panel-controls-section {
+  width: 100%;
+}
+
 .primary-action-btn {
   position: relative;
   background: linear-gradient(135deg, #00f0ff, #00ff9d);
@@ -1284,7 +1387,7 @@ canvas {
   border: 1px solid var(--border-subtle);
   color: var(--text-muted);
   font-size: 10px;
-  padding: 4px;
+  padding: 5px;
   border-radius: var(--radius-sm);
   cursor: pointer;
 }
@@ -1303,17 +1406,6 @@ canvas {
   gap: 4px;
   margin-top: 4px;
 }
-
-.cam-btn {
-  background: var(--bg-cockpit);
-  border: 1px solid var(--border-subtle);
-  color: var(--text-muted);
-  font-size: 10px;
-  padding: 4px;
-  border-radius: var(--radius-sm);
-  cursor: pointer;
-}
-.cam-btn:hover { border-color: var(--color-cyan); color: var(--color-cyan); }
 
 .export-btn {
   background: rgba(0, 240, 255, 0.12);
@@ -1371,8 +1463,7 @@ canvas {
 
 /* Responsive adjustments */
 @media (max-width: 1200px) {
-  .cockpit-upper-row { grid-template-columns: 1fr; }
+  .sim-telemetry-deck { grid-template-columns: 1fr; }
   .hud-kpi-grid { grid-template-columns: repeat(2, 1fr); }
-  .hud-lower-grid { grid-template-columns: 1fr; }
   .controls-parameters-grid { grid-template-columns: 1fr; }
 }
