@@ -122,9 +122,11 @@ export function generateConstellation(satelliteCount = 24, priorityDistribution 
         id: `SAT-${String(satIdx + 1).padStart(2, '0')}`,
         name,
         type: isPelican ? 'Pelican Agile Earth Imager' : 'PlanetScope 3U CubeSat',
+        satType: isPelican ? 'Pelican Agile Earth Imager' : 'PlanetScope 3U CubeSat',
         priority: assignedPriority,
         priorityWeight: PRIORITY_CONFIG[assignedPriority].weight,
         color: PRIORITY_CONFIG[assignedPriority].color,
+        priorityColor: PRIORITY_CONFIG[assignedPriority].color,
         propagator,
         altitudeKm,
         dataRateMbps: baseDataRateMbps,
@@ -132,7 +134,8 @@ export function generateConstellation(satelliteCount = 24, priorityDistribution 
         initialBufferGB,
         currentBufferGB: initialBufferGB,
         imagingRateGbps,
-        attitude
+        attitude,
+        getStateAtTime: (tSec) => propagator.propagate(tSec)
       });
 
       satIdx++;

@@ -494,28 +494,56 @@ export class AnalyticsHud {
     const mbCounterEl = this.container.querySelector('#sim-live-streamed-mb');
     const streamDotsEl = this.container.querySelector('#sim-stream-dots');
 
+    const rSat = this.container.querySelector('#radar-sat-name');
+    const rAz = this.container.querySelector('#radar-az');
+    const rEl = this.container.querySelector('#radar-el');
+    const rDoppler = this.container.querySelector('#radar-doppler');
+    const rMargin = this.container.querySelector('#radar-margin');
+    const rStation = this.container.querySelector('#sim-radar-station-name');
+
     let activeAz = 0;
     let activeEl = 0;
-    let activeSatName = '--';
 
     if (currentPasses.length > 0) {
-      const activePass = currentPasses[0];
+      // Prioritize selected satellite if it is among active passes, otherwise first active pass
+      const activePass = currentPasses.find(p => p.satId === this.selectedSatelliteId) || currentPasses[0];
       const elapsed = simSec - activePass.startSec;
       const progressFraction = Math.max(0, Math.min(1, elapsed / activePass.durationSec));
 
       if (statusBadge) {
-        statusBadge.textContent = '● CARRIER LOCKED & DOWNLINKING';
-        statusBadge.className = 'sim-status-badge badge-transmitting';
+        if (currentPasses.length > 1) {
+          statusBadge.textContent = `● MULTI-CARRIER LOCKED (${currentPasses.length} LINKS ACTIVE)`;
+          statusBadge.className = 'sim-status-badge badge-multi';
+        } else {
+          statusBadge.textContent = '● CARRIER LOCKED & DOWNLINKING';
+          statusBadge.className = 'sim-status-badge badge-transmitting';
+        }
       }
 
-      activeSatName = activePass.satName;
-      if (satEl) satEl.textContent = activePass.satName;
-      if (stationEl) stationEl.textContent = `${activePass.stationName} (${activePass.stationId})`;
+      if (satEl) {
+        satEl.textContent = activePass.satName;
+      }
+      if (stationEl) {
+        const extraNote = currentPasses.length > 1 ? ` (+${currentPasses.length - 1} concurrent)` : '';
+        stationEl.textContent = `${activePass.stationName} (${activePass.stationId})${extraNote}`;
+      }
 
-      // Dynamic Bitrate
-      const instantRate = Math.round(activePass.dataRateMbps * (0.7 + 0.3 * Math.sin(progressFraction * Math.PI)));
-      if (rateEl) rateEl.textContent = `${instantRate} Mbps`;
-      if (rateBar) rateBar.style.width = `${Math.min(100, (instantRate / 600) * 100)}%`;
+      // Dynamic Bitrate (smooth curve over elevation)
+      const instantRate = Math.round(activePass.dataRateMbps * (0.65 + 0.35 * Math.sin(progressFraction * Math.PI)));
+      const totalConcurrentRate = currentPasses.reduce((sum, p) => {
+        const frac = Math.max(0, Math.min(1, (simSec - p.startSec) / p.durationSec));
+        return sum + Math.round(p.dataRateMbps * (0.65 + 0.35 * Math.sin(frac * Math.PI)));
+      }, 0);
+
+      if (rateEl) {
+        rateEl.textContent = currentPasses.length > 1
+          ? `${totalConcurrentRate} Mbps (Aggregate)`
+          : `${instantRate} Mbps`;
+      }
+      if (rateBar) {
+        const maxRate = Math.max(900, activePass.dataRateMbps * 1.25);
+        rateBar.style.width = `${Math.min(100, (instantRate / maxRate) * 100)}%`;
+      }
 
       // Live payload GB and live MB counter
       const totalGB = activePass.actualDataGB || 18.0;
@@ -526,7 +554,7 @@ export class AnalyticsHud {
       if (payloadBar) payloadBar.style.width = `${(progressFraction * 100).toFixed(0)}%`;
 
       if (mbCounterEl) {
-        mbCounterEl.textContent = `${currentMB.toLocaleString()} MB DOWNLINKED`;
+        mbCounterEl.textContent = `${currentMB.toLocaleString()} MB TRANSFERRED (${instantRate} Mbps)`;
       }
       if (streamDotsEl) {
         const dotStates = ['▰▱▱▱▱', '▰▰▱▱▱', '▰▰▰▱▱', '▰▰▰▰▱', '▰▰▰▰▰'];
@@ -541,13 +569,6 @@ export class AnalyticsHud {
       if (anglesEl) anglesEl.textContent = `AZ: ${String(activeAz).padStart(3, '0')}° | EL: ${String(activeEl).padStart(2, '0')}°`;
 
       // Radar telemetry readouts
-      const rSat = this.container.querySelector('#radar-sat-name');
-      const rAz = this.container.querySelector('#radar-az');
-      const rEl = this.container.querySelector('#radar-el');
-      const rDoppler = this.container.querySelector('#radar-doppler');
-      const rMargin = this.container.querySelector('#radar-margin');
-      const rStation = this.container.querySelector('#sim-radar-station-name');
-
       if (rSat) rSat.textContent = activePass.satName;
       if (rAz) rAz.textContent = `${activeAz}°`;
       if (rEl) rEl.textContent = `${activeEl}°`;
@@ -557,27 +578,74 @@ export class AnalyticsHud {
       const dopplerKHz = ((0.5 - progressFraction) * 45).toFixed(1);
       if (rDoppler) rDoppler.textContent = `${dopplerKHz >= 0 ? '+' : ''}${dopplerKHz} kHz`;
       if (rMargin) rMargin.textContent = `+${(5.5 + 4.0 * Math.sin(progressFraction * Math.PI)).toFixed(1)} dB`;
+
+      // 2. Draw 2D Ground Station Sky Tracking Radar Screen with active lock
+      this.drawDishRadar(activeAz, activeEl, true, activePass.satName);
     } else {
-      if (statusBadge) {
-        statusBadge.textContent = 'STANDBY / DISH SLEWING';
-        statusBadge.className = 'sim-status-badge badge-idle';
-      }
-      if (satEl) satEl.textContent = 'SEARCHING CONSTELLATION';
-      if (stationEl) stationEl.textContent = 'MONITORING CHANNELS';
-      if (rateEl) rateEl.textContent = '0.0 Mbps';
-      if (rateBar) rateBar.style.width = '0%';
-      if (payloadEl) payloadEl.textContent = '0.0 / 0.0 GB';
-      if (payloadBar) payloadBar.style.width = '0%';
-      if (anglesEl) anglesEl.textContent = 'AZ: PARKED | EL: 10.0°';
-      if (mbCounterEl) mbCounterEl.textContent = '0 MB / CARRIER STANDBY';
-      if (streamDotsEl) {
-        streamDotsEl.textContent = '▱▱▱▱▱';
-        streamDotsEl.className = 'bitstream-stream-dots text-dim';
+      // Find upcoming pass
+      const upcoming = activeSchedule
+        .filter(p => p.startSec > simSec)
+        .sort((a, b) => a.startSec - b.startSec);
+      const nextPass = upcoming[0];
+
+      if (nextPass) {
+        const gapSec = nextPass.startSec - simSec;
+        const mm = Math.floor(gapSec / 60);
+        const ss = Math.floor(gapSec % 60);
+        const countdownStr = `${String(mm).padStart(2, '0')}m ${String(ss).padStart(2, '0')}s`;
+
+        if (statusBadge) {
+          statusBadge.textContent = `⟳ PRE-PASS SLEW (AOS IN ${countdownStr})`;
+          statusBadge.className = 'sim-status-badge badge-slewing';
+        }
+        if (satEl) satEl.textContent = `${nextPass.satName} (INBOUND)`;
+        if (stationEl) stationEl.textContent = `${nextPass.stationName} (ACQUISITION MODE)`;
+        if (rateEl) rateEl.textContent = 'STANDBY (CARRIER SEARCH)';
+        if (rateBar) rateBar.style.width = '8%';
+        if (payloadEl) payloadEl.textContent = `QUEUED: ${nextPass.actualDataGB} GB`;
+        if (payloadBar) payloadBar.style.width = '0%';
+
+        // Ground station dish actively slewing toward upcoming pass initial acquisition angle (approx 45° Az)
+        const targetAz = 45;
+        const slewAngle = Math.round((targetAz - Math.min(180, gapSec * 2.5) + 360) % 360);
+        if (anglesEl) anglesEl.textContent = `AZ: ${String(slewAngle).padStart(3, '0')}° ⟳ SLEW | EL: 10.0° (MASK)`;
+
+        if (mbCounterEl) {
+          mbCounterEl.textContent = `DISH REPOINTING (AOS COUNTDOWN: ${countdownStr})`;
+        }
+        if (streamDotsEl) {
+          streamDotsEl.textContent = '⟳ ⟳ ⟳';
+          streamDotsEl.className = 'bitstream-stream-dots text-amber';
+        }
+
+        if (rSat) rSat.textContent = `${nextPass.satName} (${countdownStr})`;
+        if (rAz) rAz.textContent = `${slewAngle}° (SLEWING)`;
+        if (rEl) rEl.textContent = '10.0° (AOS MASK)';
+        if (rDoppler) rDoppler.textContent = 'ACQ: +45.0 kHz';
+        if (rMargin) rMargin.textContent = 'ACQUIRING';
+        if (rStation) rStation.textContent = nextPass.stationName;
+
+        this.drawDishRadar(slewAngle, 10, false, nextPass.satName, true, gapSec);
+      } else {
+        if (statusBadge) {
+          statusBadge.textContent = 'CYCLE COMPLETE (24H HORIZON)';
+          statusBadge.className = 'sim-status-badge badge-idle';
+        }
+        if (satEl) satEl.textContent = '24H MISSION HORIZON';
+        if (stationEl) stationEl.textContent = 'ALL CONTACTS COMPLETED';
+        if (rateEl) rateEl.textContent = '0.0 Mbps';
+        if (rateBar) rateBar.style.width = '0%';
+        if (payloadEl) payloadEl.textContent = '0.0 / 0.0 GB';
+        if (payloadBar) payloadBar.style.width = '0%';
+        if (anglesEl) anglesEl.textContent = 'AZ: PARKED | EL: 10.0°';
+        if (mbCounterEl) mbCounterEl.textContent = '0 MB / CARRIER STANDBY';
+        if (streamDotsEl) {
+          streamDotsEl.textContent = '▱▱▱▱▱';
+          streamDotsEl.className = 'bitstream-stream-dots text-dim';
+        }
+        this.drawDishRadar(0, 0, false);
       }
     }
-
-    // 2. Draw 2D Ground Station Sky Tracking Radar Screen
-    this.drawDishRadar(activeAz, activeEl, currentPasses.length > 0);
 
     // 3. Real-Time Spacecraft Buffer Gauge
     const selectedSat = this.satellites.find(s => s.id === this.selectedSatelliteId);
@@ -611,7 +679,7 @@ export class AnalyticsHud {
         bufBar.style.backgroundColor = pct > 85 ? '#ff3b69' : pct > 60 ? '#ffb800' : '#00f0ff';
       }
       if (bufStateEl) {
-        bufStateEl.textContent = isCurrentlyDraining ? 'DISCHARGING (-X-BAND)' : 'IMAGING ACCUMULATION';
+        bufStateEl.textContent = isCurrentlyDraining ? 'DISCHARGING (-X-BAND DOWNLINK)' : 'OPTICAL SENSOR ACCUMULATION';
         bufStateEl.className = isCurrentlyDraining ? 'buffer-val font-mono text-emerald' : 'buffer-val font-mono text-cyan';
       }
     }
@@ -642,7 +710,7 @@ export class AnalyticsHud {
     }
   }
 
-  drawDishRadar(azDeg, elDeg, isLocked) {
+  drawDishRadar(azDeg, elDeg, isLocked, satName = '--', isPrePass = false, countdownSec = 0) {
     if (!this.radarCanvas || !this.radarCtx) return;
 
     const ctx = this.radarCtx;
@@ -690,7 +758,7 @@ export class AnalyticsHud {
 
     // Rotating Radar Sweep Beam
     const sweepAngle = (Date.now() / 600) % (Math.PI * 2);
-    ctx.strokeStyle = 'rgba(0, 255, 157, 0.4)';
+    ctx.strokeStyle = isLocked ? 'rgba(0, 255, 157, 0.4)' : 'rgba(255, 184, 0, 0.35)';
     ctx.lineWidth = 1.5;
     ctx.beginPath();
     ctx.moveTo(cx, cy);
@@ -707,15 +775,38 @@ export class AnalyticsHud {
       const blipY = cy + Math.sin(azRad) * elDist;
 
       // Glowing pulsing blip
+      const pulse = 10 + 3 * Math.sin(Date.now() * 0.01);
       ctx.fillStyle = 'rgba(0, 255, 157, 0.35)';
       ctx.beginPath();
-      ctx.arc(blipX, blipY, 10, 0, Math.PI * 2);
+      ctx.arc(blipX, blipY, pulse, 0, Math.PI * 2);
       ctx.fill();
 
       ctx.fillStyle = '#00ff9d';
       ctx.beginPath();
       ctx.arc(blipX, blipY, 4, 0, Math.PI * 2);
       ctx.fill();
+
+      // Satellite callsign label
+      ctx.fillStyle = '#ffffff';
+      ctx.font = 'bold 8px "JetBrains Mono", monospace';
+      ctx.fillText(satName, blipX, blipY - 9);
+    } else if (isPrePass) {
+      // Inbound satellite approaching 10° horizon mask
+      const azRad = ((azDeg - 90) * Math.PI) / 180;
+      const blipX = cx + Math.cos(azRad) * radius;
+      const blipY = cy + Math.sin(azRad) * radius;
+
+      // Pulsing amber target acquisition crosshairs
+      const pulse = 6 + 2 * Math.sin(Date.now() * 0.008);
+      ctx.strokeStyle = '#ffb800';
+      ctx.lineWidth = 1.5;
+      ctx.beginPath();
+      ctx.arc(blipX, blipY, pulse, 0, Math.PI * 2);
+      ctx.stroke();
+
+      ctx.fillStyle = '#ffb800';
+      ctx.font = 'bold 7px "JetBrains Mono", monospace';
+      ctx.fillText(`ACQ ${satName}`, blipX, blipY - 9);
     }
   }
 }

@@ -129,6 +129,8 @@ export class OrbitPropagator {
       ecefPos: [xECEF, yECEF, zECEF],
       latDeg,
       lonDeg,
+      lat: latDeg,
+      lon: lonDeg,
       altKm,
       velocityKmS,
       trueAnomalyDeg: (nu * 180) / Math.PI,

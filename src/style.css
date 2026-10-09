@@ -276,6 +276,35 @@ body {
   box-shadow: 0 0 14px rgba(0, 240, 255, 0.4);
 }
 
+.sim-nav-btn {
+  background: rgba(15, 23, 42, 0.85);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-muted);
+  font-family: var(--font-heading);
+  font-size: 11px;
+  font-weight: 700;
+  padding: 6px 11px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  letter-spacing: 0.4px;
+}
+
+.sim-nav-btn:hover {
+  border-color: var(--color-cyan);
+  color: var(--color-cyan);
+  background: rgba(0, 240, 255, 0.12);
+  box-shadow: 0 0 10px rgba(0, 240, 255, 0.25);
+}
+
+.sim-nav-btn.active-skip {
+  border-color: var(--color-emerald);
+  color: var(--color-emerald);
+  background: rgba(0, 255, 157, 0.14);
+  box-shadow: 0 0 12px rgba(0, 255, 157, 0.3);
+}
+
 .sim-speed-chips {
   display: flex;
   background: var(--bg-cockpit);
@@ -546,6 +575,21 @@ body {
   background: rgba(148, 163, 184, 0.1);
   border: 1px solid var(--border-subtle);
   color: var(--text-dim);
+}
+
+.badge-slewing {
+  background: rgba(255, 184, 0, 0.18);
+  border: 1px solid var(--color-amber);
+  color: var(--color-amber);
+  box-shadow: 0 0 12px rgba(255, 184, 0, 0.35);
+  animation: pulse-glow 1.5s infinite ease-in-out;
+}
+
+.badge-multi {
+  background: rgba(0, 240, 255, 0.22);
+  border: 1px solid var(--color-cyan);
+  color: #fff;
+  box-shadow: 0 0 14px rgba(0, 240, 255, 0.45);
 }
 
 .sim-link-body {

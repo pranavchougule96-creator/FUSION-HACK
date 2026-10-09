@@ -27,6 +27,7 @@ class MissionControlDashboard {
     this.simEpochSec = 0;
     this.horizonSec = 86400; // 24 hours
     this.isPlaying = true;
+    this.autoSkipGaps = true; // Auto-skip long idle deadbands between passes
     this.timeSpeed = 60; // 60x default speed
     this.lastFrameTimestamp = performance.now();
 
@@ -108,6 +109,9 @@ class MissionControlDashboard {
       <section class="master-sim-bar">
         <div class="sim-bar-play-box">
           <button class="sim-play-toggle-btn active" id="btn-master-play">⏸ PAUSE</button>
+          <button class="sim-nav-btn" id="btn-prev-pass" title="Seek to previous scheduled contact">⏮ PREV PASS</button>
+          <button class="sim-nav-btn" id="btn-next-pass" title="Seek to next scheduled contact">⏭ NEXT PASS</button>
+          <button class="sim-nav-btn active-skip" id="btn-skip-gaps" title="Toggle automatic skip across empty idle gaps">⚡ AUTO-SKIP GAPS</button>
           <div class="sim-speed-chips">
             <button class="sim-speed-btn" data-spd="1">1x Real</button>
             <button class="sim-speed-btn" data-spd="10">10x</button>
@@ -183,6 +187,20 @@ class MissionControlDashboard {
       if (this.controlPanel) {
         this.controlPanel.isPlaying = this.isPlaying;
       }
+    });
+
+    document.getElementById('btn-prev-pass').addEventListener('click', () => {
+      this.jumpToPrevPass();
+    });
+
+    document.getElementById('btn-next-pass').addEventListener('click', () => {
+      this.jumpToNextPass();
+    });
+
+    const btnSkip = document.getElementById('btn-skip-gaps');
+    btnSkip.addEventListener('click', () => {
+      this.autoSkipGaps = !this.autoSkipGaps;
+      btnSkip.classList.toggle('active-skip', this.autoSkipGaps);
     });
 
     document.querySelectorAll('.sim-speed-btn').forEach(btn => {
@@ -336,6 +354,19 @@ class MissionControlDashboard {
       this.onSatelliteSelected(this.satellites[0]);
     }
 
+    // Automatically seek into the first scheduled pass so the simulation is IMMEDIATELY active on load!
+    const activeSchedule = this.getActiveSchedule();
+    const sortedScheduled = [...activeSchedule].sort((a, b) => a.startSec - b.startSec);
+    if (sortedScheduled.length > 0) {
+      const firstPass = sortedScheduled[0];
+      const startAtSec = Math.min(firstPass.endSec - 10, firstPass.startSec + 20);
+      this.seekToTime(startAtSec);
+      const sat = this.satellites.find(s => s.id === firstPass.satId);
+      if (sat) {
+        this.selectedSatellite = sat;
+      }
+    }
+
     // Update Counter badge
     const counterEl = document.getElementById('globe-sat-counter');
     if (counterEl) {
@@ -358,6 +389,43 @@ class MissionControlDashboard {
     }
   }
 
+  getActiveSchedule() {
+    return this.ganttChart && this.ganttChart.viewMode === 'FCFS'
+      ? (this.fcfsResult ? this.fcfsResult.scheduled : [])
+      : (this.optimizedResult ? this.optimizedResult.scheduled : []);
+  }
+
+  jumpToNextPass() {
+    const cur = this.simEpochSec;
+    const sched = [...this.getActiveSchedule()].sort((a, b) => a.startSec - b.startSec);
+    const next = sched.find(p => p.startSec > cur + 10);
+    if (next) {
+      this.seekToTime(next.startSec + 15);
+      const sat = this.satellites.find(s => s.id === next.satId);
+      if (sat) this.onSatelliteSelected(sat);
+    } else if (sched.length > 0) {
+      this.seekToTime(sched[0].startSec + 15);
+      const sat = this.satellites.find(s => s.id === sched[0].satId);
+      if (sat) this.onSatelliteSelected(sat);
+    }
+  }
+
+  jumpToPrevPass() {
+    const cur = this.simEpochSec;
+    const sched = [...this.getActiveSchedule()].sort((a, b) => a.startSec - b.startSec);
+    const past = [...sched].reverse().find(p => p.endSec < cur - 10);
+    if (past) {
+      this.seekToTime(past.startSec + 15);
+      const sat = this.satellites.find(s => s.id === past.satId);
+      if (sat) this.onSatelliteSelected(sat);
+    } else if (sched.length > 0) {
+      const last = sched[sched.length - 1];
+      this.seekToTime(last.startSec + 15);
+      const sat = this.satellites.find(s => s.id === last.satId);
+      if (sat) this.onSatelliteSelected(sat);
+    }
+  }
+
   onSatelliteSelected(satellite) {
     this.selectedSatellite = satellite;
     if (this.globe3D) {
@@ -370,6 +438,8 @@ class MissionControlDashboard {
     if (sat) {
       this.onSatelliteSelected(sat);
     }
+    // Instantly seek clock directly into the clicked pass
+    this.seekToTime(pass.startSec + 15);
   }
 
   seekToTime(sec) {
@@ -390,7 +460,22 @@ class MissionControlDashboard {
 
     if (this.isPlaying) {
       const deltaSec = (deltaMs / 1000) * this.timeSpeed;
-      this.simEpochSec = (this.simEpochSec + deltaSec) % this.horizonSec;
+      let nextEpoch = this.simEpochSec + deltaSec;
+
+      // Auto-skip dead gaps between scheduled contacts if enabled
+      if (this.autoSkipGaps) {
+        const sched = this.getActiveSchedule();
+        const isCurrentActive = sched.some(p => nextEpoch >= p.startSec && nextEpoch <= p.endSec);
+        if (!isCurrentActive) {
+          const upcoming = sched.find(p => p.startSec > nextEpoch);
+          if (upcoming && (upcoming.startSec - nextEpoch > 6)) {
+            // Jump to 3 seconds before next pass AOS
+            nextEpoch = upcoming.startSec - 3;
+          }
+        }
+      }
+
+      this.simEpochSec = nextEpoch % this.horizonSec;
 
       const slider = document.getElementById('master-sim-slider');
       if (slider) slider.value = Math.round(this.simEpochSec);

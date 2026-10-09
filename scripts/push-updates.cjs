@@ -11,7 +11,7 @@ try {
   console.log('Changes staged.');
 
   try {
-    execSync('.\\bin\\mingit\\cmd\\git.exe commit -m "feat: realistic 3D Earth, live simulation analytics, and redesigned timetable"', { stdio: 'inherit' });
+    execSync('.\\bin\\mingit\\cmd\\git.exe commit -m "fix(simulation): instant active downlink start, continuous live telemetry, pass jump controls, and auto-skip gaps"', { stdio: 'inherit' });
     console.log('Committed.');
   } catch (e) {
     console.log('No new commit needed or already committed.');

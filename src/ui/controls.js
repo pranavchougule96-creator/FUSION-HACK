@@ -9,7 +9,7 @@ export class ScenarioControlPanel {
     this.container = containerElement;
     this.callbacks = callbacks; // onReoptimize, onTimeChange, onPlayToggle, onSpeedChange, onCameraPreset, onExport
 
-    this.isPlaying = false;
+    this.isPlaying = true;
     this.speedMultiplier = 60; // default 60x warp
     this.currentSec = 0;
     this.horizonSec = 86400;
@@ -48,7 +48,7 @@ export class ScenarioControlPanel {
         </div>
 
         <div class="time-buttons-group">
-          <button class="ctrl-btn" id="btn-play-pause">▶ PLAY</button>
+          <button class="ctrl-btn active" id="btn-play-pause">⏸ PAUSE</button>
           <div class="speed-pill-group">
             <button class="speed-btn" data-speed="1">1x</button>
             <button class="speed-btn" data-speed="10">10x</button>
