@@ -59,6 +59,12 @@ fs.writeFileSync(path.join(distDir, 'standalone.html'), htmlTemplate, 'utf-8');
 fs.writeFileSync(path.join(rootDir, 'index.html'), htmlTemplate, 'utf-8');
 fs.writeFileSync(path.join(rootDir, 'standalone.html'), htmlTemplate, 'utf-8');
 
+// Ensure public textures and data are copied to dist
+const publicDir = path.join(rootDir, 'public');
+if (fs.existsSync(publicDir)) {
+  fs.cpSync(publicDir, distDir, { recursive: true });
+}
+
 console.log('✅ Standalone single-file HTML created successfully:');
 console.log('   - ' + path.join(rootDir, 'index.html'));
 console.log('   - ' + path.join(rootDir, 'standalone.html'));

@@ -1,7 +1,7 @@
 /**
  * SPACE-04: High-Performance 3D Constellation & Ground Station Globe
- * Three.js WebGL visualization of photorealistic Earth, orbital ground tracks, satellite meshes,
- * ground station visibility footprints, and dynamic line-of-sight downlink beams.
+ * Three.js WebGL visualization with photorealistic NASA Earth textures, normal relief maps,
+ * specular ocean reflection, dynamic cloud sphere, and high-visibility satellite beacon sprites.
  */
 
 import * as THREE from 'three';
@@ -30,7 +30,9 @@ export class ConstellationGlobe3D {
 
     // Visual objects mappings
     this.satMeshes = new Map();
+    this.satSprites = new Map();
     this.orbitLines = new Map();
+    this.orbitPulses = new Map();
     this.groundStationMeshes = new Map();
     this.downlinkBeams = new Map();
 
@@ -52,7 +54,7 @@ export class ConstellationGlobe3D {
     this.scene.background = new THREE.Color('#030712');
 
     // 2. Camera
-    this.camera = new THREE.PerspectiveCamera(45, width / height, 0.5, 3000);
+    this.camera = new THREE.PerspectiveCamera(45, width / height, 0.5, 3500);
     this.camera.position.set(160, 110, 210);
 
     // 3. Renderer
@@ -60,7 +62,7 @@ export class ConstellationGlobe3D {
     this.renderer.setSize(width, height);
     this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     this.renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    this.renderer.toneMappingExposure = 1.25;
+    this.renderer.toneMappingExposure = 1.35;
     this.container.appendChild(this.renderer.domElement);
 
     // 4. OrbitControls
@@ -68,21 +70,21 @@ export class ConstellationGlobe3D {
     this.controls.enableDamping = true;
     this.controls.dampingFactor = 0.08;
     this.controls.minDistance = 115;
-    this.controls.maxDistance = 600;
+    this.controls.maxDistance = 700;
     this.controls.autoRotate = false;
 
     // 5. Lighting
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.9);
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.85);
     this.scene.add(ambientLight);
 
-    // Sun Directional Light (illuminates day/night terminator with warm sunlight)
-    const sunLight = new THREE.DirectionalLight(0xfff8ee, 2.0);
-    sunLight.position.set(320, 160, 220);
+    // Sun Directional Light (realistic day/night illumination)
+    const sunLight = new THREE.DirectionalLight(0xfffcf0, 2.4);
+    sunLight.position.set(340, 160, 240);
     this.scene.add(sunLight);
 
-    // Deep space azure rim fill
-    const rimLight = new THREE.DirectionalLight(0x00e1ff, 0.65);
-    rimLight.position.set(-220, -120, -180);
+    // Deep space azure limb fill light
+    const rimLight = new THREE.DirectionalLight(0x00d8ff, 0.7);
+    rimLight.position.set(-240, -120, -190);
     this.scene.add(rimLight);
 
     // 6. Deep Space Stars
@@ -92,26 +94,49 @@ export class ConstellationGlobe3D {
     // 7. Photorealistic Earth Sphere
     const earthRadius = 100;
     const earthGeometry = new THREE.SphereGeometry(earthRadius, 64, 64);
-    const earthTexture = createRealisticEarthTexture(2048, 1024);
+
+    // Texture Loader with real NASA textures and procedural fallbacks
+    const textureLoader = new THREE.TextureLoader();
+    const fallbackTexture = createRealisticEarthTexture(2048, 1024);
+
+    const earthTexture = textureLoader.load(
+      '/textures/earth_atmos_2048.jpg',
+      undefined,
+      undefined,
+      () => { earthMaterial.map = fallbackTexture; earthMaterial.needsUpdate = true; }
+    );
+    earthTexture.anisotropy = 16;
+
+    const normalTexture = textureLoader.load('/textures/earth_normal_2048.jpg');
+    const specularTexture = textureLoader.load('/textures/earth_specular_2048.jpg');
 
     const earthMaterial = new THREE.MeshStandardMaterial({
       map: earthTexture,
-      roughness: 0.55,
-      metalness: 0.15,
-      bumpScale: 0.05
+      normalMap: normalTexture,
+      normalScale: new THREE.Vector2(0.85, 0.85),
+      roughnessMap: specularTexture,
+      roughness: 0.65,
+      metalness: 0.15
     });
 
     this.earthMesh = new THREE.Mesh(earthGeometry, earthMaterial);
     this.scene.add(this.earthMesh);
 
-    // 8. Independent Dynamic Cloud Layer
+    // 8. Independent Dynamic Cloud Sphere
     const cloudGeometry = new THREE.SphereGeometry(earthRadius * 1.008, 64, 64);
-    const cloudTexture = createRealisticCloudTexture(2048, 1024);
+    const fallbackCloudTexture = createRealisticCloudTexture(2048, 1024);
+
+    const cloudTexture = textureLoader.load(
+      '/textures/earth_clouds_1024.png',
+      undefined,
+      undefined,
+      () => { cloudMaterial.map = fallbackCloudTexture; cloudMaterial.needsUpdate = true; }
+    );
 
     const cloudMaterial = new THREE.MeshStandardMaterial({
       map: cloudTexture,
       transparent: true,
-      opacity: 0.45,
+      opacity: 0.55,
       blending: THREE.NormalBlending,
       depthWrite: false
     });
@@ -124,13 +149,13 @@ export class ConstellationGlobe3D {
     const atmosMaterial = new THREE.MeshBasicMaterial({
       color: 0x00b4ff,
       transparent: true,
-      opacity: 0.16,
+      opacity: 0.18,
       side: THREE.BackSide
     });
     this.atmosphereMesh = new THREE.Mesh(atmosGeometry, atmosMaterial);
     this.scene.add(this.atmosphereMesh);
 
-    // Raycasting event listener for clicking satellites
+    // Raycasting event listener
     this.renderer.domElement.addEventListener('pointerdown', (e) => this.onPointerDown(e));
 
     // Window Resize listener
@@ -161,7 +186,7 @@ export class ConstellationGlobe3D {
     this.buildGroundStations();
     this.buildSatellitesAndOrbits();
 
-    // Default select first satellite if none selected
+    // Default select first satellite
     if (!this.selectedSatelliteId && satellites.length > 0) {
       this.selectedSatelliteId = satellites[0].id;
       if (this.onSatelliteSelect) {
@@ -175,7 +200,6 @@ export class ConstellationGlobe3D {
   }
 
   buildGroundStations() {
-    // Clear previous
     this.groundStationMeshes.forEach(mesh => this.scene.remove(mesh));
     this.groundStationMeshes.clear();
 
@@ -184,67 +208,60 @@ export class ConstellationGlobe3D {
     for (const gs of this.groundStations) {
       const gsGroup = new THREE.Group();
 
-      // Geodetic to 3D Sphere Position
       const gsPos = this.latLonToVector3(gs.lat, gs.lon, earthRadius);
       gsGroup.position.copy(gsPos);
 
-      // Align group normal to Earth surface
       const normal = gsPos.clone().normalize();
       gsGroup.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), normal);
 
-      // 1. Station Pedestal & Foundation
-      const baseGeo = new THREE.CylinderGeometry(0.8, 1.2, 0.6, 12);
+      // Station Pedestal
+      const baseGeo = new THREE.CylinderGeometry(1.0, 1.4, 0.8, 12);
       const baseMat = new THREE.MeshStandardMaterial({
-        color: 0x334155,
+        color: 0x1e293b,
         metalness: 0.8,
-        roughness: 0.3
+        roughness: 0.2
       });
       const baseMesh = new THREE.Mesh(baseGeo, baseMat);
-      baseMesh.position.y = 0.3;
+      baseMesh.position.y = 0.4;
       gsGroup.add(baseMesh);
 
-      // 2. Parabolic Ground Station Dish
-      const dishGeo = new THREE.SphereGeometry(1.6, 16, 8, 0, Math.PI * 2, 0, Math.PI * 0.45);
+      // Parabolic Dish
+      const dishGeo = new THREE.SphereGeometry(1.8, 16, 8, 0, Math.PI * 2, 0, Math.PI * 0.45);
       const dishMat = new THREE.MeshStandardMaterial({
-        color: 0xf1f5f9,
-        metalness: 0.6,
+        color: 0xf8fafc,
+        metalness: 0.5,
         roughness: 0.3,
         side: THREE.DoubleSide
       });
       const dishMesh = new THREE.Mesh(dishGeo, dishMat);
-      dishMesh.position.y = 1.3;
-      dishMesh.rotation.x = Math.PI; // Face upward
+      dishMesh.position.y = 1.4;
+      dishMesh.rotation.x = Math.PI;
       gsGroup.add(dishMesh);
 
-      // Feed horn antenna tip
-      const hornGeo = new THREE.ConeGeometry(0.3, 0.9, 8);
+      // Feed horn
+      const hornGeo = new THREE.ConeGeometry(0.35, 1.0, 8);
       const hornMat = new THREE.MeshBasicMaterial({ color: gs.color || 0x00f0ff });
       const hornMesh = new THREE.Mesh(hornGeo, hornMat);
-      hornMesh.position.y = 2.0;
+      hornMesh.position.y = 2.2;
       gsGroup.add(hornMesh);
 
-      // 3. Ground Station Visibility Footprint Ring (FOV cone base on Earth surface)
-      const fovAngleRad = Math.acos(earthRadius / (earthRadius + 500 * this.scaleFactor));
-      const ringRadius = Math.tan(fovAngleRad) * 14;
-
-      const ringGeo = new THREE.RingGeometry(ringRadius * 0.92, ringRadius, 36);
+      // Visibility Footprint Ring on Earth surface
+      const ringGeo = new THREE.RingGeometry(11.5, 12.5, 36);
       const ringMat = new THREE.MeshBasicMaterial({
         color: gs.color || 0x00f0ff,
         transparent: true,
-        opacity: 0.35,
+        opacity: 0.4,
         side: THREE.DoubleSide
       });
       const ringMesh = new THREE.Mesh(ringGeo, ringMat);
       ringMesh.rotation.x = -Math.PI / 2;
-      ringMesh.position.y = 0.05;
+      ringMesh.position.y = 0.08;
       gsGroup.add(ringMesh);
 
-      // 4. Station Beacon Halo Light
-      const beaconGeo = new THREE.SphereGeometry(0.4, 8, 8);
-      const beaconMat = new THREE.MeshBasicMaterial({ color: gs.color || 0x00f0ff });
-      const beaconMesh = new THREE.Mesh(beaconGeo, beaconMat);
-      beaconMesh.position.y = 2.2;
-      gsGroup.add(beaconMesh);
+      // Station Callsign Sprite Label
+      const labelSprite = this.createStationLabelSprite(gs.id, gs.color || '#00f0ff');
+      labelSprite.position.set(0, 4.2, 0);
+      gsGroup.add(labelSprite);
 
       gsGroup.userData = { isGroundStation: true, stationData: gs };
       this.scene.add(gsGroup);
@@ -252,10 +269,41 @@ export class ConstellationGlobe3D {
     }
   }
 
+  createStationLabelSprite(stationId, colorHex) {
+    const canvas = document.createElement('canvas');
+    canvas.width = 192;
+    canvas.height = 64;
+    const ctx = canvas.getContext('2d');
+
+    ctx.fillStyle = 'rgba(7, 13, 26, 0.85)';
+    ctx.strokeStyle = colorHex;
+    ctx.lineWidth = 2;
+    ctx.roundRect(4, 4, 184, 56, 8);
+    ctx.fill();
+    ctx.stroke();
+
+    ctx.fillStyle = colorHex;
+    ctx.font = 'bold 22px "JetBrains Mono", monospace';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(stationId, 96, 32);
+
+    const texture = new THREE.CanvasTexture(canvas);
+    const material = new THREE.SpriteMaterial({
+      map: texture,
+      transparent: true,
+      depthTest: false
+    });
+    const sprite = new THREE.Sprite(material);
+    sprite.scale.set(7.5, 2.5, 1);
+    return sprite;
+  }
+
   buildSatellitesAndOrbits() {
-    // Clear previous
     this.satMeshes.forEach(mesh => this.scene.remove(mesh));
     this.satMeshes.clear();
+    this.satSprites.forEach(sprite => this.scene.remove(sprite));
+    this.satSprites.clear();
     this.orbitLines.forEach(line => this.scene.remove(line));
     this.orbitLines.clear();
 
@@ -265,24 +313,21 @@ export class ConstellationGlobe3D {
       // 1. Orbital Ring Track
       const orbitRadius = earthRadius + (sat.altitudeKm * this.scaleFactor);
       const orbitPoints = [];
-      const numSegments = 120;
+      const numSegments = 140;
 
       const incRad = THREE.MathUtils.degToRad(sat.inclinationDeg);
       const raanRad = THREE.MathUtils.degToRad(sat.raanDeg);
 
       for (let i = 0; i <= numSegments; i++) {
         const u = (i / numSegments) * Math.PI * 2;
-        // Orbital plane coords
         const xOrb = orbitRadius * Math.cos(u);
         const yOrb = 0;
         const zOrb = orbitRadius * Math.sin(u);
 
-        // Rotate by inclination around X
         const xInc = xOrb;
         const yInc = zOrb * Math.sin(incRad);
         const zInc = zOrb * Math.cos(incRad);
 
-        // Rotate by RAAN around Y
         const xEci = xInc * Math.cos(raanRad) - zInc * Math.sin(raanRad);
         const yEci = yInc;
         const zEci = xInc * Math.sin(raanRad) + zInc * Math.cos(raanRad);
@@ -294,50 +339,55 @@ export class ConstellationGlobe3D {
       const orbitMat = new THREE.LineBasicMaterial({
         color: sat.priorityColor || 0x00f0ff,
         transparent: true,
-        opacity: 0.28
+        opacity: 0.38
       });
       const orbitLine = new THREE.Line(orbitGeo, orbitMat);
       this.scene.add(orbitLine);
       this.orbitLines.set(sat.id, orbitLine);
 
-      // 2. Spacecraft Model Group
+      // 2. High-Visibility Satellite Spacecraft Model
       const satGroup = new THREE.Group();
 
-      // Main Bus (Gold Multi-Layer Insulation MLI Foil)
-      const busGeo = new THREE.BoxGeometry(1.4, 1.4, 2.2);
+      // Main Bus (Enlarged 3.0 units Gold Foil Box)
+      const busGeo = new THREE.BoxGeometry(2.6, 2.6, 3.8);
       const busMat = new THREE.MeshStandardMaterial({
-        color: 0xd4af37,
-        metalness: 0.9,
-        roughness: 0.2
+        color: 0xd4af37, // Gold MLI
+        metalness: 0.95,
+        roughness: 0.15
       });
       const busMesh = new THREE.Mesh(busGeo, busMat);
       satGroup.add(busMesh);
 
-      // Solar Panel Wings
-      const panelGeo = new THREE.BoxGeometry(4.6, 0.08, 1.2);
+      // Solar Panel Wings (Span: 10.0 units!)
+      const panelGeo = new THREE.BoxGeometry(10.0, 0.12, 2.4);
       const panelMat = new THREE.MeshStandardMaterial({
-        color: 0x0f2744,
-        roughness: 0.3,
-        metalness: 0.8
+        color: 0x0d2b52, // Photovoltaic Dark Blue
+        roughness: 0.25,
+        metalness: 0.85
       });
       const panelMesh = new THREE.Mesh(panelGeo, panelMat);
-      panelMesh.position.y = 0;
       satGroup.add(panelMesh);
 
-      // Downlink High-Gain Antenna Dish
-      const antGeo = new THREE.ConeGeometry(0.5, 0.7, 8);
-      const antMat = new THREE.MeshBasicMaterial({ color: 0x00f0ff });
+      // Solar Panel Metallic Rim
+      const panelRimGeo = new THREE.BoxGeometry(10.2, 0.08, 2.6);
+      const panelRimMat = new THREE.MeshStandardMaterial({ color: 0x94a3b8, metalness: 0.9 });
+      const panelRim = new THREE.Mesh(panelRimGeo, panelRimMat);
+      satGroup.add(panelRim);
+
+      // Downlink Dish Antenna (Points to Earth nadir)
+      const antGeo = new THREE.ConeGeometry(0.8, 1.2, 8);
+      const antMat = new THREE.MeshBasicMaterial({ color: sat.priorityColor || 0x00f0ff });
       const antMesh = new THREE.Mesh(antGeo, antMat);
       antMesh.rotation.x = Math.PI;
-      antMesh.position.y = -0.9;
+      antMesh.position.y = -1.6;
       satGroup.add(antMesh);
 
       // Priority Glow Sphere
-      const glowGeo = new THREE.SphereGeometry(1.8, 12, 12);
+      const glowGeo = new THREE.SphereGeometry(3.2, 16, 16);
       const glowMat = new THREE.MeshBasicMaterial({
         color: sat.priorityColor || 0x00f0ff,
         transparent: true,
-        opacity: 0.25,
+        opacity: 0.35,
         wireframe: true
       });
       const glowMesh = new THREE.Mesh(glowGeo, glowMat);
@@ -346,33 +396,102 @@ export class ConstellationGlobe3D {
       satGroup.userData = { isSatellite: true, satId: sat.id, satData: sat };
       this.scene.add(satGroup);
       this.satMeshes.set(sat.id, satGroup);
+
+      // 3. High-Visibility Beacon Sprite Billboard with Satellite Name Tag!
+      const beaconSprite = this.createSatelliteBeaconSprite(
+        sat.priorityColor || '#00f0ff',
+        sat.name
+      );
+      this.scene.add(beaconSprite);
+      this.satSprites.set(sat.id, beaconSprite);
     }
   }
 
   /**
-   * Update satellite positions and active downlink beams at simulation time
+   * Creates a billboard sprite with glowing halo and name tag
+   * guaranteeing the satellite is unmistakably visible at any distance.
+   */
+  createSatelliteBeaconSprite(colorHex, nameText) {
+    const canvas = document.createElement('canvas');
+    canvas.width = 256;
+    canvas.height = 80;
+    const ctx = canvas.getContext('2d');
+
+    // Pulsing halo circle
+    const grad = ctx.createRadialGradient(32, 40, 2, 32, 40, 28);
+    grad.addColorStop(0, '#ffffff');
+    grad.addColorStop(0.3, colorHex);
+    grad.addColorStop(0.7, colorHex + '77');
+    grad.addColorStop(1, 'transparent');
+    ctx.fillStyle = grad;
+    ctx.beginPath();
+    ctx.arc(32, 40, 28, 0, Math.PI * 2);
+    ctx.fill();
+
+    // Solid core
+    ctx.fillStyle = '#ffffff';
+    ctx.beginPath();
+    ctx.arc(32, 40, 6, 0, Math.PI * 2);
+    ctx.fill();
+
+    // Label Box
+    ctx.fillStyle = 'rgba(7, 13, 26, 0.8)';
+    ctx.strokeStyle = colorHex;
+    ctx.lineWidth = 1.5;
+    ctx.roundRect(66, 20, 180, 40, 6);
+    ctx.fill();
+    ctx.stroke();
+
+    // Satellite Name Text
+    ctx.fillStyle = '#ffffff';
+    ctx.font = 'bold 18px "JetBrains Mono", monospace';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(nameText, 76, 40);
+
+    const texture = new THREE.CanvasTexture(canvas);
+    const material = new THREE.SpriteMaterial({
+      map: texture,
+      transparent: true,
+      depthTest: false
+    });
+    const sprite = new THREE.Sprite(material);
+    sprite.scale.set(16, 5, 1);
+    return sprite;
+  }
+
+  /**
+   * Update satellite positions, beacons, and active downlink beams at simulation time
    */
   updateAtTime(simSec) {
     const earthRadius = 100;
 
-    // 1. Update satellite orbital positions
+    // 1. Update satellite orbital positions & sprites
     for (const sat of this.satellites) {
       const mesh = this.satMeshes.get(sat.id);
+      const sprite = this.satSprites.get(sat.id);
       if (!mesh) continue;
 
       const state = sat.getStateAtTime(simSec);
       const r = earthRadius + (sat.altitudeKm * this.scaleFactor);
 
-      // Spherical lat/lon to Cartesian ECEF
       const pos = this.latLonToVector3(state.lat, state.lon, r);
       mesh.position.copy(pos);
 
-      // Orient satellite so antenna points toward Earth center
+      // Point antenna toward Earth center
       mesh.lookAt(0, 0, 0);
+
+      // Update beacon sprite position slightly offset outward
+      if (sprite) {
+        const spritePos = pos.clone().multiplyScalar(1.05);
+        sprite.position.copy(spritePos);
+        // Subtle pulse scale
+        const pulse = 1.0 + 0.12 * Math.sin(Date.now() * 0.005 + (sat.noradId || 0));
+        sprite.scale.set(16 * pulse, 5 * pulse, 1);
+      }
 
       // Highlight selected satellite
       if (sat.id === this.selectedSatelliteId) {
-        mesh.scale.set(1.4, 1.4, 1.4);
+        mesh.scale.set(1.5, 1.5, 1.5);
       } else {
         mesh.scale.set(1.0, 1.0, 1.0);
       }
@@ -383,7 +502,6 @@ export class ConstellationGlobe3D {
   }
 
   updateDownlinkBeams(simSec) {
-    // Find passes currently active at simSec
     const currentActivePasses = this.activeSchedule.filter(
       p => simSec >= p.startSec && simSec <= p.endSec
     );
@@ -391,7 +509,7 @@ export class ConstellationGlobe3D {
     const activeKeys = new Set();
     currentActivePasses.forEach(p => activeKeys.add(`${p.satId}_${p.stationId}`));
 
-    // Remove defunct beams
+    // Remove inactive beams
     for (const [key, beamObj] of this.downlinkBeams.entries()) {
       if (!activeKeys.has(key)) {
         this.scene.remove(beamObj.line);
@@ -413,26 +531,23 @@ export class ConstellationGlobe3D {
         let beamObj = this.downlinkBeams.get(key);
 
         if (!beamObj) {
-          // Create line
           const lineGeo = new THREE.BufferGeometry().setFromPoints([satPos, gsPos]);
           const lineMat = new THREE.LineBasicMaterial({
             color: pass.color || 0x00f0ff,
             transparent: true,
-            opacity: 0.9,
-            linewidth: 2
+            opacity: 0.95,
+            linewidth: 3
           });
           const line = new THREE.Line(lineGeo, lineMat);
           this.scene.add(line);
 
-          // Photon packet light
-          const pulseLight = new THREE.PointLight(pass.color || 0x00f0ff, 2.0, 40);
+          const pulseLight = new THREE.PointLight(pass.color || 0x00f0ff, 2.5, 50);
           pulseLight.position.copy(satPos);
           this.scene.add(pulseLight);
 
           beamObj = { line, lineMat, pulseLight, key, pass };
           this.downlinkBeams.set(key, beamObj);
         } else {
-          // Update beam points
           const positions = beamObj.line.geometry.attributes.position.array;
           positions[0] = satPos.x;
           positions[1] = satPos.y;
@@ -442,10 +557,9 @@ export class ConstellationGlobe3D {
           positions[5] = gsPos.z;
           beamObj.line.geometry.attributes.position.needsUpdate = true;
 
-          // Pulse opacity & move photon packet along beam
           const tPulse = (Date.now() % 1000) / 1000;
           beamObj.pulseLight.position.lerpVectors(satPos, gsPos, tPulse);
-          beamObj.lineMat.opacity = 0.75 + 0.25 * Math.sin(Date.now() * 0.012);
+          beamObj.lineMat.opacity = 0.8 + 0.2 * Math.sin(Date.now() * 0.015);
         }
       }
     }
@@ -458,18 +572,15 @@ export class ConstellationGlobe3D {
       this.camera.position.set(160, 110, 210);
       this.controls.target.set(0, 0, 0);
     } else if (preset === 'INDIA') {
-      // Focus on Indian Subcontinent (ISRO Hubs: Bengaluru, Lucknow, Port Blair)
-      const indiaFocus = this.latLonToVector3(20, 80, 100);
-      const camPos = indiaFocus.clone().normalize().multiplyScalar(240);
-      camPos.y += 30; // slight overhead angle
+      const indiaFocus = this.latLonToVector3(20, 78, 100);
+      const camPos = indiaFocus.clone().normalize().multiplyScalar(235);
+      camPos.y += 25;
       this.camera.position.copy(camPos);
       this.controls.target.copy(indiaFocus.clone().multiplyScalar(0.4));
     } else if (preset === 'NORTH_POLAR') {
-      // Svalbard / Inuvik Arctic view
       this.camera.position.set(0, 260, 40);
       this.controls.target.set(0, 70, 0);
     } else if (preset === 'SOUTH_POLAR') {
-      // Troll / Punta Arenas Antarctic view
       this.camera.position.set(0, -260, 40);
       this.controls.target.set(0, -70, 0);
     } else if (preset === 'SELECTED_SAT') {
@@ -477,7 +588,7 @@ export class ConstellationGlobe3D {
         const mesh = this.satMeshes.get(this.selectedSatelliteId);
         if (mesh) {
           const pos = mesh.position.clone();
-          this.camera.position.set(pos.x * 1.5, pos.y * 1.5, pos.z * 1.5);
+          this.camera.position.set(pos.x * 1.45, pos.y * 1.45, pos.z * 1.45);
           this.controls.target.copy(pos);
         }
       }
@@ -526,9 +637,9 @@ export class ConstellationGlobe3D {
   animate() {
     requestAnimationFrame(this.animate);
 
-    // Dynamic rotation of cloud mesh independently of Earth surface
+    // Dynamic rotation of clouds
     if (this.cloudMesh) {
-      this.cloudMesh.rotation.y += 0.00025;
+      this.cloudMesh.rotation.y += 0.0003;
     }
 
     if (this.controls) this.controls.update();
